@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "WeatherForecast": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7249"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "httpPort": 30486,
+      "useSSL": false
+    }
+  }
+}
