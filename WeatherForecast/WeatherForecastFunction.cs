@@ -41,7 +41,7 @@ namespace WeatherForecast
         [OpenApiSecurity("function_auth_Key", SecuritySchemeType.ApiKey, Name = "auth_key", In = OpenApiSecurityLocationType.Header)]
         [OpenApiParameter(name: "city", In = ParameterLocation.Query, Required = true, Type = typeof(string), Description = "The city's name for which the weather data needs to be fetched")]
         [OpenApiParameter(name: "numberOfDaysToForecast", In = ParameterLocation.Query, Required = true, Type = typeof(string), Description = "The next number of days of data to be forecasted")]
-        [OpenApiParameter(name: "shouldIncludeCurrentDay", In = ParameterLocation.Query, Required = true, Type = typeof(string), Description = "Whether current day's date should be included as part of the forecast")]
+        [OpenApiParameter(name: "shouldIncludeToday", In = ParameterLocation.Query, Required = true, Type = typeof(string), Description = "Whether current day's date should be included as part of the forecast")]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(IList<DayHighLowTempAndMessages>), Description = "The Weather Forecast data")]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.BadRequest, contentType: "application/json", bodyType: typeof(IList<string>), Description = "Invalid Request Data Messages")]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.ServiceUnavailable, contentType: "application/json", bodyType: typeof(string), Description = "Open API Service Unavailable Message")]
@@ -60,11 +60,11 @@ namespace WeatherForecast
             string authKey = requestHeadersDictionary["auth_key"];
             string city = req.Query["city"];
             string numberOfDaysToForecast = req.Query["numberOfDaysToForecast"];
-            string shouldIncludeCurrentDay = req.Query["shouldIncludeCurrentDay"];
+            string shouldIncludeToday = req.Query["shouldIncludeToday"];
 
             int numberOfDaysToForecastInt = 0;
             int.TryParse(numberOfDaysToForecast,out numberOfDaysToForecastInt);
-            int openWeatherMapCntValue = shouldIncludeCurrentDay == "true" ? (numberOfDaysToForecastInt + 1) * 8 : numberOfDaysToForecastInt * 8;
+            int openWeatherMapCntValue = shouldIncludeToday == "true" ? (numberOfDaysToForecastInt + 1) * 8 : numberOfDaysToForecastInt * 8;
 
             string formattedUrl = string.Format(apiUrl, city, openWeatherMapCntValue);
             _logger.LogInformation("formattedUrl is : " + formattedUrl);
@@ -94,7 +94,7 @@ namespace WeatherForecast
                 return await Task.FromResult(badRequestObjectResult).ConfigureAwait(false);
             }
             IList<List> responseDataList = responseData.list;
-            if (shouldIncludeCurrentDay == "false")
+            if (shouldIncludeToday == "false")
             {
                 String currentDateText = DateTime.Now.ToString("yyyy-MM-dd");
                 responseDataList = responseDataList.Where(x => !x.dt_txt.Trim().StartsWith(currentDateText)).ToList();

@@ -1,1 +1,23 @@
-<p>app.weather-forecast-form-input works!</p>
+<form [formGroup]="weatherForecastForm" (ngSubmit)="onSubmit()">
+  <div class="form-group w-100 m2">
+    <input type="text" class="form-control" formControlName="city" placeholder="City*" />
+    <span class="text-danger" *ngIf="weatherForecastForm.get('city')!.hasError('required') && submitted"> City is mandatory</span>
+  </div>
+  <div class="form-group w-100 m2">
+    <input type="text" class="form-control" formControlName="numberOfDaysToForecast" placeholder="Number Of Days To Forecast *" />
+    <span class="text-danger" *ngIf="weatherForecastForm.get('numberOfDaysToForecast')!.hasError('required') && submitted"> Number Of Days To Forecast is mandatory</span>
+    <!--<span class="text-danger" *ngIf="weatherForecastForm.get('numberOfDaysToForecast')!.hasError('min') && submitted"> Number Of Days To Forecast should be a valid positive number</span>-->
+  </div>
+  <div class="form-group w-100 m2">
+    <label for="shouldIncludeToday">Should Include Today</label>
+    <select formControlName="shouldIncludeToday" class="form-control">
+      <option>Choose Value</option>
+      <option *ngFor="let shouldIncludeTodayValue of shouldIncludeTodayValues">{{shouldIncludeTodayValue}}</option>
+    </select>
+    <span class="text-danger" *ngIf="weatherForecastForm.get('shouldIncludeToday')!.hasError('required') && submitted"> Should Include Today is mandatory</span>
+  </div>
+  <div class="form-group w-100 m2">
+    <input type="submit" class="form-control" value="Submit" [disabled]="!weatherForecastForm.valid"/>
+  </div>
+</form>
+

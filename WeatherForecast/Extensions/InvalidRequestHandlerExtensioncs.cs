@@ -16,7 +16,7 @@ namespace WeatherForecast.Extensions
             string authKey = requestHeadersDictionary["auth_key"];
             string city = req.Query["city"];
             string numberOfDaysToForecast = req.Query["numberOfDaysToForecast"];
-            string shouldIncludeCurrentDay = req.Query["shouldIncludeCurrentDay"];
+            string shouldIncludeToday = req.Query["shouldIncludeToday"];
             IList<string> allInvalidRequestMessages = new List<string>();
             if (String.IsNullOrEmpty(authKey))
             {
@@ -30,9 +30,9 @@ namespace WeatherForecast.Extensions
             {
                 allInvalidRequestMessages.Add("numberOfDaysToForecast in query string is mandatory");
             }
-            if (String.IsNullOrEmpty(shouldIncludeCurrentDay))
+            if (String.IsNullOrEmpty(shouldIncludeToday))
             {
-                allInvalidRequestMessages.Add("shouldIncludeCurrentDay in query string is mandatory");
+                allInvalidRequestMessages.Add("shouldIncludeToday in query string is mandatory");
             }
             if (authKey != validAuthKeyValue)
             {
@@ -44,9 +44,9 @@ namespace WeatherForecast.Extensions
                 allInvalidRequestMessages.Add("numberOfDaysToForecast provided in query string should be a valid positive number");
             }
             bool outShouldIncludeCurrentDay = false;
-            if (!bool.TryParse(shouldIncludeCurrentDay, out outShouldIncludeCurrentDay))
+            if (!bool.TryParse(shouldIncludeToday, out outShouldIncludeCurrentDay))
             {
-                allInvalidRequestMessages.Add("shouldIncludeCurrentDay provided in query string should be a valid boolean value(i.e. true or false)");
+                allInvalidRequestMessages.Add("shouldIncludeToday provided in query string should be a valid boolean value(i.e. true or false)");
             }
             return allInvalidRequestMessages;
         }
