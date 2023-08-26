@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherForecast", "WeatherForecast.csproj", "{2A233BC8-6E89-48F3-BEE1-9DADE5097E15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherForecast", "WeatherForecast\WeatherForecast.csproj", "{2A233BC8-6E89-48F3-BEE1-9DADE5097E15}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "WeatherForecastUI", "..\WeatherForecastUI\WeatherForecastUI.esproj", "{74F9284B-19DE-424E-9CB1-C8B60C0563E5}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "WeatherForecastUI", "WeatherForecastUI\WeatherForecastUI.esproj", "{74F9284B-19DE-424E-9CB1-C8B60C0563E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0911FB8D-A4EB-423D-832F-1F856DC9C030}"
+	ProjectSection(SolutionItems) = preProject
+		ProblemStatemrent.md = ProblemStatemrent.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
