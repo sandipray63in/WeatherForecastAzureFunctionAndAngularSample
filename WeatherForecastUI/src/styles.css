@@ -1,2 +1,6 @@
 @import "ag-grid-community/styles/ag-grid.css";
 @import "ag-grid-community/styles/ag-theme-balham.css";
+.form-group.required .control-label:after {
+  color: red;
+  content: "*";
+}

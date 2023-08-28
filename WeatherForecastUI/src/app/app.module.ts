@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AppWeatherForecastFormInputComponent } from './app.weather-forecast-form-input/app.weather-forecast-form-input.component';
 import { AppWeatherForecastResponseComponent } from './app.weather-forecast-response/app.weather-forecast-response.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './services/interceptors/auth-interceptor.service';
 import { LogInterceptorService } from './services/interceptors/log-interceptor.service';
@@ -20,7 +20,6 @@ import { AgGridModule } from 'ag-grid-angular';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,

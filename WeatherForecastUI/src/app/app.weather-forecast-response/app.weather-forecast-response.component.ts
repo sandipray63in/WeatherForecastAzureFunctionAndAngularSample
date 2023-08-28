@@ -7,6 +7,10 @@ import { Subscription } from 'rxjs';
   templateUrl: './app.weather-forecast-response.component.html'
 })
 export class AppWeatherForecastResponseComponent implements OnInit, OnDestroy {
+
+  private defaultRowHeightInPx: number = 20;
+  gridHeightInPx: number = 0;
+  errorMessage: string | null = null;
   defaultColDef = {
     sortable: true,
     filter: true
@@ -19,13 +23,18 @@ export class AppWeatherForecastResponseComponent implements OnInit, OnDestroy {
   ];
   rowData: any;
   weatherForecastSubscription!: Subscription;
+
   constructor(private appWeatherForecastService: AppWeatherForecastService) { }
       
   ngOnInit(): void {
-    this.appWeatherForecastService.getWeatherFoecastResponseObservable().subscribe(
+    this.weatherForecastSubscription = this.appWeatherForecastService.getWeatherFoecastResponseObservable().subscribe(
       responseData => {
-        console.log(responseData);
-        this.rowData = responseData;
+        if (responseData.hasError) {
+          this.errorMessage = responseData.err; 
+        } else {
+          this.rowData = responseData.responseData;
+          this.gridHeightInPx = this.defaultRowHeightInPx + (this.rowData.length * this.defaultRowHeightInPx);
+        }
       }
     )
   }

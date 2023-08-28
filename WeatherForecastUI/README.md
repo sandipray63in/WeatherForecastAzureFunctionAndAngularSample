@@ -25,6 +25,10 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+Some useful links - 
+https://www.w3schools.com/bootstrap/bootstrap_forms_inputs.asp
+https://stackoverflow.com/questions/23141854/adding-asterisk-to-required-fields-in-bootstrap-3
 https://www.freecodecamp.org/news/how-to-add-bootstrap-css-framework-to-an-angular-application/
 https://www.itsolutionstuff.com/post/install-bootstrap-4-in-angular-9-how-to-add-bootstrap-in-angular-9example.html
 https://ng-bootstrap.github.io/#/home
@@ -35,4 +39,5 @@ https://saikiran1298.medium.com/form-validations-in-angular-8-5d56b2fc29dc
 https://medium.com/mobiosolutions/angular-communicating-between-components-with-observable-827180e43eb5npm 
 https://stackoverflow.com/questions/36433461/how-do-i-add-a-custom-script-to-my-package-json-file-that-runs-a-javascript-file
 https://rxjs.dev/deprecations/subscribe-arguments
+https://stackoverflow.com/questions/55472124/subscribe-is-deprecated-use-an-observer-instead-of-an-error-callback (check new & old ways)
 https://blog.ag-grid.com/get-started-with-angular-grid-in-5-minutes/

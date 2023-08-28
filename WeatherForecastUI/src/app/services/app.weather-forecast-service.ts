@@ -19,9 +19,16 @@ export class AppWeatherForecastService {
     return this.httpClient.get(environment.Weather_Forecast_API_URL, {
       params: queryParams
     }).subscribe(
-      responseData => {
-        this.weatherFoecastResponseSubject.next(responseData);
-      });
+      {
+        next: (responseData) => {
+          this.weatherFoecastResponseSubject.next({hasError: false, responseData});
+        },
+        error: (err: any) => {
+          this.weatherFoecastResponseSubject.next({hasError: true, err});
+        },
+        complete: () => { }
+      }
+    );
   }
 
   getWeatherFoecastResponseObservable(): Observable<any> {
