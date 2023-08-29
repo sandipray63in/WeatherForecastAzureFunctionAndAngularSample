@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AppWeatherForecastService } from '../services/app.weather-forecast-service';
 import { Subscription } from 'rxjs';
+import { AppWeatherForecastService } from '../../../core/services/app.weather-forecast-service';
 
 @Component({
   selector: 'app-weather-forecast-response',
@@ -8,9 +8,9 @@ import { Subscription } from 'rxjs';
 })
 export class AppWeatherForecastResponseComponent implements OnInit, OnDestroy {
 
-  private defaultRowHeightInPx: number = 20;
+  private defaultHeaderRowHeightInPx: number = 20;
+  private defaultRowHeightInPx: number = 35;
   gridHeightInPx: number = 0;
-  errorMessage: string | null = null;
   defaultColDef = {
     sortable: true,
     filter: true
@@ -22,24 +22,22 @@ export class AppWeatherForecastResponseComponent implements OnInit, OnDestroy {
     { headerName: 'Weather Messages', field: 'dayWeatherMessages' }
   ];
   rowData: any;
-  weatherForecastSubscription!: Subscription;
+ 
 
-  constructor(private appWeatherForecastService: AppWeatherForecastService) { }
+  constructor(private readonly appWeatherForecastService: AppWeatherForecastService) { }
       
   ngOnInit(): void {
-    this.weatherForecastSubscription = this.appWeatherForecastService.getWeatherFoecastResponseObservable().subscribe(
+      this.appWeatherForecastService.getSubjectAsObservable().subscribe(
       responseData => {
-        if (responseData.hasError) {
-          this.errorMessage = responseData.err; 
-        } else {
-          this.rowData = responseData.responseData;
-          this.gridHeightInPx = this.defaultRowHeightInPx + (this.rowData.length * this.defaultRowHeightInPx);
-        }
+          this.rowData = responseData;
+          if (this.rowData !== null) {
+            this.gridHeightInPx = this.defaultHeaderRowHeightInPx + (this.rowData.length * this.defaultRowHeightInPx);
+          }
       }
     )
   }
 
   ngOnDestroy(): void {
-    this.weatherForecastSubscription.unsubscribe();
+    this.appWeatherForecastService.unSubscribe();
   }
 }
