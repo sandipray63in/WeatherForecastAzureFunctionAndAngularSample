@@ -19,7 +19,7 @@ export class AppWeatherForecastResponseComponent implements OnInit, OnDestroy {
     { headerName: 'Date', field: 'dayDate' },
     { headerName: 'Low Temparature', field: 'dayLowTemperature' },
     { headerName: 'High Temperature', field: 'dayHighTemperature' },
-    { headerName: 'Weather Messages', field: 'dayWeatherMessages' }
+    { headerName: 'Weather Messages', field: 'dayWeatherMessages' , valueFormatter:this.dayWeatherMessagesFormatter}
   ];
   rowData: any;
  
@@ -39,5 +39,9 @@ export class AppWeatherForecastResponseComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.appWeatherForecastService.unSubscribe();
+  }
+
+  dayWeatherMessagesFormatter(params : any) {
+    return (params.value as string[]).join("\n");
   }
 }

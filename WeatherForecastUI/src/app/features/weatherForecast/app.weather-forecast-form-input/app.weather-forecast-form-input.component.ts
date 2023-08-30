@@ -27,8 +27,8 @@ export class AppWeatherForecastFormInputComponent implements OnInit {
     this.weatherForecastForm = this.formBuilder.group(
       {
         city: ['', Validators.required],
-        numberOfDaysToForecast: ['', Validators.required],
-        shouldIncludeToday: [''],
+        numberOfDaysToForecast: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.min(1)]],
+        shouldIncludeToday: ['', [Validators.required, Validators.pattern('[Yes|No]*')]]
       }
     )
   }
@@ -36,10 +36,10 @@ export class AppWeatherForecastFormInputComponent implements OnInit {
   onSubmit() {
     this.loading = LoadingState.LOADING;
     this.weatherForecastData = this.weatherForecastForm.value;
-    console.log("weatherForecastData : " + this.weatherForecastData);
+    console.log("weatherForecastData : " + JSON.stringify(this.weatherForecastData));
     if (this.weatherForecastForm.valid) {
       this.errors = [];
-      this.observableData = this.appWeatherForecastService.fetchWeatherForecastData(this.weatherForecastData.city, this.weatherForecastData.numberOfDaysToForecast, this.weatherForecastData.shouldIncludeToday = 'No' ? 'false' : 'true');
+      this.observableData = this.appWeatherForecastService.fetchWeatherForecastData(this.weatherForecastData.city, this.weatherForecastData.numberOfDaysToForecast, this.weatherForecastData.shouldIncludeToday === 'No' ? 'false' : 'true');
       this.observableData.subscribe({
         next: (responseData) => this.appWeatherForecastService.subscribe(responseData),
         error: (err) => {

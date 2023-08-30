@@ -14,13 +14,15 @@ import { AppWeatherForecastService } from './core/services/app.weather-forecast-
 import { ApiInterceptorService } from './core/interceptors/api-interceptor.service';
 import { ErrorInterceptorService } from './core/interceptors/error-interceptor.service';
 import { ListErrorsComponent } from './shared/list-errors.component';
+import { MarkAsteriskDirective } from './core/directives/mark-asterisk.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppWeatherForecastFormInputComponent,
     AppWeatherForecastResponseComponent,
-    ListErrorsComponent
+    ListErrorsComponent,
+    MarkAsteriskDirective
   ],
   imports: [
     BrowserModule,

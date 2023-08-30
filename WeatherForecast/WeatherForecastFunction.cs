@@ -64,7 +64,11 @@ namespace WeatherForecast
 
             int numberOfDaysToForecastInt = 0;
             int.TryParse(numberOfDaysToForecast,out numberOfDaysToForecastInt);
-            int openWeatherMapCntValue = shouldIncludeToday == "true" ? (numberOfDaysToForecastInt + 1) * 8 : numberOfDaysToForecastInt * 8;
+            if(shouldIncludeToday == "true")
+            {
+                numberOfDaysToForecastInt += 1;
+            }
+            int openWeatherMapCntValue = numberOfDaysToForecastInt * 8;
 
             string formattedUrl = string.Format(apiUrl, city, openWeatherMapCntValue);
             _logger.LogInformation("formattedUrl is : " + formattedUrl);
@@ -122,7 +126,8 @@ namespace WeatherForecast
                 }
                 dayHighLowTempAndMessagesBag.Add(dayHighLowTempAndMessages);
             });
-            return new OkObjectResult(dayHighLowTempAndMessagesBag.ToList());
+            List<DayHighLowTempAndMessages> dayHighLowTempAndMessagesList = dayHighLowTempAndMessagesBag.ToList();
+            return new OkObjectResult(dayHighLowTempAndMessagesList.OrderByDescending(x => Convert.ToDateTime(x.DayDate)).Skip(dayHighLowTempAndMessagesList.Count - numberOfDaysToForecastInt).ToList());
         }
     }
 }
