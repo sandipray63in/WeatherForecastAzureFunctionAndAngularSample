@@ -1,7 +1,12 @@
-<ag-grid-angular *ngIf="rowData !== null && rowData !== undefined" [style.height.px]="gridHeightInPx"
-                 class="ag-theme-balham"
-                 [rowData]="rowData"
-                 [columnDefs]="columnDefs"
-                 [defaultColDef]="defaultColDef">
-</ag-grid-angular>
-
+<div class="container" style="margin-top: 5px;">
+  <div class="panel panel-primary">
+    <ag-grid-angular *ngIf="rowData" [style.height.px]="gridHeightInPx"
+                     [style.width.%]="100"
+                     class="ag-theme-alpine"
+                     [rowData]="rowData"
+                     [columnDefs]="columnDefs"
+                     [defaultColDef]="defaultColDef"
+                     [tooltipInteraction]="true">
+    </ag-grid-angular>
+  </div>
+</div>

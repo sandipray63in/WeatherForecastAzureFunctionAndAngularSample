@@ -19,7 +19,7 @@ export class AppWeatherForecastResponseComponent implements OnInit, OnDestroy {
     { headerName: 'Date', field: 'dayDate' },
     { headerName: 'Low Temparature', field: 'dayLowTemperature' },
     { headerName: 'High Temperature', field: 'dayHighTemperature' },
-    { headerName: 'Weather Messages', field: 'dayWeatherMessages' , valueFormatter:this.dayWeatherMessagesFormatter}
+    { headerName: 'Weather Messages', field: 'dayWeatherMessages', valueFormatter: this.dayWeatherMessagesFormatter, tooltipField: 'dayWeatherMessages' }
   ];
   rowData: any;
  
