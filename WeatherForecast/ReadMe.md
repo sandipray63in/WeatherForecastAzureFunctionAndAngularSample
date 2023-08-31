@@ -12,6 +12,8 @@ https://github.com/Azure/azure-functions-openapi-extension/blob/main/docs/openap
 https://stackoverflow.com/questions/70265255/how-to-configure-cors-in-azure-function-app
 https://learn.microsoft.com/en-us/azure/azure-functions/functions-develop-local
 https://stackoverflow.com/questions/63130799/azure-functions-host-json-not-applying-to-azure-application-settings
+https://mahmutcanga.com/2019/12/13/unit-testing-httprequest-in-c/
+https://techcommunity.microsoft.com/t5/testingspot-blog/what-is-bdd-how-to-use-specflow-in-visual-studio-2022-specflow/ba-p/3255140
 
-In VS 2022 Community Edition, check the containers pane & check logs pane within that & from there get the weatherforecast swagger url - 
-currently its http://localhost:30486/api/swagger/ui in my local env
+In VS 2022 Community Edition, check the containers pane & check logs pane within that & from there get the weatherforecast 
+swagger url - currently its http://localhost:30486/api/swagger/ui in my local env

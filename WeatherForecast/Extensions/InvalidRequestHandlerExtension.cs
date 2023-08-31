@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WeatherForecast.Extensions
 {
-    public static class InvalidRequestHandlerExtensioncs
+    public static class InvalidRequestHandlerExtension
     {
         public static IList<string> GetAllInvalidRequestMessages(this HttpRequest req, string validAuthKeyValue)
         {

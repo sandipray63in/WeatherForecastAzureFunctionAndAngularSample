@@ -1,6 +1,8 @@
 Weather Prediction
 
-Develop, test and deploy a micro service to show the output of a city's (to be taken as an input parameter) next 3 days high and low temperatures. If rain is predicted in next 3 days or temperature goes above 40 degree Celsius then mention 'Carry umbrella' or 'Use sunscreen lotion' respectively in the output, for that day;
+Develop, test and deploy a micro service to show the output of a city's (to be taken as an input parameter) next 3 days high 
+and low temperatures. If rain is predicted in next 3 days or temperature goes above 40 degree Celsius then mention 
+'Carry umbrella' or 'Use sunscreen lotion' respectively in the output, for that day;
 Demonstrate adding additional conditions, with the least code changes & deployment:
 
 1. In case of high winds (i.e.,) Wind > 10mph, mention “It’s too windy, watch out!”
@@ -28,14 +30,16 @@ Expected output
 2. Prediction along with the time window
 
 NFRs
-• Demonstrate SOLID, 12 Factor and HATEOAS principles, Design Patterns in the design and implementation
+• Demonstrate SOLID, 15 Factor and HATEOAS principles, Design Patterns in the design and implementation
 • Demonstrate Performance, Optimization & Security aspects
 • Demonstrate Production readiness of the code
 • Demonstrate TDD & BDD & Quality aspects
 • Demonstrate sensitive information used in the Micro Services such as API keys are protected / encrypted
 
 Documentation
-• Include the open-API spec./Swagger to be part of the code. Should be able to view API via swagger (Documentation to explain the purpose of the API along with Error codes that the service consumers & client must be aware of!)
+• Include the open-API spec./Swagger to be part of the code. Should be able to view API via swagger 
+ (Documentation to explain the purpose of the API along with Error codes that the service consumers & 
+ client must be aware of!)
 • Create a README.md file in the repository and explain the design and implementation approach
 • In the README, add a sequence diagram or flowchart created using draw.io – https://www.draw.io
 • Mention the design patterns used in the code
