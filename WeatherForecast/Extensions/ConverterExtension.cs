@@ -10,7 +10,7 @@ namespace WeatherForecast.Extensions
     {
         public static double ConvertFromFahrenheitToCelsius(this double temperatureInFahrenheit)
         {
-            return ((temperatureInFahrenheit - 32) * (5 / 9));
+            return (((temperatureInFahrenheit - 32) * 5) / 9);
         }
 
         public static double ConvertFromMilesPerSecondToMilesPerHour(this double windSpeedInMilesPerSecond)
