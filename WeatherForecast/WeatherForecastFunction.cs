@@ -29,10 +29,17 @@ namespace WeatherForecast
         private const string formattedCityNotFoundMessage = "city {0} not found";
         private const string auth_key = "3faecab1-02e4-42c3-b7f0-11c74499cba5";
         private const string apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q={0}&appid=d2929e9483efc82c82c32ee7e02d563e&cnt={1}";
+        private HttpClient _httpClient;
         private readonly ILogger<WeatherForecastFunction> _logger;
 
         public WeatherForecastFunction(ILogger<WeatherForecastFunction> log)
         {
+            _logger = log;
+        }
+
+        public WeatherForecastFunction(HttpClient httpClient,ILogger<WeatherForecastFunction> log)
+        {
+            _httpClient = httpClient;
             _logger = log;
         }
 
@@ -74,12 +81,15 @@ namespace WeatherForecast
             _logger.LogInformation("formattedUrl is : " + formattedUrl);
 
             //setup http client & get response
-            HttpClient client = new HttpClient();
+            if(_httpClient == null)
+            {
+                _httpClient = new HttpClient();
+            }
             HttpResponseMessage response = null;
             string jsonData = string.Empty;
             try
             {
-                response = await client.GetAsync(formattedUrl);
+                response = await _httpClient.GetAsync(formattedUrl);
                 jsonData = await response.Content.ReadAsStringAsync();
             }
             catch(Exception ex)
