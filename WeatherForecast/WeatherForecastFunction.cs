@@ -37,10 +37,9 @@ namespace WeatherForecast
             _logger = log;
         }
 
-        public WeatherForecastFunction(HttpClient httpClient,ILogger<WeatherForecastFunction> log)
+        public void SetHttpClient (HttpClient httpClient)
         {
             _httpClient = httpClient;
-            _logger = log;
         }
 
         [FunctionName("WeatherForecast")]

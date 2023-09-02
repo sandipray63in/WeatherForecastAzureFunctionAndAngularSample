@@ -15,6 +15,9 @@ https://stackoverflow.com/questions/63130799/azure-functions-host-json-not-apply
 https://mahmutcanga.com/2019/12/13/unit-testing-httprequest-in-c/
 https://methodpoet.com/unit-test-httpclient/
 https://techcommunity.microsoft.com/t5/testingspot-blog/what-is-bdd-how-to-use-specflow-in-visual-studio-2022-specflow/ba-p/3255140
+https://stackoverflow.com/questions/17167820/specflow-error-force-regenerate-steps-possible
+https://www.codeproject.com/Articles/1086520/Using-Specflow-to-Test-Web-API-PART
+https://stackoverflow.com/questions/25112766/specflow-calling-steps-within-steps-causes-no-matching-step-definition-error
 
 In VS 2022 Community Edition, check the containers pane & check logs pane within that & from there get the weatherforecast 
 swagger url - currently its http://localhost:30486/api/swagger/ui in my local env

@@ -38,7 +38,8 @@ namespace WeatherForecastTDD
             mockedHttpMessageHandler = new Mock<HttpMessageHandler>();
             httpClient = new HttpClient(mockedHttpMessageHandler.Object);
             weatherForecastFunctionLoggerMock = new Mock<ILogger<WeatherForecastFunction>>();
-            weatherForecastFunction = new WeatherForecastFunction(httpClient,weatherForecastFunctionLoggerMock.Object);
+            weatherForecastFunction = new WeatherForecastFunction(weatherForecastFunctionLoggerMock.Object);
+            weatherForecastFunction.SetHttpClient(httpClient);
 
             validAuthKeyValue = "bed8f14b-a29e-44e6-b71b-036dc148fe5e";
             mockedHttpRequest = new Mock<HttpRequest>();
