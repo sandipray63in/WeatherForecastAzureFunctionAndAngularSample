@@ -7,6 +7,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Azure.Core;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -27,8 +30,10 @@ namespace WeatherForecast
     {
         private const string cityNotFoundMessage = "city not found";
         private const string formattedCityNotFoundMessage = "city {0} not found";
-        private const string auth_key = "3faecab1-02e4-42c3-b7f0-11c74499cba5";
-        private const string apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q={0}&appid=d2929e9483efc82c82c32ee7e02d563e&cnt={1}";
+        private static SecretClient _secretClient;
+        private static string key_vault_url = Environment.GetEnvironmentVariable("key_vault_url");
+        private static string auth_key;
+        private static string apiUrl;
         private HttpClient _httpClient;
         private readonly ILogger<WeatherForecastFunction> _logger;
 
@@ -40,6 +45,11 @@ namespace WeatherForecast
         public void SetHttpClient (HttpClient httpClient)
         {
             _httpClient = httpClient;
+        }
+
+        public  void SetSecretClient(SecretClient secretClient)
+        {
+            _secretClient = secretClient;
         }
 
         [FunctionName("WeatherForecast")]
@@ -54,6 +64,23 @@ namespace WeatherForecast
         public async Task<IActionResult> GetWeatherForecastData(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req)
         {
+            TokenCredential azureCredential = new DefaultAzureCredential();
+            _logger.LogInformation("azureCredential is : " + JsonConvert.SerializeObject(azureCredential));
+
+            if (_secretClient == null){
+                _secretClient = new SecretClient(vaultUri: new Uri(key_vault_url), credential: azureCredential);
+            }
+            _logger.LogInformation("secretClient is : " + JsonConvert.SerializeObject(_secretClient));
+
+            if (auth_key == null){
+                auth_key = _secretClient.GetSecret("authKey").Value.Value;
+            }
+            if (apiUrl == null){
+                apiUrl = _secretClient.GetSecret("openWeatherMapApiUrl").Value.Value;
+            }
+            _logger.LogInformation("auth_key is : " + auth_key);
+            _logger.LogInformation("apiUrl is : " + apiUrl);
+
             var requestHeadersDictionary = req.Headers.ToDictionary(q => q.Key, q => (string)q.Value);
             _logger.LogInformation("requestHeadersDictionary is : " + JsonConvert.SerializeObject(requestHeadersDictionary));
             IList<string> allInvalidRequestMessages = req.GetAllInvalidRequestMessages(auth_key);

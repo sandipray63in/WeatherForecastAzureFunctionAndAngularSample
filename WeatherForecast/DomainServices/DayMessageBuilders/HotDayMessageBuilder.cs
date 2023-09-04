@@ -9,12 +9,16 @@ using WeatherForecast.Extensions;
 
 namespace WeatherForecast.DomainServices.DayMessageBuilders
 {
-    public class HotDayMessageBuilder : IDayMessageBuilder
+    public class HotDayMessageBuilder : BaseDayMessageBuilder
     {
-        public IList<string> GetAllMessages(IList<List> responseDataList)
+        private static string maxHotDayTempLimit;
+        public override IList<string> GetAllMessages(IList<List> responseDataList)
         {
+            if(maxHotDayTempLimit == null){
+                maxHotDayTempLimit = _secretClient.GetSecret("maxHotDayTempLimit").Value.Value;
+            }
             IList<string> dayWeatherMessages = new List<string>();
-            if (responseDataList.Any(x => x.main.temp.ConvertFromFahrenheitToCelsius() > 40))
+            if (responseDataList.Any(x => x.main.temp.ConvertFromFahrenheitToCelsius() > Convert.ToInt32(maxHotDayTempLimit)))
             {
                 StringBuilder sbDayWeatherMessages = new StringBuilder();
                 sbDayWeatherMessages.Append("Use sunscreen lotion");

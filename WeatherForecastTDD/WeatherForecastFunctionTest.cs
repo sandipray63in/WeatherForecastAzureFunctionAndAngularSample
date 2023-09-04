@@ -17,12 +17,15 @@ using System.Reflection;
 using System.IO;
 using Moq.Protected;
 using System.Net;
+using Azure.Security.KeyVault.Secrets;
 
 namespace WeatherForecastTDD
 {
     [TestClass]
     public class WeatherForecastFunctionTest
     {
+        private Mock<SecretClient> mockedSecretClientForBase;
+        private Mock<SecretClient> mockedSecretClient;
         private Mock<ILogger<WeatherForecastFunction>>? weatherForecastFunctionLoggerMock;
         private WeatherForecastFunction? weatherForecastFunction;
         private string? validAuthKeyValue;
@@ -39,9 +42,15 @@ namespace WeatherForecastTDD
             httpClient = new HttpClient(mockedHttpMessageHandler.Object);
             weatherForecastFunctionLoggerMock = new Mock<ILogger<WeatherForecastFunction>>();
             weatherForecastFunction = new WeatherForecastFunction(weatherForecastFunctionLoggerMock.Object);
-            weatherForecastFunction.SetHttpClient(httpClient);
 
             validAuthKeyValue = "bed8f14b-a29e-44e6-b71b-036dc148fe5e";
+            mockedSecretClient = new Mock<SecretClient>();
+            mockedSecretClient.Setup(x => x.GetSecret("authKey", null, default).Value).Returns(new KeyVaultSecret("authKey", validAuthKeyValue));
+            mockedSecretClient.Setup(x => x.GetSecret("openWeatherMapApiUrl", null, default).Value).Returns(new KeyVaultSecret("openWeatherMapApiUrl", "https://api.openweathermap.org/data/2.5/forecast?q={0}&appid=d2929e9483efc82c82c32ee7e02d563e&cnt={1}"));
+           
+            weatherForecastFunction.SetHttpClient(httpClient);
+            weatherForecastFunction.SetSecretClient(mockedSecretClient.Object);
+
             mockedHttpRequest = new Mock<HttpRequest>();
             var headerDictionary = new HeaderDictionary();
             headerDictionary["auth_key"] = validAuthKeyValue;
@@ -53,6 +62,11 @@ namespace WeatherForecastTDD
             };
             mockedHttpRequest.Setup(x => x.Headers).Returns(headerDictionary);
             mockedHttpRequest.Setup(x => x.Query).Returns(new QueryCollection(paramsDictionary));
+
+            mockedSecretClientForBase = new Mock<SecretClient>();
+            mockedSecretClientForBase.Setup(x => x.GetSecret("maxHotDayTempLimit", null, default).Value).Returns(new KeyVaultSecret("maxHotDayTempLimit", "40"));
+            mockedSecretClientForBase.Setup(x => x.GetSecret("maxWindyDaySpeedLimit", null, default).Value).Returns(new KeyVaultSecret("maxWindyDaySpeedLimit", "10"));
+            BaseDayMessageBuilder.SetSecretClient(mockedSecretClientForBase.Object);
         }
 
         [TestMethod]
@@ -180,6 +194,8 @@ namespace WeatherForecastTDD
         [TestCleanup]
         public void CleanUp()
         {
+            mockedSecretClientForBase = null;
+            mockedSecretClient = null;
             weatherForecastFunctionLoggerMock = null;
             weatherForecastFunction = null;
             validAuthKeyValue = null;

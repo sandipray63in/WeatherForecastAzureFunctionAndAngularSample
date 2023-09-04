@@ -1,13 +1,9 @@
-﻿using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Azure.Security.KeyVault.Secrets;
+using FluentAssertions;
+using Moq;
 using WeatherForecast.Domain.WeatherForecastResponse;
 using WeatherForecast.DomainServices;
 using WeatherForecast.DomainServices.DayMessageBuilders;
-using WeatherForecast.Extensions;
 
 namespace WeatherForecastTDD.DomainServices.DayMessageBuilders
 {
@@ -18,12 +14,15 @@ namespace WeatherForecastTDD.DomainServices.DayMessageBuilders
         public void TestGetAllMessagesMethod()
         {
             //Arrange
+            var mockedSecretClient = new Mock<SecretClient>();
             IList<List> responseDataList = new List<List>();
             List list = new List();
             list.dt_txt = "2023-09-01 09:00:00";
             list.main = new Main();
             list.main.temp = 113;// temp in farenheit so that temp in celcius is 45 which > 40
             responseDataList.Add(list);
+            mockedSecretClient.Setup(x => x.GetSecret("maxHotDayTempLimit",null,default).Value).Returns(new KeyVaultSecret("maxHotDayTempLimit","40"));
+            HotDayMessageBuilder.SetSecretClient(mockedSecretClient.Object);
             IDayMessageBuilder dayMessageBuilder = new HotDayMessageBuilder();
 
             //Action

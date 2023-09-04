@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Azure.Security.KeyVault.Secrets;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +9,17 @@ using WeatherForecast.Extensions;
 
 namespace WeatherForecast.DomainServices.DayMessageBuilders
 {
-    public class WindyDayMessageBuilder : IDayMessageBuilder
+    public class WindyDayMessageBuilder : BaseDayMessageBuilder
     {
-        public IList<string> GetAllMessages(IList<List> responseDataList)
+        private static string maxWindyDaySpeedLimit;
+        public override IList<string> GetAllMessages(IList<List> responseDataList)
         {
+            if (maxWindyDaySpeedLimit == null)
+            {
+                maxWindyDaySpeedLimit = _secretClient.GetSecret("maxWindyDaySpeedLimit").Value.Value;
+            }
             IList<string> dayWeatherMessages = new List<string>();
-            if (responseDataList.Any(x => x.wind.speed.ConvertFromMilesPerSecondToMilesPerHour() > 10))
+            if (responseDataList.Any(x => x.wind.speed.ConvertFromMilesPerSecondToMilesPerHour() > Convert.ToInt32(maxWindyDaySpeedLimit)))
             {
                 StringBuilder sbDayWeatherMessages = new StringBuilder();
                 sbDayWeatherMessages.Append("It’s too windy, watch out!");

@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherForecastTDD", "WeatherForecastTDD\WeatherForecastTDD.csproj", "{8ABCB3E8-92E8-491C-87F6-31E37AD10928}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherForecastBDD", "WeatherForecastBDD\WeatherForecastBDD.csproj", "{93384E20-FDBE-4D63-A0FB-9A8FEFD12B3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherForecastBDD", "WeatherForecastBDD\WeatherForecastBDD.csproj", "{93384E20-FDBE-4D63-A0FB-9A8FEFD12B3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
