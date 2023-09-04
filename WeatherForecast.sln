@@ -9,22 +9,13 @@ Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "WeatherForecastUI", "Weathe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0911FB8D-A4EB-423D-832F-1F856DC9C030}"
 	ProjectSection(SolutionItems) = preProject
+		azure-pipelines.yml = azure-pipelines.yml
 		ProblemStatemrent.md = ProblemStatemrent.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherForecastTDD", "WeatherForecastTDD\WeatherForecastTDD.csproj", "{8ABCB3E8-92E8-491C-87F6-31E37AD10928}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherForecastBDD", "WeatherForecastBDD\WeatherForecastBDD.csproj", "{93384E20-FDBE-4D63-A0FB-9A8FEFD12B3F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{90250616-9A2E-44F1-A943-E101DB936A74}"
-EndProject
-Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "WeatherForecastAPIInfra", "WeatherForecastAPIInfra\WeatherForecastAPIInfra.deployproj", "{86BA1232-2DB8-40D2-8843-1A89DF8C2622}"
-EndProject
-Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "WeatherForecastUIInfra", "WeatherForecastUIInfra\WeatherForecastUIInfra.deployproj", "{9153DCE2-CAF8-4D21-9BA4-7D5E5B5039DD}"
-EndProject
-Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "WeatherForecastKeyVaultInfra", "WeatherForecastKeyVaultInfra\WeatherForecastKeyVaultInfra.deployproj", "{41848AE8-318B-4BC5-9C64-A965BCA75692}"
-EndProject
-Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "WeatherForecastADInfra", "WeatherForecastADInfra\WeatherForecastADInfra.deployproj", "{FFC85D1B-E021-4CC1-A979-086FE1EF56E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,31 +41,9 @@ Global
 		{93384E20-FDBE-4D63-A0FB-9A8FEFD12B3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93384E20-FDBE-4D63-A0FB-9A8FEFD12B3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93384E20-FDBE-4D63-A0FB-9A8FEFD12B3F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{86BA1232-2DB8-40D2-8843-1A89DF8C2622}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{86BA1232-2DB8-40D2-8843-1A89DF8C2622}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{86BA1232-2DB8-40D2-8843-1A89DF8C2622}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{86BA1232-2DB8-40D2-8843-1A89DF8C2622}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9153DCE2-CAF8-4D21-9BA4-7D5E5B5039DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9153DCE2-CAF8-4D21-9BA4-7D5E5B5039DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9153DCE2-CAF8-4D21-9BA4-7D5E5B5039DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9153DCE2-CAF8-4D21-9BA4-7D5E5B5039DD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{41848AE8-318B-4BC5-9C64-A965BCA75692}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{41848AE8-318B-4BC5-9C64-A965BCA75692}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{41848AE8-318B-4BC5-9C64-A965BCA75692}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{41848AE8-318B-4BC5-9C64-A965BCA75692}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FFC85D1B-E021-4CC1-A979-086FE1EF56E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FFC85D1B-E021-4CC1-A979-086FE1EF56E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FFC85D1B-E021-4CC1-A979-086FE1EF56E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FFC85D1B-E021-4CC1-A979-086FE1EF56E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{86BA1232-2DB8-40D2-8843-1A89DF8C2622} = {90250616-9A2E-44F1-A943-E101DB936A74}
-		{9153DCE2-CAF8-4D21-9BA4-7D5E5B5039DD} = {90250616-9A2E-44F1-A943-E101DB936A74}
-		{41848AE8-318B-4BC5-9C64-A965BCA75692} = {90250616-9A2E-44F1-A943-E101DB936A74}
-		{FFC85D1B-E021-4CC1-A979-086FE1EF56E0} = {90250616-9A2E-44F1-A943-E101DB936A74}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7FA0FA9E-CFDC-4F03-9B09-C7F1574F3812}

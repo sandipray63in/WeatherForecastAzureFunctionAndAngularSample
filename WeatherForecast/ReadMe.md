@@ -52,6 +52,14 @@ https://learn.microsoft.com/en-us/samples/azure-samples/function-app-arm-templat
 https://learn.microsoft.com/en-us/azure/static-web-apps/deploy-angular?pivots=github
 https://learn.microsoft.com/en-us/azure/static-web-apps/publish-azure-resource-manager?tabs=azure-cli
 https://learn.microsoft.com/en-us/azure/templates/microsoft.keyvault/vaults?pivots=deployment-language-bicep
+https://learn.microsoft.com/en-us/azure/azure-functions/run-functions-from-deployment-package
+https://stackoverflow.com/questions/1153126/how-to-create-a-zip-archive-with-powershell
+https://learn.microsoft.com/en-us/azure/devops/pipelines/ecosystems/dotnet-core?view=azure-devops&tabs=dotnetfive
+https://stackoverflow.com/questions/65703350/azure-devops-not-running-ms-test-unit-tests
+https://docs.specflow.org/projects/specflow-livingdoc/en/latest/sbsguides/sbsazdo.html
+https://learn.microsoft.com/en-us/azure/devops/pipelines/release/azure-key-vault?view=azure-devops&tabs=yaml
+
+In Azure DevOps, Build Pipeline is for CI while Release Pipeline is for CD
 
 In VS 2022 Community Edition, check the containers pane & check logs pane within that & from there get the weatherforecast 
 swagger url - currently its http://localhost:30486/api/swagger/ui in local env

@@ -30,7 +30,6 @@
       <Visible>False</Visible>
     </None>
     <None Include="main.bicep" />
-    <None Include="metadata.json" />
   </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />
 </Project>

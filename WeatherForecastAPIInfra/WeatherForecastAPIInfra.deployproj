@@ -28,7 +28,9 @@
     <None Include="Deployment.targets">
       <Visible>False</Visible>
     </None>
-    <Content Include="Deploy-AzureResourceGroup.ps1" />
+    <Content Include="azureDeploy.ps1" />
+    <None Include="main.bicep" />
+    <None Include="run.csx" />
   </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />
 </Project>
