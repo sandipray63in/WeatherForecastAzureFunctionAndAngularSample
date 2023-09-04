@@ -42,6 +42,16 @@ Best option for DefaultAzureCredential to work with Visual Studio Local, Docker 
 by setting AZURE_TENANT_ID, AZURE_CLIENT_ID and AZURE_CLIENT_SECRET in local.settings.json or Azure Function Env variables.By the way,
 Docker works only with EnvironmentCredential
 
+Azure DevOps Pipeline & ARM Templates -
+https://learn.microsoft.com/en-us/powershell/azure/install-azps-windows?view=azps-10.2.0&tabs=powershell&pivots=windows-msi
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/quickstart-create-bicep-use-visual-studio?tabs=CLI
+https://learn.microsoft.com/en-us/azure/devops/pipelines/create-first-pipeline?view=azure-devops&tabs=net%2Ctfs-2018-2%2Cbrowser
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/add-template-to-azure-pipelines
+https://learn.microsoft.com/en-us/samples/azure-samples/function-app-arm-templates/arm-templates-for-function-app-deployment/
+https://learn.microsoft.com/en-us/azure/static-web-apps/deploy-angular?pivots=github
+https://learn.microsoft.com/en-us/azure/static-web-apps/publish-azure-resource-manager?tabs=azure-cli
+https://learn.microsoft.com/en-us/azure/templates/microsoft.keyvault/vaults?pivots=deployment-language-bicep
 
 In VS 2022 Community Edition, check the containers pane & check logs pane within that & from there get the weatherforecast 
 swagger url - currently its http://localhost:30486/api/swagger/ui in local env

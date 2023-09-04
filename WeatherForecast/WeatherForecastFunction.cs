@@ -70,7 +70,7 @@ namespace WeatherForecast
             if (_secretClient == null){
                 _secretClient = new SecretClient(vaultUri: new Uri(key_vault_url), credential: azureCredential);
             }
-            _logger.LogInformation("secretClient is : " + JsonConvert.SerializeObject(_secretClient));
+            //_logger.LogInformation("secretClient is : " + JsonConvert.SerializeObject(_secretClient));
 
             if (auth_key == null){
                 auth_key = _secretClient.GetSecret("authKey").Value.Value;

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "keyVaultName": {
+      "value": "WeatherPredictionKeyVal"
+    },
+    "objectId": {
+      "value": "37a63743-9e0b-4deb-b71b-70d010223af8" //App Registration Object ID of the app in Azure Default AD
+    },
+    "secretsObject": {
+      "value": {
+        "secrets": [
+          {
+            "secretName": "authKey",
+            "secretValue": "3faecab1-02e4-42c3-b7f0-11c74499cba5"
+          },
+          {
+            "secretName": "openWeatherMapApiUrl",
+            "secretValue": "https://api.openweathermap.org/data/2.5/forecast?q={0}&appid=d2929e9483efc82c82c32ee7e02d563e&cnt={1}"
+          },
+          {
+            "secretName": "maxHotDayTempLimit",
+            "secretValue": "40"
+          },
+          {
+            "secretName": "maxWindyDaySpeedLimit",
+            "secretValue": "10"
+          }
+        ]
+      }
+    }
+  }
+}
