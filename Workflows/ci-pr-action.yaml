@@ -1,0 +1,10 @@
+on:
+  push: 
+    branches: [master]
+
+jobs:
+  ci-pr:
+    runs-on: [ windows-latest ]
+    steps:
+    - uses: actions/ci-build-action-composite-action@v1
+  

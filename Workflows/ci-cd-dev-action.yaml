@@ -5,9 +5,12 @@ resources:
     #project: '' # Required only if the source pipeline is in another project
     trigger: true # Run app-ci pipeline when any run of security-lib-ci completes
 
-variables:
+inputs:
   # Azure Resource Manager connection created during pipeline creation
   azureSubscription: '53ea2b06-4149-446b-9094-d6deeade43b5'
+  description: "Path to test script"
+  required: true
+  default: "test-file.js"
 
   # Function app name
   functionAppName: 'WeatherForecastFunc'

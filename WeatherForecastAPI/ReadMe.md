@@ -1,7 +1,8 @@
 
 Some Useful Links - 
-A Good Azure Sample - 
+Some Good Azure Samples - 
 https://github.com/Azure-Samples/contoso-real-estate
+https://github.com/Azure-Samples/serverless-web-application
 
 Docker - 
 https://stackoverflow.com/questions/53521104/asp-net-core-the-project-doesnt-know-how-to-run-the-profile-docker-on-visua
@@ -45,14 +46,19 @@ Best option for DefaultAzureCredential to work with Visual Studio Local, Docker 
 by setting AZURE_TENANT_ID, AZURE_CLIENT_ID and AZURE_CLIENT_SECRET in local.settings.json or Azure Function Env variables.By the way,
 Docker works only with EnvironmentCredential
 
-Azure DevOps Pipeline & ARM Templates -
+GitHub Actions, Azure DevOps Pipeline & Bicep(/ARM) Templates -
 https://learn.microsoft.com/en-us/azure/devops/pipelines/architectures/devops-pipelines-baseline-architecture?view=azure-devops
+https://github.com/Azure/actions-workflow-samples
+https://learn.microsoft.com/en-us/dotnet/architecture/devops-for-aspnet-developers/actions-index
+https://stackoverflow.com/questions/64055230/nested-templates-calling-a-yaml-file-from-another-yaml-file-in-github-actions
+https://stackoverflow.com/questions/62750603/github-actions-trigger-another-action-after-one-action-is-completed
 https://learn.microsoft.com/en-us/azure/devops/pipelines/ecosystems/dotnet-core?view=azure-devops&tabs=dotnetfive
 https://learn.microsoft.com/en-us/azure/architecture/serverless/guide/serverless-app-cicd-best-practices
 https://stackoverflow.com/questions/57706075/how-to-call-yml-script-from-other-yml-in-azure-devops
 https://learn.microsoft.com/en-us/azure/devops/pipelines/process/pipeline-triggers?view=azure-devops
 https://learn.microsoft.com/en-us/azure/static-web-apps/build-configuration?tabs=azure-devops
 https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-powershell-v5?view=azure-pipelines
+https://stackoverflow.com/questions/69120936/how-do-i-use-bicep-or-arm-to-create-an-ad-app-registration-and-roles
 https://github.com/shayki5/azure-devops-create-pr-task
 https://learn.microsoft.com/en-us/azure/devops/pipelines/release/azure-key-vault?view=azure-devops&tabs=yaml
 https://learn.microsoft.com/en-us/powershell/azure/install-azps-windows?view=azps-10.2.0&tabs=powershell&pivots=windows-msi
@@ -68,9 +74,7 @@ https://learn.microsoft.com/en-us/azure/azure-functions/run-functions-from-deplo
 https://stackoverflow.com/questions/1153126/how-to-create-a-zip-archive-with-powershell
 https://stackoverflow.com/questions/65703350/azure-devops-not-running-ms-test-unit-tests
 https://docs.specflow.org/projects/specflow-livingdoc/en/latest/sbsguides/sbsazdo.html
-
-
-In Azure DevOps, Build Pipeline is for CI while Release Pipeline is for CD
+In Azure DevOps, Build Pipeline is mainly for CI while Release Pipeline is mainly for CD
 
 In VS 2022 Community Edition, check the containers pane & check logs pane within that & from there get the weatherforecast 
 swagger url - currently its http://localhost:30486/api/swagger/ui in local env
