@@ -1,3 +1,10 @@
+resources:
+  pipelines:
+  - pipeline: weather-forecast-ci-pr-pipeline # Name of the pipeline resource.
+    source: weather-forecast-ci-pr-pipeline.yaml # The name of the pipeline referenced by this pipeline resource.
+    #project: '' # Required only if the source pipeline is in another project
+    trigger: true # Run app-ci pipeline when any run of security-lib-ci completes
+
 variables:
   # Azure Resource Manager connection created during pipeline creation
   azureSubscription: '53ea2b06-4149-446b-9094-d6deeade43b5'
@@ -56,11 +63,24 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
+      - task: AzurePowerShell@5
+        inputs:
+            azureSubscription: $(azureSubscription)
+            ScriptType: 'FilePath'
+            ScriptPath: '$(System.DefaultWorkingDirectory)/Infra/KeyVaultDeploy/azuredeploy.ps1'
+            errorActionPreference: 'stop' 
+            FailOnStandardError: true 
+            azurePowerShellVersion: 'LatestVersion'
+
       - template: weather-forecast-function-deploy-pipeline.yaml
         parameters:
             azureSubscription: $(azureSubscription)
             functionAppName: 'WeatherForecastFunc'
             package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+            environment: 'development'
+
+      - template: weather-forecast-static-website-deploy.yaml
+        parameters:
             environment: 'development'
 
 - stage: Dev Deploy Test

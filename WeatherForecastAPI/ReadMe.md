@@ -48,8 +48,12 @@ Docker works only with EnvironmentCredential
 Azure DevOps Pipeline & ARM Templates -
 https://learn.microsoft.com/en-us/azure/devops/pipelines/architectures/devops-pipelines-baseline-architecture?view=azure-devops
 https://learn.microsoft.com/en-us/azure/devops/pipelines/ecosystems/dotnet-core?view=azure-devops&tabs=dotnetfive
+https://learn.microsoft.com/en-us/azure/architecture/serverless/guide/serverless-app-cicd-best-practices
 https://stackoverflow.com/questions/57706075/how-to-call-yml-script-from-other-yml-in-azure-devops
 https://learn.microsoft.com/en-us/azure/devops/pipelines/process/pipeline-triggers?view=azure-devops
+https://learn.microsoft.com/en-us/azure/static-web-apps/build-configuration?tabs=azure-devops
+https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-powershell-v5?view=azure-pipelines
+https://github.com/shayki5/azure-devops-create-pr-task
 https://learn.microsoft.com/en-us/azure/devops/pipelines/release/azure-key-vault?view=azure-devops&tabs=yaml
 https://learn.microsoft.com/en-us/powershell/azure/install-azps-windows?view=azps-10.2.0&tabs=powershell&pivots=windows-msi
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install
