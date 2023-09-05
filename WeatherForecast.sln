@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipelines", "Pipelines", "{
 		Pipelines\weather-forecast-ci-pr-pipeline.yaml = Pipelines\weather-forecast-ci-pr-pipeline.yaml
 		Pipelines\weather-forecast-function-deploy-pipeline.yaml = Pipelines\weather-forecast-function-deploy-pipeline.yaml
 		Pipelines\weather-forecast-release-prod-pipeline.yaml = Pipelines\weather-forecast-release-prod-pipeline.yaml
-		Pipelines\weather-forecast-static-website-deploy.yaml = Pipelines\weather-forecast-static-website-deploy.yaml
+		Pipelines\weather-forecast-static-website-deploy-pipeline.yaml = Pipelines\weather-forecast-static-website-deploy-pipeline.yaml
 	EndProjectSection
 EndProject
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "KeyVaultDeploy", "Infra\KeyVaultDeploy\KeyVaultDeploy.deployproj", "{57283839-CE3F-4C1E-BC34-B9C5502052B0}"
