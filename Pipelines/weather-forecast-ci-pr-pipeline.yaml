@@ -1,0 +1,8 @@
+trigger:
+- master
+
+stages: 
+ - stage: Build And Test
+   displayName: Build And Test stage
+   jobs:
+     - template: weather-forecast-ci-build-pipeline.yaml    

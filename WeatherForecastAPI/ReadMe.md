@@ -1,5 +1,8 @@
 
 Some Useful Links - 
+A Good Azure Sample - 
+https://github.com/Azure-Samples/contoso-real-estate
+
 Docker - 
 https://stackoverflow.com/questions/53521104/asp-net-core-the-project-doesnt-know-how-to-run-the-profile-docker-on-visua
 https://stackoverflow.com/questions/51252181/how-to-start-docker-daemon-windows-service-at-startup-without-the-need-to-log
@@ -43,6 +46,11 @@ by setting AZURE_TENANT_ID, AZURE_CLIENT_ID and AZURE_CLIENT_SECRET in local.set
 Docker works only with EnvironmentCredential
 
 Azure DevOps Pipeline & ARM Templates -
+https://learn.microsoft.com/en-us/azure/devops/pipelines/architectures/devops-pipelines-baseline-architecture?view=azure-devops
+https://learn.microsoft.com/en-us/azure/devops/pipelines/ecosystems/dotnet-core?view=azure-devops&tabs=dotnetfive
+https://stackoverflow.com/questions/57706075/how-to-call-yml-script-from-other-yml-in-azure-devops
+https://learn.microsoft.com/en-us/azure/devops/pipelines/process/pipeline-triggers?view=azure-devops
+https://learn.microsoft.com/en-us/azure/devops/pipelines/release/azure-key-vault?view=azure-devops&tabs=yaml
 https://learn.microsoft.com/en-us/powershell/azure/install-azps-windows?view=azps-10.2.0&tabs=powershell&pivots=windows-msi
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/quickstart-create-bicep-use-visual-studio?tabs=CLI
@@ -54,10 +62,9 @@ https://learn.microsoft.com/en-us/azure/static-web-apps/publish-azure-resource-m
 https://learn.microsoft.com/en-us/azure/templates/microsoft.keyvault/vaults?pivots=deployment-language-bicep
 https://learn.microsoft.com/en-us/azure/azure-functions/run-functions-from-deployment-package
 https://stackoverflow.com/questions/1153126/how-to-create-a-zip-archive-with-powershell
-https://learn.microsoft.com/en-us/azure/devops/pipelines/ecosystems/dotnet-core?view=azure-devops&tabs=dotnetfive
 https://stackoverflow.com/questions/65703350/azure-devops-not-running-ms-test-unit-tests
 https://docs.specflow.org/projects/specflow-livingdoc/en/latest/sbsguides/sbsazdo.html
-https://learn.microsoft.com/en-us/azure/devops/pipelines/release/azure-key-vault?view=azure-devops&tabs=yaml
+
 
 In Azure DevOps, Build Pipeline is for CI while Release Pipeline is for CD
 

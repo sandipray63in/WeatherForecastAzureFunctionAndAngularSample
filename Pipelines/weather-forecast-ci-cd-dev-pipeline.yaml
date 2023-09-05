@@ -1,0 +1,82 @@
+variables:
+  # Azure Resource Manager connection created during pipeline creation
+  azureSubscription: '53ea2b06-4149-446b-9094-d6deeade43b5'
+
+  # Function app name
+  functionAppName: 'WeatherForecastFunc'
+
+  # Agent VM image name
+  vmImageName: 'windows-latest'
+  
+  buildConfiguration: 'Release'
+
+  # Working Directory
+  workingDirectory: '$(System.DefaultWorkingDirectory)/WeatherForecast'
+
+stages:
+- stage: Dev Build
+  displayName: Dev Build stage
+
+  jobs:
+  - job: Dev Build
+    displayName: Dev Build Job
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+      - template: weather-forecast-ci-build-pipeline.yaml
+  
+      - task: DotNetCoreCLI@2
+        displayName: Dev Build Step
+        inputs:
+            command: 'build'
+            projects: |
+                $(workingDirectory)/*.csproj
+            arguments: --output $(System.DefaultWorkingDirectory)/publish_output --configuration Release
+
+      - task: ArchiveFiles@2
+        displayName: 'Archive files'
+        inputs:
+            rootFolderOrFile: '$(System.DefaultWorkingDirectory)/publish_output'
+            includeRootFolder: false
+            archiveType: zip
+            archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+            replaceExistingArchive: true
+
+      - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+        artifact: drop
+
+- stage: Dev Deploy
+  displayName: Dev Deploy stage
+  dependsOn: Dev Build
+  condition: succeeded()
+
+  jobs:
+  - job: Dev Deploy
+    displayName: Dev Deploy Job
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+      - template: weather-forecast-function-deploy-pipeline.yaml
+        parameters:
+            azureSubscription: $(azureSubscription)
+            functionAppName: 'WeatherForecastFunc'
+            package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+            environment: 'development'
+
+- stage: Dev Deploy Test
+  displayName: Dev Deploy Test stage
+  dependsOn: Dev Deploy
+  condition: succeeded()
+
+  jobs:
+  - job: Dev Deploy Test
+    displayName: Dev Deploy Test Job
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+     - task: DotNetCoreCLI@2
+       displayName: 'Test BDD'
+       inputs:
+            command: test
+            projects: '**/*WeatherForecastBDD/*.csproj'
+            arguments: '--filter "Category=WeatherForecast"'
