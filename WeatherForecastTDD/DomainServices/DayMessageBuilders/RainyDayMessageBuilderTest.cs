@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WeatherForecast.Domain.WeatherForecastResponse;
-using WeatherForecast.DomainServices.DayMessageBuilders;
-using WeatherForecast.DomainServices;
+using WeatherForecastAPI.Domain.WeatherForecastResponse;
+using WeatherForecastAPI.DomainServices.DayMessageBuilders;
+using WeatherForecastAPI.DomainServices;
 
 namespace WeatherForecastTDD.DomainServices.DayMessageBuilders
 {

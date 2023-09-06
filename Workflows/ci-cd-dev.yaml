@@ -19,6 +19,10 @@ on:
         APP_NAME_PREFIX:
            description: 'App Name Prefix'
            required: true
+        BDD_WORKSPACE_PATH:
+           description: 'App Name Prefix'
+           required: true
+           default: 'WeatherForecastBDD'
         
 jobs:
   dev-ci-cd:
@@ -32,6 +36,7 @@ jobs:
             TEST_PROJECT_PATH: 'WeatherForecastTDD\WeatherForecastTDD.csproj'
 
         - uses: ./.github/Workflows/azure-infra-cicd.yaml
+          id: azureInfraCICD
           with:
             AZURE_REGION: '${{inputs.AZURE_REGION}}'
             ENVIRONMENT_TYPE: 'dev'
@@ -45,22 +50,33 @@ jobs:
             ENVIRONMENT_TYPE: 'dev'
             APP_NAME_PREFIX: '${{inputs.APP_NAME_PREFIX}}'
             RESOURCE_GROUP_NAME: '${{inputs.RESOURCE_GROUP_NAME}}'
-            API_NAME: '${{inputs.API_NAME}}'
-            API_DOCUMENT_URL: '${{inputs.API_DOCUMENT_URL}}'
-            APIM_NAME: '${{inputs.APIM_NAME}}'
-            FUNCTION_NAME: '${{inputs.FUNCTION_NAME}}'
-            ORIGIN_URL: '${{inputs.ORIGIN_URL}}'    
+            API_NAME: '${{steps.azureInfraCICD.outputs.apiName}}'
+            APIM_NAME: '${{steps.azureInfraCICD.outputs.apimName}}'
+            FUNCTION_NAME: '${{steps.azureInfraCICD.outputs.functionAppName}}'
+            ORIGIN_URL: '${{steps.azureInfraCICD.outputs.staticWebsiteUrl}}'    
             
         - uses: ./.github/Workflows/spa-cicd.yaml
           with: 
             ENVIRONMENT_TYPE: 'dev'
             APP_NAME_PREFIX: '${{inputs.APP_NAME_PREFIX}}'
             RESOURCE_GROUP_NAME: '${{inputs.RESOURCE_GROUP_NAME}}'
-            CLIENT_URL: '${{inputs.CLIENT_URL}}'
-            API_URL: '${{inputs.API_URL}}'
-            AZURE_STORAGE_NAME: '${{inputs.AZURE_STORAGE_NAME}}'
-            CDN_PROFILE_NAME: '${{inputs.CDN_PROFILE_NAME}}'
-            CDN_ENDPOINT_NAME:                       
+            CLIENT_URL: '${{steps.azureInfraCICD.outputs.staticWebsiteUrl}}'
+            API_URL: '${{steps.azureInfraCICD.outputs.apiUrl}}'
+            API_AUTH_KEY: '${{steps.azureInfraCICD.outputs.authKey}}'
+            AZURE_STORAGE_NAME: '${{steps.azureInfraCICD.outputs.staticWebsiteStorageAccountName}}'
+            CDN_PROFILE_NAME: '${{steps.azureInfraCICD.outputs.cdnProfileName}}'
+            CDN_ENDPOINT_NAME: '${{steps.azureInfraCICD.outputs.cdnEndpointName}}' 
+            
+        # Set app configurations of Angular
+        - name: 'Replace tokens'
+          uses: cschleiden/replace-tokens@v1.0
+          with:
+            tokenPrefix: '__'
+            tokenSuffix: '__'
+            files: ${{ github.workspace }}/${{ inputs.BDD_WORKSPACE_PATH }}/appConfig.json
+          env: 
+            weatherForecastAPIUrl: ${{ steps.azureInfraCICD.outputs.apiUrl }}
+            authKey: ${{ steps.azureInfraCICD.outputs.authKey }}
 
         - name: 'BDD Test'
           uses: actions/cryptic-wizard/run-specflow-tests@v1.3.1

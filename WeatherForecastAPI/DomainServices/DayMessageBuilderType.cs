@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WeatherForecast.DomainServices
+namespace WeatherForecastAPI.DomainServices
 {
     public enum DayMessageBuilderType
     {

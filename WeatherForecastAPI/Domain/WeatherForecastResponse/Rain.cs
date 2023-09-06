@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WeatherForecast.Domain.WeatherForecastResponse
+namespace WeatherForecastAPI.Domain.WeatherForecastResponse
 {
     public class Rain
     {

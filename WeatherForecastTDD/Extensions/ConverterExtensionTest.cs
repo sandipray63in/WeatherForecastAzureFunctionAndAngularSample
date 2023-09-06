@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
-using WeatherForecast.Extensions;
+using WeatherForecastAPI.Extensions;
 
 namespace WeatherForecastTDD.Extensions
 {

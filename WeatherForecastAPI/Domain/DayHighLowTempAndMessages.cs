@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WeatherForecast.Domain
+namespace WeatherForecastAPI.Domain
 {
     public class DayHighLowTempAndMessages
     {

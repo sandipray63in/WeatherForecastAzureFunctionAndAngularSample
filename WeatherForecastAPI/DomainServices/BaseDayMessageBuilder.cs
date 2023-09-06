@@ -7,14 +7,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WeatherForecast.Domain.WeatherForecastResponse;
+using WeatherForecastAPI.Domain.WeatherForecastResponse;
 
-namespace WeatherForecast.DomainServices
+namespace WeatherForecastAPI.DomainServices
 {
     public abstract class BaseDayMessageBuilder : IDayMessageBuilder
     {
         protected static SecretClient _secretClient;
-        private static string key_vault_url = Environment.GetEnvironmentVariable("key_vault_url");
+        private static string key_vault_url = Environment.GetEnvironmentVariable("KEY_VAULT_URL");
 
         public static void SetSecretClient(SecretClient secretClient)
         {

@@ -23,6 +23,9 @@ on:
         description: 'API on APIM URL'
         required: true
         default: 'https://<apim-name>.azure-api.net/<api-name>'
+      API_AUTH_KEY: 
+        description: 'API Auth Key'
+        required: true
       AZURE_STORAGE_NAME: 
         description: 'Azure storage account name'
         required: true
@@ -55,6 +58,7 @@ env:
   ANGULAR_PATH: 'WeatherForecaastUI'
   NODE_VERSION: '14'
   BICEP_FILE_PATH: 'Deploy'
+  API_AUTH_KEY: ${{inputs.API_AUTH_KEY}}
 
 jobs:
   angular_cicd:
@@ -72,18 +76,6 @@ jobs:
     - name: Checkout 
       uses: actions/checkout@v1
 
-    # Run app registration against AAD using PowerShell script
-    - name: 'App Registration'
-      id: appRegistration
-      continue-on-error: true
-      shell: pwsh
-      run: |
-        .\${{ env.BICEP_FILE_PATH }}\Scripts\appRegistrationAndPermission.ps1 `
-        -clientName ${{ env.APP_NAME_PREFIX }}${{ env.ENVIRONMENT_TYPE }} `
-        -apiName fn-${{ env.APP_NAME_PREFIX }}-${{ env.ENVIRONMENT_TYPE }} `
-        -resourceGroup ${{ env.APP_NAME_PREFIX }}-${{ env.ENVIRONMENT_TYPE }}-rg `
-        -staticWebURL https://${{ env.APP_NAME_PREFIX }}-${{ env.ENVIRONMENT_TYPE }}.azureedge.net
-
     # Set app configurations of Angular
     - name: 'Replace tokens'
       uses: cschleiden/replace-tokens@v1.0
@@ -92,11 +84,8 @@ jobs:
         tokenSuffix: '__'
         files: ${{ github.workspace }}/${{ env.ANGULAR_PATH }}/src/app/app-config.json
       env: 
-        clientAppId: ${{ steps.appRegistration.outputs.clientId }}
-        clientAppURL: ${{ env.CLIENT_URL }}
-        apimURL: ${{ env.API_URL }}
-        backendAPIScope: ${{ steps.appRegistration.outputs.scope }}
-        tenantDomainName: ${{ steps.appRegistration.outputs.tenantDomainName }}
+        weatherForecastAPIUrl: ${{ env.API_URL }}
+        authKey: ${{ env.API_AUTH_KEY }}
     
     # Setup Node.js environment
     - name: Setup Node.js ${{ env.NODE_VERSION }} environment

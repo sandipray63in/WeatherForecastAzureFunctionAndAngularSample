@@ -1,9 +1,9 @@
 ﻿using Azure.Security.KeyVault.Secrets;
 using FluentAssertions;
 using Moq;
-using WeatherForecast.Domain.WeatherForecastResponse;
-using WeatherForecast.DomainServices;
-using WeatherForecast.DomainServices.DayMessageBuilders;
+using WeatherForecastAPI.Domain.WeatherForecastResponse;
+using WeatherForecastAPI.DomainServices;
+using WeatherForecastAPI.DomainServices.DayMessageBuilders;
 
 namespace WeatherForecastTDD.DomainServices.DayMessageBuilders
 {

@@ -50,7 +50,7 @@ resource deploymentScripts 'Microsoft.Resources/deploymentScripts@2020-10-01' = 
       param([string] $storageAccount, [string] $resourceGroup)
       $storage = Get-AzStorageAccount -ResourceGroupName $resourceGroup -Name $storageAccount
       $ctx = $storage.Context
-      Enable-AzStorageStaticWebsite -Context $ctx -IndexDocument index.html -ErrorDocument404Path notfound.html
+      Enable-AzStorageStaticWebsite -Context $ctx -IndexDocument index.html
       $output = $storage.PrimaryEndpoints.Web
       $output = $output.TrimEnd('/')
       $DeploymentScriptOutputs = @{}

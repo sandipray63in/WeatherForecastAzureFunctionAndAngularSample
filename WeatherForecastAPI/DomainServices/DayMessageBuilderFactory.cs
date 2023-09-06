@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WeatherForecast.DomainServices.DayMessageBuilders;
+using WeatherForecastAPI.DomainServices.DayMessageBuilders;
 
-namespace WeatherForecast.DomainServices
+namespace WeatherForecastAPI.DomainServices
 {
     public static class DayMessageBuilderFactory
     {

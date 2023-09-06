@@ -18,14 +18,8 @@ param apimName string = 'apim-${appNameSuffix}-${environmentType}'
 @description('APIM resource group')
 param apimResourceGroup string = resourceGroup().name
 
-@description('Do you want to create new vault?')
-param createKeyVault bool = true
-
 @description('Key Vault name')
 param keyVaultName string = 'kv-${appNameSuffix}-${environmentType}'
-
-@description('Key Vault resource group')
-param keyVaultResourceGroup string = resourceGroup().name
 
 @description('User assigned managed idenity name')
 param userAssignedIdentityName string = 'umsi-${appNameSuffix}-${environmentType}'
@@ -35,6 +29,9 @@ param userAssignedIdentityResourceGroup string = resourceGroup().name
 
 @description('API friendly name')
 param apimApiName string = 'WeatherForecastAPI'
+
+@description('Specifies the Azure Active Directory tenant ID that should be used for authenticating requests to the key vault. Get it by using Get-AzSubscription cmdlet.')
+param tenantId string = subscription().tenantId
 
 param resourceTags object = {
   ProjectType: 'Azure Serverless Web'
@@ -49,15 +46,10 @@ var functionAppName = 'fn-${appNameSuffix}-${environmentType}'
 var functionRuntime = 'dotnet'
 var appServicePlanName = 'asp-${appNameSuffix}-${environmentType}'
 var appInsightsName = 'ai-${appNameSuffix}-${environmentType}'
-var cosmosDbName = '${appNameSuffix}-${environmentType}'
-var cosmosDbAccountName = 'cosmos-${appNameSuffix}-${environmentType}'
 
 // SKUs
 var functionSku = environmentType == 'prod' ? 'EP1' : 'Y1'
 var apimSku = environmentType == 'prod' ? 'Standard' : 'Developer'
-
-// static values
-var cosmosDbCollectionName = 'items'
 
 // Use existing User Assigned MSI. See https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-script-template#configure-the-minimum-permissions
 resource userAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2018-11-30' existing = {
@@ -93,18 +85,36 @@ module cdn 'Modules/cdn.bicep' = {
   }
 }
 
-module cosmosDB 'Modules/cosmosdb.bicep' = {
-  name: 'cosmosdb'
+module apimApi 'Modules/apimAPI.bicep' = {
+  name: 'apimAPI'
+  scope: resourceGroup(apimResourceGroup)
   params: {
-    accountName: cosmosDbAccountName
-    databaseName: cosmosDbName
-    collectionName: cosmosDbCollectionName
+    apimName: apimName
+    currentResourceGroup: resourceGroup().name
+    backendApiName: functionApp.outputs.functionAppName
+    apiName: apimApiName
+    originUrl: cdn.outputs.cdnEndpointURL
+  }
+}
+
+module adAppReg 'Modules/adAppRegistration.bicep' = {
+  name: 'adAppReg'
+  scope: resourceGroup(apimResourceGroup)
+}
+
+module keyVault 'Modules/keyVault.bicep' = {
+  name: 'keyVault'
+  scope: resourceGroup(apimResourceGroup)
+  params: {
+    keyVaultName: keyVaultName
+    objectId: adAppReg.outputs.objectId
   }
 }
 
 module functionApp 'Modules/function.bicep' = {
   name: 'functionApp'
   params: {
+    location: resourceGroup().location
     functionRuntime: functionRuntime
     functionSku: functionSku
     storageAccountName: functionStorageAccountName
@@ -112,35 +122,12 @@ module functionApp 'Modules/function.bicep' = {
     appServicePlanName: appServicePlanName
     appInsightsInstrumentationKey: appInsights.properties.InstrumentationKey
     staticWebsiteURL: staticWebsite.outputs.staticWebsiteURL
-    cosmosAccountName: cosmosDbAccountName
-    cosmosDbName: cosmosDbName
-    cosmosDbCollectionName: cosmosDbCollectionName
-    keyVaultName: keyVaultName
     apimIPAddress: apim.outputs.apiIPAddress
     resourceTags: resourceTags
-  }
-}
-
-module keyVault 'Modules/keyVault.bicep' = if (!createKeyVault) {
-  name: 'keyVault'
-  scope: resourceGroup(keyVaultResourceGroup)
-  params: {
-    keyVaultName: keyVaultName
-    functionAppName: functionApp.outputs.functionAppName
-    cosmosAccountName: cosmosDB.outputs.cosmosDBAccountName
-    deploymentScriptServicePrincipalId: userAssignedIdentity.id
-    currentResourceGroup: resourceGroup().name
-  }
-}
-
-module newKeyVault 'Modules/newKeyVault.bicep' = if (createKeyVault) {
-  name: 'newKeyVault'
-  params: {
-    keyVaultName: keyVaultName
-    functionAppName: functionApp.outputs.functionAppName
-    cosmosAccountName: cosmosDB.outputs.cosmosDBAccountName 
-    deploymentScriptServicePrincipalId: userAssignedIdentity.id
-    resourceTags: resourceTags
+    keyVaultUrl: keyVault.outputs.keyVaultUrl
+    azureTenantId: tenantId
+    azureClientId: adAppReg.outputs.clientId
+    azureClientSecret: adAppReg.outputs.clientSecret
   }
 }
 
@@ -155,18 +142,6 @@ module apim 'Modules/apim.bicep' = if (createApim) {
   }
 }
 
-module apimApi 'Modules/apimAPI.bicep' = {
-  name: 'apimAPI'
-  scope: resourceGroup(apimResourceGroup)
-  params: {
-    apimName: apimName
-    currentResourceGroup: resourceGroup().name
-    backendApiName: functionApp.outputs.functionAppName
-    apiName: apimApiName
-    originUrl: cdn.outputs.cdnEndpointURL
-  }
-}
-
 output functionAppName string = functionApp.outputs.functionAppName
 output apiUrl string = '${apim.outputs.gatewayUrl}/${apimApiName}'
 output staticWebsiteStorageAccountName string = staticWebsiteStorageAccountName
@@ -175,3 +150,6 @@ output apimName string = apimName
 output cdnEndpointName string = cdn.outputs.cdnEndpointName
 output cdnProfileName string = cdn.outputs.cdnProfileName
 output cdnEndpointURL string = cdn.outputs.cdnEndpointURL
+output authKey string = keyVault.outputs.authKey
+output resourceGroupName string = resourceGroup().name
+output apiName string = apimApiName

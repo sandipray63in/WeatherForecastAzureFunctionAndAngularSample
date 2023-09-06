@@ -19,19 +19,19 @@ using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Enums;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
-using WeatherForecast.Domain;
-using WeatherForecast.Domain.WeatherForecastResponse;
-using WeatherForecast.DomainServices;
-using WeatherForecast.Extensions;
+using WeatherForecastAPI.Domain;
+using WeatherForecastAPI.Domain.WeatherForecastResponse;
+using WeatherForecastAPI.DomainServices;
+using WeatherForecastAPI.Extensions;
 
-namespace WeatherForecast
+namespace WeatherForecastAPI
 {
     public class WeatherForecastFunction
     {
         private const string cityNotFoundMessage = "city not found";
         private const string formattedCityNotFoundMessage = "city {0} not found";
         private static SecretClient _secretClient;
-        private static string key_vault_url = Environment.GetEnvironmentVariable("key_vault_url");
+        private static string key_vault_url = Environment.GetEnvironmentVariable("KEY_VAULT_URL");
         private static string auth_key;
         private static string apiUrl;
         private HttpClient _httpClient;

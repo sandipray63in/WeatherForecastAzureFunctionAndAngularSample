@@ -74,7 +74,7 @@ namespace WeatherForecastBDD
         {
             try
             {
-                _restClient = new RestClient("http://localhost:30486/api/WeatherForecast");
+                _restClient = new RestClient(_restRequest.Resource);
                 var response = _restClient.Execute(_restRequest);
                 return response;
             }
@@ -86,7 +86,7 @@ namespace WeatherForecastBDD
 
         public T Execute<T>()
         {
-            _restClient = new RestClient("http://localhost:30486/api/WeatherForecast");
+            _restClient = new RestClient(_restRequest.Resource);
             var response = _restClient.Execute(_restRequest);
             var data = JsonConvert.DeserializeObject<T>(response.Content);
             return data;

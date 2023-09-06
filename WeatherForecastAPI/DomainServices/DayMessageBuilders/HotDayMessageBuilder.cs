@@ -4,10 +4,10 @@ using System.Linq;
 using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
-using WeatherForecast.Domain.WeatherForecastResponse;
-using WeatherForecast.Extensions;
+using WeatherForecastAPI.Domain.WeatherForecastResponse;
+using WeatherForecastAPI.Extensions;
 
-namespace WeatherForecast.DomainServices.DayMessageBuilders
+namespace WeatherForecastAPI.DomainServices.DayMessageBuilders
 {
     public class HotDayMessageBuilder : BaseDayMessageBuilder
     {

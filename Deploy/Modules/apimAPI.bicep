@@ -76,7 +76,7 @@ resource opHealthCheck 'Microsoft.ApiManagement/service/apis/operations@2021-01-
   properties: {
     displayName: 'Health Probe'
     method: 'HEAD'
-    urlTemplate: '/'
+    urlTemplate: ''
   }
 }
 

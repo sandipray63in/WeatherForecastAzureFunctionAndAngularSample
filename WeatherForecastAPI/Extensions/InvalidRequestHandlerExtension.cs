@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WeatherForecast.Extensions
+namespace WeatherForecastAPI.Extensions
 {
     public static class InvalidRequestHandlerExtension
     {

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.Extensions.Primitives;
 using Moq;
-using WeatherForecast.Extensions;
+using WeatherForecastAPI.Extensions;
 
 namespace WeatherForecastTDD.Extensions
 {

@@ -91,7 +91,7 @@ namespace WeatherForecastBDD.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void PredictWeatherForecastBasedOnSuppliedData(string authKey, string city, string numberOfDaysToForecast, string shouldIncludeToday, string statusCode, string[] exampleTags)
+        public virtual void PredictWeatherForecastBasedOnSuppliedData(string city, string numberOfDaysToForecast, string shouldIncludeToday, string statusCode, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "WeatherForecast"};
@@ -101,7 +101,6 @@ namespace WeatherForecastBDD.Features
             }
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("authKey", authKey);
             argumentsOfScenario.Add("city", city);
             argumentsOfScenario.Add("numberOfDaysToForecast", numberOfDaysToForecast);
             argumentsOfScenario.Add("shouldIncludeToday", shouldIncludeToday);
@@ -128,7 +127,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 4
- testRunner.Given(string.Format("I supply the values (\'{0}\',\'{1}\', \'{2}\',\'{3}\')", authKey, city, numberOfDaysToForecast, shouldIncludeToday), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("I supply the values (\'{0}\', \'{1}\',\'{2}\')", city, numberOfDaysToForecast, shouldIncludeToday), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 5
  testRunner.When("Weather Forecast API Executed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -141,53 +140,49 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Predict Weather Forecast based on supplied data: Variant 0")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Predict Weather Forecast based on supplied data: ")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "WeatherForecast")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("WeatherForecast")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 0")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:authKey", "3faecab1-02e4-42c3-b7f0-11c74499cba5")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:city", "")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:numberOfDaysToForecast", "3")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:shouldIncludeToday", "true")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:statusCode", "BadRequest")]
-        public virtual void PredictWeatherForecastBasedOnSuppliedData_Variant0()
+        public virtual void PredictWeatherForecastBasedOnSuppliedData_()
         {
 #line 3
-this.PredictWeatherForecastBasedOnSuppliedData("3faecab1-02e4-42c3-b7f0-11c74499cba5", "", "3", "true", "BadRequest", ((string[])(null)));
+this.PredictWeatherForecastBasedOnSuppliedData("", "3", "true", "BadRequest", ((string[])(null)));
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Predict Weather Forecast based on supplied data: Variant 1")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Predict Weather Forecast based on supplied data: xyz")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "WeatherForecast")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("WeatherForecast")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 1")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:authKey", "3faecab1-02e4-42c3-b7f0-11c74499cba5")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "xyz")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:city", "xyz")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:numberOfDaysToForecast", "3")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:shouldIncludeToday", "true")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:statusCode", "BadRequest")]
-        public virtual void PredictWeatherForecastBasedOnSuppliedData_Variant1()
+        public virtual void PredictWeatherForecastBasedOnSuppliedData_Xyz()
         {
 #line 3
-this.PredictWeatherForecastBasedOnSuppliedData("3faecab1-02e4-42c3-b7f0-11c74499cba5", "xyz", "3", "true", "BadRequest", ((string[])(null)));
+this.PredictWeatherForecastBasedOnSuppliedData("xyz", "3", "true", "BadRequest", ((string[])(null)));
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Predict Weather Forecast based on supplied data: Variant 2")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Predict Weather Forecast based on supplied data: kolkata")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "WeatherForecast")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("WeatherForecast")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Variant 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:authKey", "3faecab1-02e4-42c3-b7f0-11c74499cba5")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "kolkata")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:city", "kolkata")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:numberOfDaysToForecast", "3")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:shouldIncludeToday", "true")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:statusCode", "OK")]
-        public virtual void PredictWeatherForecastBasedOnSuppliedData_Variant2()
+        public virtual void PredictWeatherForecastBasedOnSuppliedData_Kolkata()
         {
 #line 3
-this.PredictWeatherForecastBasedOnSuppliedData("3faecab1-02e4-42c3-b7f0-11c74499cba5", "kolkata", "3", "true", "OK", ((string[])(null)));
+this.PredictWeatherForecastBasedOnSuppliedData("kolkata", "3", "true", "OK", ((string[])(null)));
 #line hidden
         }
     }

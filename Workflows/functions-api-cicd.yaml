@@ -18,10 +18,6 @@ on:
         description: 'API name'
         required: true
         default: '2do'
-      API_DOCUMENT_URL: 
-        description: 'API definition URL'
-        required: true
-        default: 'https://<fuction-name>.azurewebsites.net/api/swagger.json'
       APIM_NAME: 
         description: 'APIM name'
         required: true
@@ -47,7 +43,7 @@ env:
   APP_NAME_PREFIX: ${{ inputs.APP_NAME_PREFIX }}
   RESOURCE_GROUP_NAME: ${{ inputs.RESOURCE_GROUP_NAME }}
   API_NAME: ${{ inputs.API_NAME }}
-  API_DOCUMENT_URL: ${{ inputs.API_DOCUMENT_URL }}
+  API_DOCUMENT_URL: 'https://${{inputs.FUNCTION_NAME}}.azurewebsites.net/api/swagger.json'
   APIM_NAME: ${{ inputs.APIM_NAME }}
   FUNCTION_NAME: ${{ inputs.FUNCTION_NAME }}
   ORIGIN_URL: ${{ inputs.ORIGIN_URL }}

@@ -9,15 +9,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WeatherForecast;
-using WeatherForecast.DomainServices;
+using WeatherForecastAPI.DomainServices;
 using Microsoft.AspNetCore.Mvc;
-using WeatherForecast.Extensions;
+using WeatherForecastAPI.Extensions;
 using System.Reflection;
 using System.IO;
 using Moq.Protected;
 using System.Net;
 using Azure.Security.KeyVault.Secrets;
+using WeatherForecastAPI;
 
 namespace WeatherForecastTDD
 {
@@ -110,6 +110,7 @@ namespace WeatherForecastTDD
             {
                 jsonStr = reader.ReadToEnd();
             }
+
             paramsDictionary["city"] = "xyz";
             mockedHttpMessageHandler.Protected()
             .Setup<Task<HttpResponseMessage>>(

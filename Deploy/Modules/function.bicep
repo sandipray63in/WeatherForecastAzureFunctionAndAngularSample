@@ -6,17 +6,16 @@ param functionAppName string
 param appServicePlanName string
 param appInsightsInstrumentationKey string
 param staticWebsiteURL string
-param cosmosAccountName string
-param cosmosDbName string
-param cosmosDbCollectionName string
-param keyVaultName string
 param apimIPAddress string
 param resourceTags object
-
+param keyVaultUrl string
+param azureTenantId string
+param azureClientId string
+@secure()
+param azureClientSecret string
 
 var functionTier = functionSku == 'Y1' ? 'Dynamic' : 'ElasticPremium'
 var functionKind = functionSku == 'Y1' ? 'functionapp' : 'elastic'
-var keyVaultSecretName = '${cosmosAccountName}-key'
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
   name: storageAccountName
@@ -27,6 +26,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
   }
   kind: 'StorageV2'
   properties: {
+    
     supportsHttpsTrafficOnly: true
     encryption: {
       services: {
@@ -91,20 +91,20 @@ resource functionApp 'Microsoft.Web/sites@2020-06-01' = {
           value: '~3'
         }
         {
-          name: 'KEY_VAULT_URI'
-          value: 'https://${keyVaultName}.vault.azure.net'
+          name: 'KEY_VAULT_URL'
+          value: keyVaultUrl
         }
         {
-          name: 'CONNECTION_STRINGS'
-          value: keyVaultSecretName
+          name: 'AZURE_TENANT_ID'
+          value: azureTenantId
         }
         {
-          name: 'DATABASE_NAME'
-          value: cosmosDbName
+          name: 'AZURE_CLIENT_ID'
+          value: azureClientId
         }
         {
-          name: 'COLLECTION_NAME'
-          value: cosmosDbCollectionName
+          name: 'AZURE_CLIENT_SECRET'
+          value: azureClientSecret
         }
       ]
       cors: {

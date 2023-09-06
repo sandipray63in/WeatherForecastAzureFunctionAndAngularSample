@@ -1,0 +1,10 @@
+﻿{
+  "weatherForecastAPIUrl": {
+    "value": "__weatherForecastAPIUrl__",
+    "default": "http://localhost:30486/api/WeatherForecast"
+  },
+  "authKey": {
+    "value": "__authKey__",
+    "default": "3faecab1-02e4-42c3-b7f0-11c74499cba5"
+  }
+}

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WeatherForecast.Domain.WeatherForecastResponse;
+using WeatherForecastAPI.Domain.WeatherForecastResponse;
 
-namespace WeatherForecast.DomainServices
+namespace WeatherForecastAPI.DomainServices
 {
     public interface IDayMessageBuilder
     {

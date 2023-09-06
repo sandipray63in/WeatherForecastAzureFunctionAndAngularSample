@@ -1,70 +1,82 @@
+﻿@description('Specifies the name of the key vault.')
 param keyVaultName string
-param functionAppName string
-param cosmosAccountName string
-param deploymentScriptServicePrincipalId string
-param currentResourceGroup string
 
-var keyVaultSecretName = '${cosmosAccountName}-key'
+@description('Specifies the Azure location where the key vault should be created.')
+param location string = resourceGroup().location
 
-resource functionApp 'Microsoft.Web/sites@2021-01-15' existing = {
-  name: functionAppName
-  scope: resourceGroup(currentResourceGroup)
-}
+@description('Specifies whether Azure Virtual Machines are permitted to retrieve certificates stored as secrets from the key vault.')
+param enabledForDeployment bool = false
 
-resource keyVault 'Microsoft.KeyVault/vaults@2021-06-01-preview' existing = {
+@description('Specifies whether Azure Disk Encryption is permitted to retrieve secrets from the vault and unwrap keys.')
+param enabledForDiskEncryption bool = false
+
+@description('Specifies whether Azure Resource Manager is permitted to retrieve secrets from the key vault.')
+param enabledForTemplateDeployment bool = false
+
+@description('Specifies the Azure Active Directory tenant ID that should be used for authenticating requests to the key vault. Get it by using Get-AzSubscription cmdlet.')
+param tenantId string = subscription().tenantId
+
+@description('Specifies the object ID of a user, service principal or security group in the Azure Active Directory tenant for the vault. The object ID must be unique for the list of access policies. Get it by using Get-AzADUser or Get-AzADServicePrincipal cmdlets.')
+param objectId string
+
+@description('Specifies the permissions to keys in the vault. Valid values are: all, encrypt, decrypt, wrapKey, unwrapKey, sign, verify, get, list, create, update, import, delete, backup, restore, recover, and purge.')
+param keysPermissions array = [
+  'get'
+]
+
+@description('Specifies the permissions to secrets in the vault. Valid values are: all, get, list, set, delete, backup, restore, recover, and purge.')
+param secretsPermissions array = [
+  'get'
+]
+
+@description('Specifies whether the key vault is a standard vault or a premium vault.')
+@allowed([
+  'standard'
+  'premium'
+])
+param skuName string = 'standard'
+
+@secure()
+@description('Specifies all secrets {"secretName":"","secretValue":""} wrapped in a secure object.')
+#disable-next-line secure-parameter-default
+param secretsObject object = json(loadTextContent('../Content/keyVaultSecrets.json'))
+
+resource kv 'Microsoft.KeyVault/vaults@2021-04-01-preview' = {
   name: keyVaultName
-}
-
-resource keyVaultAccessPolicies 'Microsoft.KeyVault/vaults/accessPolicies@2021-06-01-preview' = {
-  parent: keyVault
-  name: 'add'
+  location: location
   properties: {
+    enabledForDeployment: enabledForDeployment
+    enabledForTemplateDeployment: enabledForTemplateDeployment
+    enabledForDiskEncryption: enabledForDiskEncryption
+    tenantId: tenantId
     accessPolicies: [
       {
-        tenantId: functionApp.identity.tenantId
-        objectId: functionApp.identity.principalId
+        objectId: objectId
+        tenantId: tenantId
         permissions: {
-          secrets: [
-            'get'
-          ]
+          keys: keysPermissions
+          secrets: secretsPermissions
         }
       }
     ]
-  }
-}
-
-resource deploymentScripts 'Microsoft.Resources/deploymentScripts@2020-10-01' = {
-  name: 'getConnectionString'
-  kind: 'AzurePowerShell'
-  location: resourceGroup().location
-  identity:{
-    type: 'UserAssigned'
-    userAssignedIdentities: {
-      '${deploymentScriptServicePrincipalId}': {}
+    sku: {
+      name: skuName
+      family: 'A'
+    }
+    networkAcls: {
+      defaultAction: 'Allow'
+      bypass: 'AzureServices'
     }
   }
-  properties: {
-    azPowerShellVersion: '6.1'
-    timeout: 'PT30M'
-    arguments: '-accountName ${cosmosAccountName} -resourceGroup ${currentResourceGroup}'
-    scriptContent: '''
-      param([string] $accountName, [string] $resourceGroup)
-      $connectionStrings = Get-AzCosmosDBAccountKey `
-      -ResourceGroupName $resourceGroup `
-      -Name $accountName `
-      -Type "ConnectionStrings"
-      $DeploymentScriptOutputs = @{}
-      $DeploymentScriptOutputs['connectionString'] = $connectionStrings["Primary MongoDB Connection String"]
-    '''
-    cleanupPreference: 'Always'
-    retentionInterval: 'P1D'
-  }
 }
 
-resource keyVaultSecrets 'Microsoft.KeyVault/vaults/secrets@2021-06-01-preview' = {
-  parent: keyVault
-  name : keyVaultSecretName
+resource secrets 'Microsoft.KeyVault/vaults/secrets@2021-04-01-preview' = [for secret in secretsObject.secrets: {
+  name: secret.secretName
+  parent: kv
   properties: {
-    value: deploymentScripts.properties.outputs.connectionString
+    value: secret.secretValue
   }
-}
+}]
+
+output authKey string = secretsObject.secrets[0].secretValue
+output keyVaultUrl string = kv.properties.vaultUri
