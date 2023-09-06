@@ -29,6 +29,7 @@ namespace WeatherForecastAPI
 {
     public class WeatherForecastFunction
     {
+        private const int retryCount = 3;
         private const string cityNotFoundMessage = "city not found";
         private const string formattedCityNotFoundMessage = "city {0} not found";
         private static SecretClient _secretClient;
@@ -117,7 +118,7 @@ namespace WeatherForecastAPI
             ServiceUnavailableObjectResult serviceUnavailableObjectResult = null;
             var polly = Policy
            .Handle<Exception>()
-           .RetryAsync(3, (ex, retryCount, context) =>
+           .RetryAsync(retryCount, (ex, retryCount, context) =>
            {
                _logger.LogError("Exception occurred : " + ex.ToString());
                string openWeatherMapAPIUnavailableMessage = "api.openweathermap.org is currently unavailable";

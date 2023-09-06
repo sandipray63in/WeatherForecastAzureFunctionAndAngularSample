@@ -49,6 +49,7 @@ Docker works only with EnvironmentCredential
 GitHub Actions, Azure DevOps Pipeline & Bicep(/ARM) Templates -
 https://learn.microsoft.com/en-us/azure/devops/pipelines/architectures/devops-pipelines-baseline-architecture?view=azure-devops
 https://github.com/Azure/actions-workflow-samples
+https://azure.github.io/actions/
 https://docs.github.com/en/actions/using-workflows/reusing-workflows#using-outputs-from-a-reusable-workflow
 https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/azure-resource-manager/bicep/outputs.md
 https://learn.microsoft.com/en-us/azure/templates/microsoft.resources/deploymentscripts?pivots=deployment-language-bicep
