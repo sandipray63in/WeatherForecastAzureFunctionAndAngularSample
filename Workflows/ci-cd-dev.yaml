@@ -1,0 +1,71 @@
+name: CI CD Dev
+
+# Only trigger, when the build workflow succeeded
+on:
+  workflow_call:
+    inputs:
+        AZURE_REGION:
+           description: 'Azure Region'
+           required: true
+        RESOURCE_GROUP_NAME: 
+           description: 'Resource Group Name'
+           required: true
+        MSI_NAME: 
+           description: 'MSI Name'
+           required: true
+        MSI_RESOURCE_GROUP: 
+           description: 'MSI Resource Group'
+           required: true
+        APP_NAME_PREFIX:
+           description: 'App Name Prefix'
+           required: true
+        
+jobs:
+  dev-ci-cd:
+
+    runs-on: [ windows-latest ]
+
+    steps:
+        - uses: ./.github/Workflows/ci-build.yaml
+          with:
+            SOLUTION_NAME: 'WeatherForecast'
+            TEST_PROJECT_PATH: 'WeatherForecastTDD\WeatherForecastTDD.csproj'
+
+        - uses: ./.github/Workflows/azure-infra-cicd.yaml
+          with:
+            AZURE_REGION: '${{inputs.AZURE_REGION}}'
+            ENVIRONMENT_TYPE: 'dev'
+            APP_NAME_PREFIX: '${{inputs.APP_NAME_PREFIX}}'
+            RESOURCE_GROUP_NAME: '${{inputs.RESOURCE_GROUP_NAME}}'
+            MSI_NAME: '${{inputs.MSI_NAME}}'
+            MSI_RESOURCE_GROUP: '${{inputs.MSI_RESOURCE_GROUP}}'
+
+        - uses: ./.github/Workflows/functions-api-cicd.yaml
+          with:
+            ENVIRONMENT_TYPE: 'dev'
+            APP_NAME_PREFIX: '${{inputs.APP_NAME_PREFIX}}'
+            RESOURCE_GROUP_NAME: '${{inputs.RESOURCE_GROUP_NAME}}'
+            API_NAME: '${{inputs.API_NAME}}'
+            API_DOCUMENT_URL: '${{inputs.API_DOCUMENT_URL}}'
+            APIM_NAME: '${{inputs.APIM_NAME}}'
+            FUNCTION_NAME: '${{inputs.FUNCTION_NAME}}'
+            ORIGIN_URL: '${{inputs.ORIGIN_URL}}'    
+            
+        - uses: ./.github/Workflows/spa-cicd.yaml
+          with: 
+            ENVIRONMENT_TYPE: 'dev'
+            APP_NAME_PREFIX: '${{inputs.APP_NAME_PREFIX}}'
+            RESOURCE_GROUP_NAME: '${{inputs.RESOURCE_GROUP_NAME}}'
+            CLIENT_URL: '${{inputs.CLIENT_URL}}'
+            API_URL: '${{inputs.API_URL}}'
+            AZURE_STORAGE_NAME: '${{inputs.AZURE_STORAGE_NAME}}'
+            CDN_PROFILE_NAME: '${{inputs.CDN_PROFILE_NAME}}'
+            CDN_ENDPOINT_NAME:                       
+
+        - name: 'BDD Test'
+          uses: actions/cryptic-wizard/run-specflow-tests@v1.3.1
+          with:
+            test-assembly-path: WeatherForecastBDD/bin/Release/netcoreapp3.1
+            test-assembly-dll: WeatherForecastBDD.dll
+            output-html: WeatherForecastBDD.html
+

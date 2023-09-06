@@ -1,0 +1,39 @@
+name: SonarScan
+
+on:
+  workflow_call:
+    inputs: 
+      SONAR_PROJECT_KEY: 
+        description: 'Sonar Project Key'
+        required: true
+      SONAR_PROJECT_NAME: 
+        description: 'Sonar Project Name'
+        required: true
+      SONAR_ORGANISATION_NAME: 
+        description: 'Sonar Organisation Name'
+        required: true
+  schedule:
+    - cron: '40 14 * * 6'
+
+jobs:
+  static-analysis-scan:
+
+       runs-on: [ windows-latest ]
+
+       env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+       steps:
+        - uses: highbyte/sonarscan-dotnet@v2.2.3
+          with:
+            # The key of the SonarQube project
+            sonarProjectKey: '${{inputs.SONAR_PROJECT_KEY}}'
+            # The name of the SonarQube project
+            sonarProjectName: '${{inputs.SONAR_PROJECT_NAME}}'
+            # The name of the SonarQube organization in SonarCloud. For hosted SonarQube, skip this setting.
+            sonarOrganization: '${{inputs.SONAR_ORGANISATION_NAME}}'
+            # Optional command arguments to dotnet test
+            dotnetTestArguments: --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+            # Optional extra command arguments the the SonarScanner 'begin' command
+            sonarBeginArguments: /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx"

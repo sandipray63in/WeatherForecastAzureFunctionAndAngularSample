@@ -49,6 +49,11 @@ Docker works only with EnvironmentCredential
 GitHub Actions, Azure DevOps Pipeline & Bicep(/ARM) Templates -
 https://learn.microsoft.com/en-us/azure/devops/pipelines/architectures/devops-pipelines-baseline-architecture?view=azure-devops
 https://github.com/Azure/actions-workflow-samples
+https://docs.github.com/en/actions/using-workflows/reusing-workflows#using-outputs-from-a-reusable-workflow
+https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/azure-resource-manager/bicep/outputs.md
+https://learn.microsoft.com/en-us/azure/templates/microsoft.resources/deploymentscripts?pivots=deployment-language-bicep
+https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+https://dev.to/this-is-learning/manually-trigger-a-github-action-with-workflowdispatch-3mga
 https://learn.microsoft.com/en-us/dotnet/architecture/devops-for-aspnet-developers/actions-index
 https://stackoverflow.com/questions/64055230/nested-templates-calling-a-yaml-file-from-another-yaml-file-in-github-actions
 https://stackoverflow.com/questions/62750603/github-actions-trigger-another-action-after-one-action-is-completed
@@ -74,6 +79,7 @@ https://learn.microsoft.com/en-us/azure/azure-functions/run-functions-from-deplo
 https://stackoverflow.com/questions/1153126/how-to-create-a-zip-archive-with-powershell
 https://stackoverflow.com/questions/65703350/azure-devops-not-running-ms-test-unit-tests
 https://docs.specflow.org/projects/specflow-livingdoc/en/latest/sbsguides/sbsazdo.html
+https://github.com/marketplace/actions/sonarscan-dotnet
 In Azure DevOps, Build Pipeline is mainly for CI while Release Pipeline is mainly for CD
 
 In VS 2022 Community Edition, check the containers pane & check logs pane within that & from there get the weatherforecast 

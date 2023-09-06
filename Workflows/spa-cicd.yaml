@@ -1,7 +1,7 @@
 name: Build and publish Angular (SPA)
 
 on: 
-  workflow_dispatch:
+  workflow_call:
     inputs:
       ENVIRONMENT_TYPE: 
         description: 'Environment: dev, test, or prod'
@@ -44,18 +44,17 @@ on:
 #
 # 2. Change below variables for your configuration:
 env:
-  ENVIRONMENT_TYPE: ${{ github.event.inputs.ENVIRONMENT_TYPE }}
-  APP_NAME_PREFIX: ${{ github.event.inputs.APP_NAME_PREFIX }}
-  RESOURCE_GROUP_NAME: ${{ github.event.inputs.RESOURCE_GROUP_NAME }}
-  CLIENT_URL: ${{ github.event.inputs.CLIENT_URL }}
-  API_URL: ${{ github.event.inputs.API_URL }}
-  AZURE_STORAGE_NAME: ${{ github.event.inputs.AZURE_STORAGE_NAME }}
-  CDN_PROFILE_NAME: ${{ github.event.inputs.CDN_PROFILE_NAME }}
-  CDN_ENDPOINT_NAME: ${{ github.event.inputs.CDN_ENDPOINT_NAME }}
-  APP_SOURCE_PATH: 'src'
-  ANGULAR_PATH: 'client/angular/ToDoSpa'
+  ENVIRONMENT_TYPE: ${{ inputs.ENVIRONMENT_TYPE }}
+  APP_NAME_PREFIX: ${{ inputs.APP_NAME_PREFIX }}
+  RESOURCE_GROUP_NAME: ${{ inputs.RESOURCE_GROUP_NAME }}
+  CLIENT_URL: ${{ inputs.CLIENT_URL }}
+  API_URL: ${{ inputs.API_URL }}
+  AZURE_STORAGE_NAME: ${{ inputs.AZURE_STORAGE_NAME }}
+  CDN_PROFILE_NAME: ${{ inputs.CDN_PROFILE_NAME }}
+  CDN_ENDPOINT_NAME: ${{ inputs.CDN_ENDPOINT_NAME }}
+  ANGULAR_PATH: 'WeatherForecaastUI'
   NODE_VERSION: '14'
-  BICEP_FILE_PATH: 'deploy'
+  BICEP_FILE_PATH: 'Deploy'
 
 jobs:
   angular_cicd:
@@ -70,7 +69,7 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS  }}
     
     # Checkout
-    - name: Checkout
+    - name: Checkout 
       uses: actions/checkout@v1
 
     # Run app registration against AAD using PowerShell script
@@ -79,7 +78,7 @@ jobs:
       continue-on-error: true
       shell: pwsh
       run: |
-        .\${{ env.BICEP_FILE_PATH }}\scripts\appRegistrationAndPermission.ps1 `
+        .\${{ env.BICEP_FILE_PATH }}\Scripts\appRegistrationAndPermission.ps1 `
         -clientName ${{ env.APP_NAME_PREFIX }}${{ env.ENVIRONMENT_TYPE }} `
         -apiName fn-${{ env.APP_NAME_PREFIX }}-${{ env.ENVIRONMENT_TYPE }} `
         -resourceGroup ${{ env.APP_NAME_PREFIX }}-${{ env.ENVIRONMENT_TYPE }}-rg `
@@ -91,7 +90,7 @@ jobs:
       with:
         tokenPrefix: '__'
         tokenSuffix: '__'
-        files: ${{ github.workspace }}/${{ env.APP_SOURCE_PATH }}/${{ env.ANGULAR_PATH }}/src/app/app-config.json
+        files: ${{ github.workspace }}/${{ env.ANGULAR_PATH }}/src/app/app-config.json
       env: 
         clientAppId: ${{ steps.appRegistration.outputs.clientId }}
         clientAppURL: ${{ env.CLIENT_URL }}
@@ -108,7 +107,7 @@ jobs:
     # Build Angular application
     - name: Build Angular application
       run: |
-        pushd ./${{ env.APP_SOURCE_PATH }}/${{ env.ANGULAR_PATH }}
+        pushd ./${{ env.ANGULAR_PATH }}
         npm install
         npm install -g @angular/cli
         ng build -c=production --output-path=./dist
@@ -121,7 +120,7 @@ jobs:
         # Azure CLI version to be used to execute the script. If not provided, latest version is used
         azcliversion: 2.21.0
         # Specify the script here
-        inlineScript: az storage blob upload-batch -s ./${{ env.APP_SOURCE_PATH }}/${{ env.ANGULAR_PATH }}/dist -d '$web' --account-name ${{ env.AZURE_STORAGE_NAME }}
+        inlineScript: az storage blob upload-batch -s ./${{ env.ANGULAR_PATH }}/dist -d '$web' --account-name ${{ env.AZURE_STORAGE_NAME }}
 
     # Purge CDN endpoint
     - name: Purge CDN endpoint on ${{ env.CDN_ENDPOINT_NAME }}

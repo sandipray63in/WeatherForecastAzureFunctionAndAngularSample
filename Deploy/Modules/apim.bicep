@@ -12,15 +12,15 @@ param resourceTags object
   'Premium'
 ])
 @description('The pricing tier of this API Management service')
-param sku string = 'Developer'
+param sku string = 'Basic'
 
 @description('The instance size of this API Management service.')
 @minValue(1)
 param skuCount int = 1
 
 var location = resourceGroup().location
-var publisherEmail = 'email@domain.com'
-var publisherName = 'Your Company'
+var publisherEmail = 'ananya.uit.04@gmail.com'
+var publisherName = 'Ananya.UIT.04'
 
 resource apiManagement 'Microsoft.ApiManagement/service@2021-01-01-preview' = {
   name: apimName

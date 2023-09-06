@@ -1,6 +1,6 @@
-name: Build and publish .NET Functions
+name: Build and publish Azure Functions
 on: 
-  workflow_dispatch:
+  workflow_call:
     inputs:
       ENVIRONMENT_TYPE: 
         description: 'Environment: dev, test, or prod'
@@ -43,18 +43,17 @@ on:
 #
 # 2. Change below variables for your configuration:
 env:
-  ENVIRONMENT_TYPE: ${{ github.event.inputs.ENVIRONMENT_TYPE }}
-  APP_NAME_PREFIX: ${{ github.event.inputs.APP_NAME_PREFIX }}
-  RESOURCE_GROUP_NAME: ${{ github.event.inputs.RESOURCE_GROUP_NAME }}
-  API_NAME: ${{ github.event.inputs.API_NAME }}
-  API_DOCUMENT_URL: ${{ github.event.inputs.API_DOCUMENT_URL }}
-  APIM_NAME: ${{ github.event.inputs.APIM_NAME }}
-  FUNCTION_NAME: ${{ github.event.inputs.FUNCTION_NAME }}
-  ORIGIN_URL: ${{ github.event.inputs.ORIGIN_URL }}
-  APP_SOURCE_PATH: 'src'
-  FUNCTIONAPP_PATH: 'api/dotnet/WeatherForecastFunctionApp'
+  ENVIRONMENT_TYPE: ${{ inputs.ENVIRONMENT_TYPE }}
+  APP_NAME_PREFIX: ${{ inputs.APP_NAME_PREFIX }}
+  RESOURCE_GROUP_NAME: ${{ inputs.RESOURCE_GROUP_NAME }}
+  API_NAME: ${{ inputs.API_NAME }}
+  API_DOCUMENT_URL: ${{ inputs.API_DOCUMENT_URL }}
+  APIM_NAME: ${{ inputs.APIM_NAME }}
+  FUNCTION_NAME: ${{ inputs.FUNCTION_NAME }}
+  ORIGIN_URL: ${{ inputs.ORIGIN_URL }}
+  FUNCTIONAPP_PATH: 'WeatherForecastAPI'
   DOTNET_VERSION: '3.1.410'
-  BICEP_FILE_PATH: 'deploy'
+  BICEP_FILE_PATH: 'Deploy'
   BICEP_FILE_NAME: 'api'
 
 jobs:
@@ -83,7 +82,7 @@ jobs:
     - name: 'Build .NET application'
       shell: bash
       run: | 
-        pushd ./${{ env.APP_SOURCE_PATH }}/${{ env.FUNCTIONAPP_PATH }}
+        pushd ./${{ env.FUNCTIONAPP_PATH }}
         dotnet build --configuration Release --output ./outputs
         popd
 
@@ -93,7 +92,7 @@ jobs:
       id: fa
       with:
         app-name: ${{ env.FUNCTION_NAME }}
-        package: ./${{ env.APP_SOURCE_PATH }}/${{ env.FUNCTIONAPP_PATH }}/outputs
+        package: ./${{ env.FUNCTIONAPP_PATH }}/outputs
 
     # Validate and Build ARM Template from Bicep
     - name: Azure CLI - Validate Bicep file ${{ env.BICEP_FILE_PATH }}/${{ env.BICEP_FILE_NAME }}.bicep

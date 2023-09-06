@@ -2,7 +2,7 @@ param storageAccountName string
 param resourceTags object
 param deploymentScriptServicePrincipalId string
 
-var location = resourceGroup().location
+var location = resourceGroup().location 
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
   name: storageAccountName

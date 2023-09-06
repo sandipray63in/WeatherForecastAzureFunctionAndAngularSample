@@ -66,123 +66,7 @@ resource apiPolicy 'Microsoft.ApiManagement/service/apis/policies@2021-01-01-pre
   name: 'policy'
   properties: {
     format: 'rawxml'
-    value: replace(loadTextContent('../content/cos-policy.xml'),'__ORIGIN__',originUrl)
-  }
-}
-
-resource opGetTodos 'Microsoft.ApiManagement/service/apis/operations@2021-01-01-preview' = {
-  name: 'getTodoList'
-  parent: api
-  properties: {
-    displayName: 'Get Todo List'
-    method: 'GET'
-    urlTemplate: '/todos'
-  }
-}
-
-resource opGetTodosPolicy 'Microsoft.ApiManagement/service/apis/operations/policies@2021-01-01-preview' = {
-  parent: opGetTodos
-  name: 'policy'
-  properties: {
-    format: 'rawxml'
-    value: replace(loadTextContent('../content/api-policy.xml'),'__BACKEND-ID__',backendApi.name)
-  }
-}
-
-resource opGetTodosById 'Microsoft.ApiManagement/service/apis/operations@2021-01-01-preview' = {
-  name: 'getTodoItem'
-  parent: api
-  properties: {
-    displayName: 'Get Todo Item'
-    method: 'GET'
-    urlTemplate: '/todos/{id}'
-    templateParameters: [
-      {
-        name: 'id'
-        required: true
-        type: 'String'
-      }
-    ]
-  }
-}
-
-resource opGetTodosByIdPolicy 'Microsoft.ApiManagement/service/apis/operations/policies@2021-01-01-preview' = {
-  parent: opGetTodosById
-  name: 'policy'
-  properties: {
-    format: 'rawxml'
-    value: replace(loadTextContent('../content/api-policy.xml'),'__BACKEND-ID__',backendApi.name)
-  }
-}
-
-resource opPostTodoItem 'Microsoft.ApiManagement/service/apis/operations@2021-01-01-preview' = {
-  name: 'postTodoItem'
-  parent: api
-  properties: {
-    displayName: 'Create Todo Item'
-    method: 'POST'
-    urlTemplate: '/todos'
-  }
-}
-
-resource opPostTodoItemPolicy 'Microsoft.ApiManagement/service/apis/operations/policies@2021-01-01-preview' = {
-  parent: opPostTodoItem
-  name: 'policy'
-  properties: {
-    format: 'rawxml'
-    value: replace(loadTextContent('../content/api-policy.xml'),'__BACKEND-ID__',backendApi.name)
-  }
-}
-
-resource opPutTodosById 'Microsoft.ApiManagement/service/apis/operations@2021-01-01-preview' = {
-  name: 'putTodoItem'
-  parent: api
-  properties: {
-    displayName: 'Update Todo Item'
-    method: 'PUT'
-    urlTemplate: '/todos/{id}'
-    templateParameters: [
-      {
-        name: 'id'
-        required: true
-        type: 'String'
-      }
-    ]
-  }
-}
-
-resource opPutTodosByIdPolicy 'Microsoft.ApiManagement/service/apis/operations/policies@2021-01-01-preview' = {
-  parent: opPutTodosById
-  name: 'policy'
-  properties: {
-    format: 'rawxml'
-    value: replace(loadTextContent('../content/api-policy.xml'),'__BACKEND-ID__',backendApi.name)
-  }
-}
-
-resource opDeleteTodosById 'Microsoft.ApiManagement/service/apis/operations@2021-01-01-preview' = {
-  name: 'deleteTodoItem'
-  parent: api
-  properties: {
-    displayName: 'Delete Todo Item'
-    method: 'DELETE'
-    urlTemplate: '/todos/{id}'
-    templateParameters: [
-      {
-        name: 'id'
-        required: true
-        type: 'String'
-      }
-    ]
-  }
-}
-
-resource opDeleteTodosByIdPolicy 'Microsoft.ApiManagement/service/apis/operations/policies@2021-01-01-preview' = {
-  parent: opDeleteTodosById
-  name: 'policy'
-  properties: {
-    format: 'rawxml'
-    value: replace(loadTextContent('../content/api-policy.xml'),'__BACKEND-ID__',backendApi.name)
+    value: replace(loadTextContent('../Content/cos-policy.xml'),'__ORIGIN__',originUrl)
   }
 }
 
@@ -192,7 +76,7 @@ resource opHealthCheck 'Microsoft.ApiManagement/service/apis/operations@2021-01-
   properties: {
     displayName: 'Health Probe'
     method: 'HEAD'
-    urlTemplate: '/todos'
+    urlTemplate: '/'
   }
 }
 
@@ -201,6 +85,6 @@ resource opHealthCheckPolicy 'Microsoft.ApiManagement/service/apis/operations/po
   name: 'policy'
   properties: {
     format: 'rawxml'
-    value: replace(loadTextContent('../content/api-policy.xml'),'__BACKEND-ID__',backendApi.name)
+    value: replace(loadTextContent('../Content/api-policy.xml'),'__BACKEND-ID__',backendApi.name)
   }
 }

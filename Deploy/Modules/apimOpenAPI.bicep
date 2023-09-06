@@ -28,6 +28,6 @@ resource apiPolicy 'Microsoft.ApiManagement/service/apis/policies@2021-01-01-pre
   name: 'policy'
   properties: {
     format: 'rawxml'
-    value: replace(loadTextContent('../content/cos-policy.xml'),'__ORIGIN__',originUrl)
+    value: replace(loadTextContent('../Content/cos-policy.xml'),'__ORIGIN__',originUrl)
   }
 }

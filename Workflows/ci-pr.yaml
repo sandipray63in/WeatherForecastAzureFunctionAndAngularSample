@@ -1,0 +1,25 @@
+name: CI PR Action
+
+on:
+  push: 
+    branches: [master]
+
+jobs:
+  ci-pr:
+
+    runs-on: [ windows-latest ]
+
+    steps:
+
+    - uses: ./.github/Workflows/ci-build.yaml
+      with:
+         SOLUTION_NAME: 'WeatherForecast'
+         TEST_PROJECT_PATH: 'WeatherForecastTDD\WeatherForecastTDD.csproj'
+
+    - uses: ./.github/Workflows/ci-cd-dev.yaml
+      with:
+         AZURE_REGION: ''
+         RESOURCE_GROUP_NAME: ''
+         MSI_NAME: ''
+         MSI_RESOURCE_GROUP: ''
+         APP_NAME_PREFIX: ''

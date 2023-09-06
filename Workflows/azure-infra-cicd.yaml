@@ -1,6 +1,6 @@
-name: Create Azure Resource (IaC)
+name: Create Azure Resource
 on: 
-  workflow_dispatch:
+  workflow_call:
     inputs:
       AZURE_REGION: 
         description: 'Azure Region to deploy Azure resources'
@@ -35,18 +35,18 @@ on:
 #
 # 2. Change below variables for your configuration:
 env:
-  AZURE_REGION: ${{ github.event.inputs.AZURE_REGION }}
-  ENVIRONMENT_TYPE: ${{ github.event.inputs.ENVIRONMENT_TYPE }}
-  APP_NAME_PREFIX: ${{ github.event.inputs.APP_NAME_PREFIX }}
-  RESOURCE_GROUP_NAME: ${{ github.event.inputs.RESOURCE_GROUP_NAME }}
-  MSI_NAME: ${{ github.event.inputs.MSI_NAME }}
-  MSI_RESOURCE_GROUP: ${{ github.event.inputs.MSI_RESOURCE_GROUP }}
-  BICEP_FILE_PATH: 'deploy'
+  AZURE_REGION: ${{ inputs.AZURE_REGION }}
+  ENVIRONMENT_TYPE: ${{ inputs.ENVIRONMENT_TYPE }}
+  APP_NAME_PREFIX: ${{ inputs.APP_NAME_PREFIX }}
+  RESOURCE_GROUP_NAME: ${{ inputs.RESOURCE_GROUP_NAME }}
+  MSI_NAME: ${{ inputs.MSI_NAME }}
+  MSI_RESOURCE_GROUP: ${{ inputs.MSI_RESOURCE_GROUP }}
+  BICEP_FILE_PATH: 'Deploy'
   BICEP_FILE_NAME: 'main'
   
 jobs:
   validate_deploy:
-    runs-on: ubuntu-latest 
+    runs-on: windows-latest 
     steps:
     # Authentication
     # Set up the following secrets in your repository: AZURE_CREDENTIALS
@@ -69,7 +69,7 @@ jobs:
         # Specify the script here
         inlineScript: |
           az group create -l ${{ env.AZURE_REGION }} -n ${{ env.RESOURCE_GROUP_NAME }}
-          az deployment group validate -g ${{ env.APP_NAME_PREFIX }}-${{ env.ENVIRONMENT_TYPE }}-rg --template-file ./${{ env.BICEP_FILE_PATH }}/main.bicep
+          az deployment group validate -g ${{ env.APP_NAME_PREFIX }}-${{ env.ENVIRONMENT_TYPE }}-rg --template-file ./${{ env.BICEP_FILE_PATH }}/${{ env.BICEP_FILE_NAME }}.bicep
           az bicep upgrade 
           az bicep build --file ./${{ env.BICEP_FILE_PATH }}/${{ env.BICEP_FILE_NAME }}.bicep
 
