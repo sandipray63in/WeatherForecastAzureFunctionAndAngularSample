@@ -84,4 +84,3 @@ jobs:
             test-assembly-path: WeatherForecastBDD/bin/Release/netcoreapp3.1
             test-assembly-dll: WeatherForecastBDD.dll
             output-html: WeatherForecastBDD.html
-

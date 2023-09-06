@@ -4,6 +4,22 @@ on:
   push: 
     branches: [master]
 
+inputs:
+        AZURE_REGION:
+           description: 'Azure Region'
+           required: true
+        RESOURCE_GROUP_NAME: 
+           description: 'Resource Group Name'
+           required: true
+        MSI_NAME: 
+           description: 'MSI Name'
+           required: true
+        MSI_RESOURCE_GROUP: 
+           description: 'MSI Resource Group'
+           required: true
+        APP_NAME_PREFIX:
+           description: 'App Name Prefix'
+           required: true
 jobs:
   ci-pr:
 
@@ -18,8 +34,8 @@ jobs:
 
     - uses: ./.github/Workflows/ci-cd-dev.yaml
       with:
-         AZURE_REGION: ''
-         RESOURCE_GROUP_NAME: ''
-         MSI_NAME: ''
-         MSI_RESOURCE_GROUP: ''
-         APP_NAME_PREFIX: ''
+         AZURE_REGION: '${{inputs.AZURE_REGION}}'
+         RESOURCE_GROUP_NAME: '${{inputs.RESOURCE_GROUP_NAME}}'
+         MSI_NAME: '${{inputs.MSI_NAME}}'
+         MSI_RESOURCE_GROUP: '${{inputs.MSI_RESOURCE_GROUP}}'
+         APP_NAME_PREFIX: '${{inputs.APP_NAME_PREFIX}}'

@@ -19,6 +19,7 @@ using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Enums;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
+using Polly;
 using WeatherForecastAPI.Domain;
 using WeatherForecastAPI.Domain.WeatherForecastResponse;
 using WeatherForecastAPI.DomainServices;
@@ -113,19 +114,24 @@ namespace WeatherForecastAPI
             }
             HttpResponseMessage response = null;
             string jsonData = string.Empty;
-            try
-            {
+            ServiceUnavailableObjectResult serviceUnavailableObjectResult = null;
+            var polly = Policy
+           .Handle<Exception>()
+           .RetryAsync(3, (ex, retryCount, context) =>
+           {
+               _logger.LogError("Exception occurred : " + ex.ToString());
+               string openWeatherMapAPIUnavailableMessage = "api.openweathermap.org is currently unavailable";
+               serviceUnavailableObjectResult = new ServiceUnavailableObjectResult(openWeatherMapAPIUnavailableMessage);
+            });
+            await polly.ExecuteAsync(async () => {
                 response = await _httpClient.GetAsync(formattedUrl);
                 jsonData = await response.Content.ReadAsStringAsync();
-            }
-            catch(Exception ex)
+            });
+            if(serviceUnavailableObjectResult != null)
             {
-                _logger.LogError("Exception occurred : " + ex.ToString());
-                string openWeatherMapAPIUnavailableMessage = "api.openweathermap.org is currently unavailable";
-                ServiceUnavailableObjectResult serviceUnavailableObjectResult = new ServiceUnavailableObjectResult(openWeatherMapAPIUnavailableMessage);
                 return await Task.FromResult(serviceUnavailableObjectResult).ConfigureAwait(false);
             }
-
+            
             //deserialize the http response
             WeatherForecastResponseData responseData = JsonConvert.DeserializeObject<WeatherForecastResponseData>(jsonData);
             if(responseData.message.Trim() == cityNotFoundMessage)
