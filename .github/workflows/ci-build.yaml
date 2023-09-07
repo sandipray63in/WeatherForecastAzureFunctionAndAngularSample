@@ -58,11 +58,11 @@ jobs:
                 if: ${{ always() }}
 
             - name: Sonar Static Code Analysis Scan
-              uses: ./.github/Workflows/sonar-static-analysis.yaml
+              uses: ./.github/workflows/sonar-static-analysis.yaml
               with: 
                 SONAR_PROJECT_KEY: ''
                 SONAR_PROJECT_NAME: ''
                 SONAR_ORGANISATION_NAME: ''
                     
             - name: CodeQL Security Analysis Scan
-              uses: ./.github/Workflows/codeql-security-analysis.yaml
+              uses: ./.github/workflows/codeql-security-analysis.yaml
