@@ -22,6 +22,7 @@ jobs:
     - name: Azure Login
       uses: azure/login@v1
       with:
+        environment: 'dev'
         creds: ${{ secrets.AZURE_CREDENTIALS  }}
     
     # Checkout
