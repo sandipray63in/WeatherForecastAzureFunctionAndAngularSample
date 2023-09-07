@@ -16,6 +16,17 @@ jobs:
     runs-on: windows-latest
 
     steps:
+    # Authentication
+    # Set up the following secrets in your repository: AZURE_CREDENTIALS
+    # For details on usage of secrets, please refer https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS  }}
+    
+    # Checkout
+    - name: Checkout
+      uses: actions/checkout@v1
 
     - uses: ./.github/Workflows/ci-build.yaml
       with:
@@ -29,3 +40,9 @@ jobs:
          MSI_NAME: '${{env.MSI_NAME}}'
          MSI_RESOURCE_GROUP: '${{env.MSI_RESOURCE_GROUP}}'
          APP_NAME_PREFIX: '${{env.APP_NAME_PREFIX}}'
+
+    # Azure logout
+    - name: logout
+      run: |
+            az logout
+      if: always()

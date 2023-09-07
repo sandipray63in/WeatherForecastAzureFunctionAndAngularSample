@@ -73,17 +73,6 @@ jobs:
   angular_cicd:
     runs-on: windows-latest
     steps:
-    # Authentication
-    # Set up the following secrets in your repository: AZURE_CREDENTIALS
-    # For details on usage of secrets, please refer https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets
-    - name: Azure Login
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS  }}
-    
-    # Checkout
-    - name: Checkout 
-      uses: actions/checkout@v1
 
     # Set app configurations of Angular
     - name: 'Replace tokens'
@@ -126,10 +115,4 @@ jobs:
       with:
         azcliversion: 2.21.0
         inlineScript: |
-           az cdn endpoint purge --content-paths  "/*" --profile-name ${{ env.CDN_PROFILE_NAME }} --name ${{ env.CDN_ENDPOINT_NAME }} --resource-group ${{ env.RESOURCE_GROUP_NAME }}
-
-    # Azure logout
-    - name: logout
-      run: |
-            az logout
-      if: always()
+           az cdn endpoint purge --content-paths  "/*" --profile-name ${{ env.CDN_PROFILE_NAME }} --name ${{ env.CDN_ENDPOINT_NAME }} --resource-group ${{ env.RESOURCE_GROUP_NAME }

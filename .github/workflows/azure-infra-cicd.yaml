@@ -54,17 +54,6 @@ jobs:
   validate_deploy:
     runs-on: windows-latest 
     steps:
-    # Authentication
-    # Set up the following secrets in your repository: AZURE_CREDENTIALS
-    # For details on usage of secrets, please refer https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets
-    - name: Azure Login
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS  }}
-    
-    # Checkout
-    - name: Checkout
-      uses: actions/checkout@v1
 
     # Build ARM Template from Bicep and create a target Azure resource group  
     - name: Azure CLI - Validate Bicep file ${{ env.BICEP_FILE_PATH }}/${{ env.BICEP_FILE_NAME }}.bicep
@@ -101,9 +90,3 @@ jobs:
          echo "cdnEndpointURL=steps.infraDeployment.outputs.cdnEndpointURL" >> $env:GITHUB_OUTPUT
          echo "authKey=steps.infraDeployment.outputs.authKey" >> $env:GITHUB_OUTPUT
          echo "apiName=steps.infraDeployment.outputs.apiName" >> $env:GITHUB_OUTPUT
-         
-    # Azure logout
-    - name: logout
-      run: |
-            az logout
-      if: always()
