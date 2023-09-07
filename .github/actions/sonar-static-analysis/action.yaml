@@ -1,33 +1,20 @@
 name: SonarScan
-
-on:
-  workflow_call:
-    inputs: 
+description : Sonar Scan
+inputs: 
       SONAR_PROJECT_KEY: 
         description: 'Sonar Project Key'
-        type: string
         required: true
       SONAR_PROJECT_NAME: 
         description: 'Sonar Project Name'
-        type: string
         required: true
       SONAR_ORGANISATION_NAME: 
         description: 'Sonar Organisation Name'
-        type: string
         required: true
-  #schedule:
-   # - cron: '40 14 * * 6'
 
-jobs:
-  static-analysis-scan:
+runs:
+      using: 'composite'
 
-       runs-on: windows-latest
-
-       env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-       steps:
+      steps:
 
         - uses: highbyte/sonarscan-dotnet@v2.2.3
           with:

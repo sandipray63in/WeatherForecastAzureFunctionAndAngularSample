@@ -1,67 +1,54 @@
 name: Build and publish Azure Functions
-on: 
-  workflow_call:
-    inputs:
+description: Build and publish Azure Functions
+inputs:
       ENVIRONMENT_TYPE: 
         description: 'Environment: dev, test, or prod'
-        type: string
         required: true
         default: 'dev'
       APP_NAME_PREFIX: 
         description: 'Prefix to be used in naming Azure resources'
-        type: string
         required: true
         default: 'prefix'
       RESOURCE_GROUP_NAME: 
         description: 'Resource Group to deploy Azure resources'
-        type: string
         required: true
         default: 'resource-group'
       API_NAME: 
         description: 'API name'
-        type: string
         required: true
         default: '2do'
       APIM_NAME: 
         description: 'APIM name'
-        type: string
         required: true
         default: 'apim-name'
       FUNCTION_NAME: 
         description: 'Azure Functions name'
-        type: string
         required: true
         default: 'function-name'
       ORIGIN_URL: 
         description: 'Client app URL' # This is CDN endpoint URL
-        type: string
         required: true
-        default: 'https://<cdn-endpoint-name>.azureedge.net'              
+        default: 'https://<cdn-endpoint-name>.azureedge.net'    
+      DOTNET_VERSION: 
+        description: '.NET version'
+        required: true
+        default: '3.1.410' 
+      BICEP_FILE_PATH: 
+        description: 'Bicep File PAth'
+        required: true
+        default: 'Deploy'
+      BICEP_FILE_NAME: 
+        description: 'Bicep File Name'
+        required: true
+        default: 'api'
+      FUNCTIONAPP_PATH: 
+        description: 'Function App Path'
+        required: true
+        default: 'WeatherForecastAPI'
   
-# CONFIGURATION
-# For help, go to https://github.com/Azure/Actions
-#
-# 1. Set up the following secrets in your repository:
-#   AZURE_CREDENTIALS
-#
-# 2. Change below variables for your configuration:
-env:
-  ENVIRONMENT_TYPE: ${{ inputs.ENVIRONMENT_TYPE }}
-  APP_NAME_PREFIX: ${{ inputs.APP_NAME_PREFIX }}
-  RESOURCE_GROUP_NAME: ${{ inputs.RESOURCE_GROUP_NAME }}
-  API_NAME: ${{ inputs.API_NAME }}
-  API_DOCUMENT_URL: 'https://${{inputs.FUNCTION_NAME}}.azurewebsites.net/api/swagger.json'
-  APIM_NAME: ${{ inputs.APIM_NAME }}
-  FUNCTION_NAME: ${{ inputs.FUNCTION_NAME }}
-  ORIGIN_URL: ${{ inputs.ORIGIN_URL }}
-  FUNCTIONAPP_PATH: 'WeatherForecastAPI'
-  DOTNET_VERSION: '3.1.410'
-  BICEP_FILE_PATH: 'Deploy'
-  BICEP_FILE_NAME: 'api'
 
-jobs:
-  function_cicd:
-    runs-on: windows-latest
+runs:
+    using: 'composite'
     steps:
     
     # Authentication
@@ -74,51 +61,52 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS  }}
 
     # Setup .NET Core environment
-    - name: Setup DotNet ${{ env.DOTNET_VERSION }} Environment
+    - name: Setup DotNet ${{ inputs.DOTNET_VERSION }} Environment
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: ${{ env.DOTNET_VERSION }}
+        dotnet-version: ${{ inputs.DOTNET_VERSION }}
 
     # Build .NET application
     - name: 'Build .NET application'
       shell: bash
       run: | 
-        pushd ./${{ env.FUNCTIONAPP_PATH }}
+        pushd ./${{ inputs.FUNCTIONAPP_PATH }}
         dotnet build --configuration Release --output ./outputs
         popd
 
     # Publish .NET application to Azure Function
-    - name: Publish to Azure Functions to ${{ env.FUNCTION_NAME }}
+    - name: Publish to Azure Functions to ${{ inputs.FUNCTION_NAME }}
       uses: Azure/functions-action@v1
       id: fa
       with:
-        app-name: ${{ env.FUNCTION_NAME }}
-        package: ./${{ env.FUNCTIONAPP_PATH }}/outputs
+        app-name: ${{ inputs.FUNCTION_NAME }}
+        package: ./${{ inputs.FUNCTIONAPP_PATH }}/outputs
 
     # Validate and Build ARM Template from Bicep
-    - name: Azure CLI - Validate Bicep file ${{ env.BICEP_FILE_PATH }}/${{ env.BICEP_FILE_NAME }}.bicep
+    - name: Azure CLI - Validate Bicep file ${{ inputs.BICEP_FILE_PATH }}/${{ inputs.BICEP_FILE_NAME }}.bicep
       uses: Azure/cli@1.0.4
       with:
         # Azure CLI version to be used to execute the script. If not provided, latest version is used
         azcliversion: 2.27.2
         # Specify the script here
         inlineScript: |
-          az deployment group validate -g ${{ env.RESOURCE_GROUP_NAME }} --template-file ./${{ env.BICEP_FILE_PATH }}/main.bicep
+          az deployment group validate -g ${{ inputs.RESOURCE_GROUP_NAME }} --template-file ./${{ inputs.BICEP_FILE_PATH }}/main.bicep
           az bicep upgrade
-          az bicep build --file ./${{ env.BICEP_FILE_PATH }}/${{ env.BICEP_FILE_NAME }}.bicep
+          az bicep build --file ./${{ inputs.BICEP_FILE_PATH }}/${{ inputs.BICEP_FILE_NAME }}.bicep
 
     # Deployment Bicep template for Azure API Management REST API 
-    - name: Import ${{ env.ENVIRONMENT_TYPE }} environment API to ${{ env.APIM_NAME }}
+    - name: Import ${{ inputs.ENVIRONMENT_TYPE }} environment API to ${{ inputs.APIM_NAME }}
       id: apiDeployment
       uses: azure/arm-deploy@v1
       with:
         deploymentName: '${{ github.run_number }}-api'
-        resourceGroupName: ${{ env.RESOURCE_GROUP_NAME }}
-        template: ./${{ env.BICEP_FILE_PATH }}/${{ env.BICEP_FILE_NAME }}.json  
-        parameters: apimName=${{ env.APIM_NAME }} openApiUrl=${{ env.API_DOCUMENT_URL }} originUrl=${{ env.ORIGIN_URL }} apimApiName=${{ env.API_NAME }}
+        resourceGroupName: ${{ inputs.RESOURCE_GROUP_NAME }}
+        template: ./${{ inputs.BICEP_FILE_PATH }}/${{ inputs.BICEP_FILE_NAME }}.json  
+        parameters: apimName=${{ inputs.APIM_NAME }} openApiUrl=${{ inputs.API_DOCUMENT_URL }} originUrl=${{ inputs.ORIGIN_URL }} apimApiName=${{ inputs.API_NAME }}
 
     # Azure logout
     - name: logout
+      shell: pwsh
       run: |
             az logout
       if: always()

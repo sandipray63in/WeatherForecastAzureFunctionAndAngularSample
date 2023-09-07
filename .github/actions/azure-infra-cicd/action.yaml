@@ -1,0 +1,100 @@
+name: Create Azure Resource
+description: Create Azure Resource
+inputs:
+      AZURE_REGION: 
+        description: 'Azure Region to deploy Azure resources'
+        required: true    
+        default: 'azure-region'  
+      ENVIRONMENT_TYPE: 
+        description: 'Environment: dev, test, or prod'
+        required: true
+        default: 'dev'
+      APP_NAME_PREFIX: 
+        description: 'Prefix to be used in naming Azure resources'
+        required: true
+        default: 'prefix'
+      RESOURCE_GROUP_NAME: 
+        description: 'Resource Group to deploy Azure resources'
+        required: true
+        default: 'resource-group'
+      MSI_NAME: 
+        description: 'User Managed Identity'
+        required: true
+        default: 'user-msi'
+      MSI_RESOURCE_GROUP: 
+        description: 'Resource Group where User Managed Identity is located'
+        required: true
+        default: 'msi-resource-group'
+      BICEP_FILE_PATH:
+       description: 'Bicep file Path'
+       required: true
+       default: 'Deploy'
+      BICEP_FILE_NAME:
+       description: 'Bicep file Path'
+       required: true
+       default: 'main'
+runs:
+     using: 'composite'
+     # CONFIGURATION
+     # For help, go to https://github.com/Azure/Actions
+     #
+     # 1. Set up the following secrets in your repository:
+     #   AZURE_CREDENTIALS
+     #
+     # 2. Change below variables for your configuration:
+     
+     steps:
+
+        # Authentication
+        # Set up the following secrets in your repository: AZURE_CREDENTIALS
+        # For details on usage of secrets, please refer https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets
+        - name: Azure Login
+          uses: azure/login@v1
+          with:
+            environment: 'dev'
+            creds: ${{ secrets.AZURE_CREDENTIALS  }}
+
+        # Build ARM Template from Bicep and create a target Azure resource group  
+        - name: Azure CLI - Validate Bicep file ${{ inputs.BICEP_FILE_PATH }}/${{ inputs.BICEP_FILE_NAME }}.bicep
+          uses: Azure/cli@1.0.4
+          with:
+            # Azure CLI version to be used to execute the script. If not provided, latest version is used
+            azcliversion: 2.27.2
+            # Specify the script here
+            inlineScript: |
+              az group create -l ${{ inputs.AZURE_REGION }} -n ${{ inputs.RESOURCE_GROUP_NAME }}
+              az deployment group validate -g ${{ inputs.APP_NAME_PREFIX }}-${{ inputs.ENVIRONMENT_TYPE }}-rg --template-file ./${{ inputs.BICEP_FILE_PATH }}/${{ inputs.BICEP_FILE_NAME }}.bicep
+              az bicep upgrade 
+              az bicep build --file ./${{ inputs.BICEP_FILE_PATH }}/${{ inputs.BICEP_FILE_NAME }}.bicep
+
+        # Deployment Bicep template
+        - name: Deploy ${{ inputs.ENVIRONMENT_TYPE }} environment infrastructure to ${{ inputs.RESOURCE_GROUP_NAME }}
+          id: infraDeployment
+          uses: azure/arm-deploy@v1
+          with:
+            deploymentName: ${{ github.run_number }}
+            resourceGroupName: ${{ inputs.RESOURCE_GROUP_NAME }}
+            template: ./${{ inputs.BICEP_FILE_PATH }}/${{ inputs.BICEP_FILE_NAME }}.json  # Set this to the location of your template file
+            parameters: appNameSuffix=${{ inputs.APP_NAME_PREFIX }} environmentType=${{ inputs.ENVIRONMENT_TYPE }} userAssignedIdentityName=${{ inputs.MSI_NAME }} userAssignedIdentityResourceGroup=${{ inputs.MSI_RESOURCE_GROUP }}
+
+        - name: Set Outputs
+          shell: pwsh
+          run: |
+             echo "functionAppName=steps.infraDeployment.outputs.functionAppName" >> $env:GITHUB_OUTPUT
+             echo "apiUrl=steps.infraDeployment.outputs.apiUrl" >> $env:GITHUB_OUTPUT
+             echo "staticWebsiteStorageAccountName=steps.infraDeployment.outputs.staticWebsiteStorageAccountName" >> $env:GITHUB_OUTPUT
+             echo "staticWebsiteUrl=steps.infraDeployment.outputs.staticWebsiteUrl" >> $env:GITHUB_OUTPUT
+             echo "apimName=steps.infraDeployment.outputs.apimName" >> $env:GITHUB_OUTPUT
+             echo "cdnEndpointName=steps.infraDeployment.outputs.cdnEndpointName" >> $env:GITHUB_OUTPUT
+             echo "cdnProfileName=steps.infraDeployment.outputs.cdnProfileName" >> $env:GITHUB_OUTPUT
+             echo "cdnEndpointURL=steps.infraDeployment.outputs.cdnEndpointURL" >> $env:GITHUB_OUTPUT
+             echo "authKey=steps.infraDeployment.outputs.authKey" >> $env:GITHUB_OUTPUT
+             echo "apiName=steps.infraDeployment.outputs.apiName" >> $env:GITHUB_OUTPUT
+
+       # Azure logout
+        - name: logout
+          shell: pwsh
+          run: |
+                az logout
+          if: always()
+    

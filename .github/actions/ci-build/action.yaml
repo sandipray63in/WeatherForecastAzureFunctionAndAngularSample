@@ -1,35 +1,21 @@
 name: CI Build
-
-on:
-  workflow_call:
-      inputs:
+description: CI Build
+inputs:
         SOLUTION_NAME: 
             description: 'Name of the .sln file'
-            type: string
             required: true
         TEST_PROJECT_PATH:
             description: 'Test Project Path'
-            type: string
             required: true
 
-jobs:
-  build-and-test:
-
-       runs-on: windows-latest
-
-       env:
-         Solution_Name: "${{inputs.SOLUTION_NAME}}.sln"
-         Test_Project_Path: "${{inputs.TEST_PROJECT_PATH}}"
-
-       strategy:
-         matrix:
-            dotnet-version: [ '3.1.x', '6.0.x' ]
-       steps:
+runs:
+      using: 'composite'
+      steps:
               
             - name: Setup .NET
               uses: actions/setup-dotnet@v3
               with:
-                dotnet-version: ${{ matrix.dotnet-version }}
+                dotnet-version: '6.0.x'
 
             - uses: actions/cache@v3
               with:
@@ -40,29 +26,32 @@ jobs:
                     ${{ runner.os }}-nuget
 
             - name: Install/Restore dependencies
+              shell: pwsh
               run: dotnet restore
 
             - name: Build
-              run: dotnet build --no-restore
+              shell: pwsh
+              run: dotnet build --no-restore ${{inputs.SOLUTION_NAME}}.sln
 
             - name: Test
-              run: dotnet test --no-build --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}" --collect:"XPlat Code Coverage"
+              shell: pwsh
+              run: dotnet test ${{inputs.TEST_PROJECT_PATH}} --no-build --verbosity normal --logger trx --results-directory "TestResults-6.0.x" --collect:"XPlat Code Coverage"
 
             - name: Upload dotnet test results
               uses: actions/upload-artifact@v3
               with:
-                name: dotnet-test-results-${{ matrix.dotnet-version }}
-                path: TestResults-${{ matrix.dotnet-version }}
+                name: dotnet-test-results-6.0.x
+                path: TestResults-6.0.x
                 # Use always() to always run this step to publish test results when there are 
                 # test failures
                 if: ${{ always() }}
 
             - name: Sonar Static Code Analysis Scan
-              uses: ./.github/workflows/sonar-static-analysis.yaml
+              uses: ./.github/actions/sonar-static-analysis/action.yaml
               with: 
                 SONAR_PROJECT_KEY: ''
                 SONAR_PROJECT_NAME: ''
                 SONAR_ORGANISATION_NAME: ''
                     
             - name: CodeQL Security Analysis Scan
-              uses: ./.github/workflows/codeql-security-analysis.yaml
+              uses: ./.github/actions/codeql-security-analysis/action.yaml

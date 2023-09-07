@@ -1,77 +1,56 @@
 name: Build and publish Angular (SPA)
-
-on: 
-  workflow_call:
-    inputs:
+description : Build and publish Angular (SPA)
+inputs:
       ENVIRONMENT_TYPE: 
         description: 'Environment: dev, test, or prod'
-        type: string
         required: true
         default: 'dev'
       APP_NAME_PREFIX: 
         description: 'Prefix to be used in naming Azure resources'
-        type: string
         required: true
         default: 'prefix'
       RESOURCE_GROUP_NAME: 
         description: 'Resource Group to deploy Azure resources'
-        type: string
         required: true
         default: 'resource-group'
       CLIENT_URL: 
         description: 'Client URL'
-        type: string
         required: true
         default: 'https://<cdn-endpoint-name>.azureedge.net'
       API_URL: 
         description: 'API on APIM URL'
-        type: string
         required: true
         default: 'https://<apim-name>.azure-api.net/<api-name>'
       API_AUTH_KEY: 
         description: 'API Auth Key'
-        type: string
         required: true
       AZURE_STORAGE_NAME: 
         description: 'Azure storage account name'
-        type: string
         required: true
         default: 'storageaccountname'
       CDN_PROFILE_NAME: 
         description: 'CDN profile name'
-        type: string
         required: true
         default: 'cdn-profile-name'
       CDN_ENDPOINT_NAME: 
         description: 'CDN endpoint name'
-        type: string
         required: true
         default: 'cdn-endpoint-name'                        
-  
-# CONFIGURATION
-# For help, go to https://github.com/Azure/Actions
-#
-# 1. Set up the following secrets in your repository:
-#   AZURE_CREDENTIALS
-#
-# 2. Change below variables for your configuration:
-env:
-  ENVIRONMENT_TYPE: ${{ inputs.ENVIRONMENT_TYPE }}
-  APP_NAME_PREFIX: ${{ inputs.APP_NAME_PREFIX }}
-  RESOURCE_GROUP_NAME: ${{ inputs.RESOURCE_GROUP_NAME }}
-  CLIENT_URL: ${{ inputs.CLIENT_URL }}
-  API_URL: ${{ inputs.API_URL }}
-  AZURE_STORAGE_NAME: ${{ inputs.AZURE_STORAGE_NAME }}
-  CDN_PROFILE_NAME: ${{ inputs.CDN_PROFILE_NAME }}
-  CDN_ENDPOINT_NAME: ${{ inputs.CDN_ENDPOINT_NAME }}
-  ANGULAR_PATH: 'WeatherForecaastUI'
-  NODE_VERSION: '14'
-  BICEP_FILE_PATH: 'Deploy'
-  API_AUTH_KEY: ${{inputs.API_AUTH_KEY}}
+      ANGULAR_PATH: 
+        description: 'Angular project path'
+        required: true
+        default: 'WeatherForecaastUI'
+      NODE_VERSION: 
+        description: 'Node Version'
+        required: true
+        default: '14'
+      BICEP_FILE_PATH: 
+        description: 'Bicep File path'
+        required: true
+        default: 'Deploy'
 
-jobs:
-  angular_cicd:
-    runs-on: self-hosted
+runs: 
+    using: 'composite'
     steps:
      # Authentication
     # Set up the following secrets in your repository: AZURE_CREDENTIALS
@@ -88,39 +67,39 @@ jobs:
       with:
         tokenPrefix: '__'
         tokenSuffix: '__'
-        files: ${{ github.workspace }}/${{ env.ANGULAR_PATH }}/src/app/app-config.json
+        files: ${{ github.workspace }}/${{ inputs.ANGULAR_PATH }}/src/app/app-config.json
       env: 
-        weatherForecastAPIUrl: ${{ env.API_URL }}
-        authKey: ${{ env.API_AUTH_KEY }}
+        weatherForecastAPIUrl: ${{ inputs.API_URL }}
+        authKey: ${{ inputs.API_AUTH_KEY }}
     
     # Setup Node.js environment
-    - name: Setup Node.js ${{ env.NODE_VERSION }} environment
+    - name: Setup Node.js ${{ inputs.NODE_VERSION }} environment
       uses: actions/setup-node@v2
       with:
-        node-version: ${{ env.NODE_VERSION }}
+        node-version: ${{ inputs.NODE_VERSION }}
     
     # Build Angular application
     - name: Build Angular application
       run: |
-        pushd ./${{ env.ANGULAR_PATH }}
+        pushd ./${{ inputs.ANGULAR_PATH }}
         npm install
         npm install -g @angular/cli
         ng build -c=production --output-path=./dist
         popd
     
     # Deploy Angular application to Storage Account
-    - name: Publish static website to Azure storage account ${{ env.AZURE_STORAGE_NAME }}
+    - name: Publish static website to Azure storage account ${{ inputs.AZURE_STORAGE_NAME }}
       uses: Azure/cli@1.0.4
       with:
         # Azure CLI version to be used to execute the script. If not provided, latest version is used
         azcliversion: 2.21.0
         # Specify the script here
-        inlineScript: az storage blob upload-batch -s ./${{ env.ANGULAR_PATH }}/dist -d '$web' --account-name ${{ env.AZURE_STORAGE_NAME }}
+        inlineScript: az storage blob upload-batch -s ./${{ inputs.ANGULAR_PATH }}/dist -d '$web' --account-name ${{ inputs.AZURE_STORAGE_NAME }}
 
     # Purge CDN endpoint
-    - name: Purge CDN endpoint on ${{ env.CDN_ENDPOINT_NAME }}
+    - name: Purge CDN endpoint on ${{ inputs.CDN_ENDPOINT_NAME }}
       uses: Azure/cli@1.0.4
       with:
         azcliversion: 2.21.0
         inlineScript: |
-           az cdn endpoint purge --content-paths  "/*" --profile-name ${{ env.CDN_PROFILE_NAME }} --name ${{ env.CDN_ENDPOINT_NAME }} --resource-group ${{ env.RESOURCE_GROUP_NAME }
+           az cdn endpoint purge --content-paths  "/*" --profile-name ${{ inputs.CDN_PROFILE_NAME }} --name ${{ inputs.CDN_ENDPOINT_NAME }} --resource-group ${{ inputs.RESOURCE_GROUP_NAME }
