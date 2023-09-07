@@ -21,6 +21,7 @@ https://learn.microsoft.com/en-us/azure/azure-functions/functions-develop-local
 https://stackoverflow.com/questions/63130799/azure-functions-host-json-not-applying-to-azure-application-settings     
 
 Security -    
+https://learn.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli
 https://learn.microsoft.com/en-us/azure/api-management/howto-protect-backend-frontend-azure-ad-b2c      
 https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev       
 
@@ -55,6 +56,9 @@ GitHub Actions, Azure DevOps Pipeline & Bicep(/ARM) Templates -
 https://learn.microsoft.com/en-us/azure/devops/pipelines/architectures/devops-pipelines-baseline-architecture?view=azure-devops        
 https://github.com/Azure/actions-workflow-samples         
 https://azure.github.io/actions/        
+https://www.shanebart.com/deploy-az-func-with-github-actions/ - create an azure AD App Registration based service principal
+and use that as Github secret & name it as AZURE_CREDENTIALS
+https://learn.microsoft.com/en-us/graph/migrate-azure-ad-graph-configure-permissions?tabs=http%2Cupdatepermissions-azureadgraph-powershell
 https://docs.github.com/en/actions/using-workflows/reusing-workflows#using-outputs-from-a-reusable-workflow       
 https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/azure-resource-manager/bicep/outputs.md     
 https://learn.microsoft.com/en-us/azure/templates/microsoft.resources/deploymentscripts?pivots=deployment-language-bicep      

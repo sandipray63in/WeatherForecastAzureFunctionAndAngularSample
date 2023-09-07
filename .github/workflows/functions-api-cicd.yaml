@@ -4,30 +4,37 @@ on:
     inputs:
       ENVIRONMENT_TYPE: 
         description: 'Environment: dev, test, or prod'
+        type: string
         required: true
         default: 'dev'
       APP_NAME_PREFIX: 
         description: 'Prefix to be used in naming Azure resources'
+        type: string
         required: true
         default: 'prefix'
       RESOURCE_GROUP_NAME: 
         description: 'Resource Group to deploy Azure resources'
+        type: string
         required: true
         default: 'resource-group'
       API_NAME: 
         description: 'API name'
+        type: string
         required: true
         default: '2do'
       APIM_NAME: 
         description: 'APIM name'
+        type: string
         required: true
         default: 'apim-name'
       FUNCTION_NAME: 
         description: 'Azure Functions name'
+        type: string
         required: true
         default: 'function-name'
       ORIGIN_URL: 
         description: 'Client app URL' # This is CDN endpoint URL
+        type: string
         required: true
         default: 'https://<cdn-endpoint-name>.azureedge.net'              
   

@@ -5,15 +5,17 @@ on:
       inputs:
         SOLUTION_NAME: 
             description: 'Name of the .sln file'
+            type: string
             required: true
         TEST_PROJECT_PATH:
             description: 'Test Project Path'
+            type: string
             required: true
 
 jobs:
   build-and-test:
 
-       runs-on: [ windows-latest ]
+       runs-on: windows-latest
 
        env:
          Solution_Name: "${{inputs.SOLUTION_NAME}}.sln"
@@ -22,7 +24,7 @@ jobs:
        strategy:
          matrix:
             dotnet-version: [ '3.1.x', '6.0.x' ]
-         steps:
+       steps:
             - uses: actions/checkout@v3
   
             - name: Setup .NET

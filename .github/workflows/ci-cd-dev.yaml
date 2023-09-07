@@ -6,28 +6,34 @@ on:
     inputs:
         AZURE_REGION:
            description: 'Azure Region'
+           type: string
            required: true
         RESOURCE_GROUP_NAME: 
            description: 'Resource Group Name'
+           type: string
            required: true
         MSI_NAME: 
            description: 'MSI Name'
+           type: string
            required: true
         MSI_RESOURCE_GROUP: 
            description: 'MSI Resource Group'
+           type: string
            required: true
         APP_NAME_PREFIX:
            description: 'App Name Prefix'
+           type: string
            required: true
         BDD_WORKSPACE_PATH:
            description: 'App Name Prefix'
+           type: string
            required: true
            default: 'WeatherForecastBDD'
         
 jobs:
   dev-ci-cd:
 
-    runs-on: [ windows-latest ]
+    runs-on: windows-latest
 
     steps:
         - uses: ./.github/Workflows/ci-build.yaml

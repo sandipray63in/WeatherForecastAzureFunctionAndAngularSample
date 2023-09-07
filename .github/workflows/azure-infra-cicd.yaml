@@ -4,26 +4,32 @@ on:
     inputs:
       AZURE_REGION: 
         description: 'Azure Region to deploy Azure resources'
+        type: string
         required: true    
         default: 'azure-region'  
       ENVIRONMENT_TYPE: 
         description: 'Environment: dev, test, or prod'
+        type: string
         required: true
         default: 'dev'
       APP_NAME_PREFIX: 
         description: 'Prefix to be used in naming Azure resources'
+        type: string
         required: true
         default: 'prefix'
       RESOURCE_GROUP_NAME: 
         description: 'Resource Group to deploy Azure resources'
+        type: string
         required: true
         default: 'resource-group'
       MSI_NAME: 
         description: 'User Managed Identity'
+        type: string
         required: true
         default: 'user-msi'
       MSI_RESOURCE_GROUP: 
         description: 'Resource Group where User Managed Identity is located'
+        type: string
         required: true
         default: 'msi-resource-group'
   

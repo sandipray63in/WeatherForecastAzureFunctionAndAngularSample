@@ -5,37 +5,46 @@ on:
     inputs:
       ENVIRONMENT_TYPE: 
         description: 'Environment: dev, test, or prod'
+        type: string
         required: true
         default: 'dev'
       APP_NAME_PREFIX: 
         description: 'Prefix to be used in naming Azure resources'
+        type: string
         required: true
         default: 'prefix'
       RESOURCE_GROUP_NAME: 
         description: 'Resource Group to deploy Azure resources'
+        type: string
         required: true
         default: 'resource-group'
       CLIENT_URL: 
         description: 'Client URL'
+        type: string
         required: true
         default: 'https://<cdn-endpoint-name>.azureedge.net'
       API_URL: 
         description: 'API on APIM URL'
+        type: string
         required: true
         default: 'https://<apim-name>.azure-api.net/<api-name>'
       API_AUTH_KEY: 
         description: 'API Auth Key'
+        type: string
         required: true
       AZURE_STORAGE_NAME: 
         description: 'Azure storage account name'
+        type: string
         required: true
         default: 'storageaccountname'
       CDN_PROFILE_NAME: 
         description: 'CDN profile name'
+        type: string
         required: true
         default: 'cdn-profile-name'
       CDN_ENDPOINT_NAME: 
         description: 'CDN endpoint name'
+        type: string
         required: true
         default: 'cdn-endpoint-name'                        
   

@@ -16,20 +16,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherForecastTDD", "Weath
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherForecastBDD", "WeatherForecastBDD\WeatherForecastBDD.csproj", "{93384E20-FDBE-4D63-A0FB-9A8FEFD12B3F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{6A870C0D-1413-4084-96AC-2817C2472C9D}"
-	ProjectSection(SolutionItems) = preProject
-		Workflows\azure-infra-cicd.yaml = Workflows\azure-infra-cicd.yaml
-		Workflows\ci-build.yaml = Workflows\ci-build.yaml
-		Workflows\ci-cd-dev.yaml = Workflows\ci-cd-dev.yaml
-		Workflows\ci-pr.yaml = Workflows\ci-pr.yaml
-		Workflows\codeql-security-analysis.yaml = Workflows\codeql-security-analysis.yaml
-		Workflows\functions-api-cicd.yaml = Workflows\functions-api-cicd.yaml
-		Workflows\release-prod.yaml = Workflows\release-prod.yaml
-		Workflows\secrets.yaml = Workflows\secrets.yaml
-		Workflows\sonar-static-analysis.yaml = Workflows\sonar-static-analysis.yaml
-		Workflows\spa-cicd.yaml = Workflows\spa-cicd.yaml
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "Deploy", "{F02B71F1-0F6B-4986-AD89-2F77FF5E87A7}"
 	ProjectSection(SolutionItems) = preProject
 		Deploy\api.bicep = Deploy\api.bicep
