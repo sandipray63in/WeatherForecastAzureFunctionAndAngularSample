@@ -20,6 +20,15 @@ jobs:
     # Checkout
     - name: Checkout
       uses: actions/checkout@v1
+      with:
+        sparse-checkout: |
+            .github
+            Deploy
+            WeatherForecastAPI
+            WeatherForecastBDD
+            WeatherForecastTDD
+            WeatherForecastUI
+
 
     - uses: ./.github/Workflows/ci-build.yaml
       with:
