@@ -33,7 +33,7 @@ on:
 jobs:
   dev-ci-cd:
 
-    runs-on: self-hosted
+    runs-on: windows-latest
 
     steps:
         - uses: ./.github/Workflows/ci-build.yaml

@@ -61,8 +61,17 @@ env:
 
 jobs:
   function_cicd:
-    runs-on: self-hosted
+    runs-on: windows-latest
     steps:
+     # Authentication
+    # Set up the following secrets in your repository: AZURE_CREDENTIALS
+    # For details on usage of secrets, please refer https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        environment: 'dev'
+        creds: ${{ secrets.AZURE_CREDENTIALS  }}
+
     # Setup .NET Core environment
     - name: Setup DotNet ${{ env.DOTNET_VERSION }} Environment
       uses: actions/setup-dotnet@v1
@@ -106,3 +115,9 @@ jobs:
         resourceGroupName: ${{ env.RESOURCE_GROUP_NAME }}
         template: ./${{ env.BICEP_FILE_PATH }}/${{ env.BICEP_FILE_NAME }}.json  
         parameters: apimName=${{ env.APIM_NAME }} openApiUrl=${{ env.API_DOCUMENT_URL }} originUrl=${{ env.ORIGIN_URL }} apimApiName=${{ env.API_NAME }}
+
+    # Azure logout
+    - name: logout
+      run: |
+            az logout
+      if: always()
