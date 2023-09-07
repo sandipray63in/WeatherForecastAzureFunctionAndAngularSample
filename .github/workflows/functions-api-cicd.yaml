@@ -63,6 +63,11 @@ jobs:
   function_cicd:
     runs-on: windows-latest
     steps:
+    
+    # Checkout
+    - name: Checkout
+      uses: actions/checkout@v1
+
      # Authentication
     # Set up the following secrets in your repository: AZURE_CREDENTIALS
     # For details on usage of secrets, please refer https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets

@@ -36,6 +36,11 @@ jobs:
     runs-on: windows-latest
 
     steps:
+    
+        # Checkout
+        - name: Checkout
+          uses: actions/checkout@v1
+
         - uses: ./.github/Workflows/ci-build.yaml
           with:
             SOLUTION_NAME: 'WeatherForecast'

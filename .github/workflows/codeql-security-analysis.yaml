@@ -16,6 +16,11 @@ jobs:
         language: [ 'csharp' ]
 
     steps:
+    
+    # Checkout
+    - name: Checkout
+      uses: actions/checkout@v1
+
     - name: Checkout repository
       uses: actions/checkout@v3
 
