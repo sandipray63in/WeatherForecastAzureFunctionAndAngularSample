@@ -2,22 +2,13 @@ name: CI PR Action
 
 on:
   workflow_dispatch:
-   inputs:
-     AZURE_REGION:
-         description: 'Azure Region'
-         required: true
-     RESOURCE_GROUP_NAME: 
-         description: 'Resource Group Name'
-         required: true
-     MSI_NAME: 
-         description: 'MSI Name'
-         required: true
-     MSI_RESOURCE_GROUP: 
-         description: 'MSI Resource Group'
-         required: true
-     APP_NAME_PREFIX:
-         description: 'App Name Prefix'
-         required: true
+ 
+env:
+     AZURE_REGION: 'centralindia'
+     RESOURCE_GROUP_NAME: 'WeatherForecastRG'
+     MSI_NAME: 'WeatherForecastAppMSI'
+     MSI_RESOURCE_GROUP: 'WeatherForecastRG'
+     APP_NAME_PREFIX: 'WeatherForecast'
       
 jobs:
   ci-pr:
@@ -33,8 +24,8 @@ jobs:
 
     - uses: ./.github/Workflows/ci-cd-dev.yaml
       with:
-         AZURE_REGION: '${{inputs.AZURE_REGION}}'
-         RESOURCE_GROUP_NAME: '${{inputs.RESOURCE_GROUP_NAME}}'
-         MSI_NAME: '${{inputs.MSI_NAME}}'
-         MSI_RESOURCE_GROUP: '${{inputs.MSI_RESOURCE_GROUP}}'
-         APP_NAME_PREFIX: '${{inputs.APP_NAME_PREFIX}}'
+         AZURE_REGION: '${{env.AZURE_REGION}}'
+         RESOURCE_GROUP_NAME: '${{env.RESOURCE_GROUP_NAME}}'
+         MSI_NAME: '${{env.MSI_NAME}}'
+         MSI_RESOURCE_GROUP: '${{env.MSI_RESOURCE_GROUP}}'
+         APP_NAME_PREFIX: '${{env.APP_NAME_PREFIX}}'
