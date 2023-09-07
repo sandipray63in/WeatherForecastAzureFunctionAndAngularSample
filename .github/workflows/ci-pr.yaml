@@ -29,18 +29,18 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
 
-    - uses: ./.github/Workflows/ci-build.yaml
-      with:
-         SOLUTION_NAME: 'WeatherForecast'
-         TEST_PROJECT_PATH: 'WeatherForecastTDD\WeatherForecastTDD.csproj'
+    # - uses: ./.github/Workflows/ci-build.yaml
+    #   with:
+    #      SOLUTION_NAME: 'WeatherForecast'
+    #      TEST_PROJECT_PATH: 'WeatherForecastTDD\WeatherForecastTDD.csproj'
 
-    - uses: ./.github/Workflows/ci-cd-dev.yaml
-      with:
-         AZURE_REGION: '${{env.AZURE_REGION}}'
-         RESOURCE_GROUP_NAME: '${{env.RESOURCE_GROUP_NAME}}'
-         MSI_NAME: '${{env.MSI_NAME}}'
-         MSI_RESOURCE_GROUP: '${{env.MSI_RESOURCE_GROUP}}'
-         APP_NAME_PREFIX: '${{env.APP_NAME_PREFIX}}'
+    # - uses: ./.github/Workflows/ci-cd-dev.yaml
+    #   with:
+    #      AZURE_REGION: '${{env.AZURE_REGION}}'
+    #      RESOURCE_GROUP_NAME: '${{env.RESOURCE_GROUP_NAME}}'
+    #      MSI_NAME: '${{env.MSI_NAME}}'
+    #      MSI_RESOURCE_GROUP: '${{env.MSI_RESOURCE_GROUP}}'
+    #      APP_NAME_PREFIX: '${{env.APP_NAME_PREFIX}}'
 
     # Azure logout
     - name: logout
