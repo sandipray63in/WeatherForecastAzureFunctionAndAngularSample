@@ -71,7 +71,7 @@ env:
 
 jobs:
   angular_cicd:
-    runs-on: windows-latest
+    runs-on: self-hosted
     steps:
 
     # Set app configurations of Angular

@@ -21,7 +21,7 @@ on:
 jobs:
   static-analysis-scan:
 
-       runs-on: windows-latest
+       runs-on: self-hosted
 
        env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

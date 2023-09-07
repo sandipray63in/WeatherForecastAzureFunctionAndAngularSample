@@ -52,7 +52,7 @@ env:
   
 jobs:
   validate_deploy:
-    runs-on: windows-latest 
+    runs-on: self-hosted
     steps:
 
     # Build ARM Template from Bicep and create a target Azure resource group  

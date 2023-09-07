@@ -61,7 +61,7 @@ env:
 
 jobs:
   function_cicd:
-    runs-on: windows-latest
+    runs-on: self-hosted
     steps:
     # Setup .NET Core environment
     - name: Setup DotNet ${{ env.DOTNET_VERSION }} Environment

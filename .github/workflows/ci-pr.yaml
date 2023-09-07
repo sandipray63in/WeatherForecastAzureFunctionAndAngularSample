@@ -13,7 +13,7 @@ env:
 jobs:
   ci-pr:
 
-    runs-on: windows-latest
+    runs-on: self-hosted
 
     steps:
     # Authentication
