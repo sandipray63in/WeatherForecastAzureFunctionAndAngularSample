@@ -28,7 +28,6 @@ runs:
     - name: Install Azure cli
       shell: pwsh
       run: |
-       inlineScript: |
             az upgrade --yes
 
     # Authentication
