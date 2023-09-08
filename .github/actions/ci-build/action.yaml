@@ -1,18 +1,5 @@
 name: CI Build
 description: CI Build
-inputs:
-        SOLUTION_NAME: 
-            description: 'Name of the .sln file'
-            required: true
-        TEST_PROJECT_PATH:
-            description: 'Test Project Path'
-            required: true
-        GITHUB_TOKEN:
-           description: 'GitHub Token'
-           required: true
-        SONAR_TOKEN: 
-           description: 'Sonar Token'
-           required: true
 
 runs:
       using: 'composite'
@@ -37,11 +24,11 @@ runs:
 
             - name: Build
               shell: pwsh
-              run: dotnet build --no-restore ${{inputs.SOLUTION_NAME}}.sln
+              run: dotnet build --no-restore ${{env.SOLUTION_NAME}}.sln
 
             - name: Test
               shell: pwsh
-              run: dotnet test ${{inputs.TEST_PROJECT_PATH}} --no-build --verbosity normal --logger trx --results-directory "TestResults-6.0.x" --collect:"XPlat Code Coverage"
+              run: dotnet test ${{env.TEST_PROJECT_PATH}} --no-build --verbosity normal --logger trx --results-directory "TestResults-6.0.x" --collect:"XPlat Code Coverage"
 
             - name: Upload dotnet test results
               uses: actions/upload-artifact@v3
@@ -54,9 +41,6 @@ runs:
                     
             - name: Sonar Static Analysis Scan
               uses: ./.github/actions/sonar-static-analysis
-              with:
-               GITHUB_TOKEN : ${{inputs.SONAR_TOKEN}}
-               SONAR_TOKEN : ${{inputs.SONAR_TOKEN}}
 
             - name: CodeQL Security Analysis Scan
               uses: ./.github/actions/codeql-security-analysis

@@ -1,18 +1,6 @@
 name: Build and publish Angular (SPA)
 description : Build and publish Angular (SPA)
 inputs:
-      ENVIRONMENT_TYPE: 
-        description: 'Environment: dev, test, or prod'
-        required: true
-        default: 'dev'
-      APP_NAME_PREFIX: 
-        description: 'Prefix to be used in naming Azure resources'
-        required: true
-        default: 'prefix'
-      RESOURCE_GROUP_NAME: 
-        description: 'Resource Group to deploy Azure resources'
-        required: true
-        default: 'resource-group'
       CLIENT_URL: 
         description: 'Client URL'
         required: true
@@ -28,9 +16,6 @@ inputs:
         description: 'Azure storage account name'
         required: true
         default: 'storageaccountname'
-      AZURE_CREDENTIALS: 
-        description: 'Azure Credentials'
-        required: true
       CDN_PROFILE_NAME: 
         description: 'CDN profile name'
         required: true
@@ -39,18 +24,6 @@ inputs:
         description: 'CDN endpoint name'
         required: true
         default: 'cdn-endpoint-name'                        
-      ANGULAR_PATH: 
-        description: 'Angular project path'
-        required: true
-        default: 'WeatherForecaastUI'
-      NODE_VERSION: 
-        description: 'Node Version'
-        required: true
-        default: '14'
-      BICEP_FILE_PATH: 
-        description: 'Bicep File path'
-        required: true
-        default: 'Deploy'
 
 runs: 
     using: 'composite'
@@ -61,8 +34,7 @@ runs:
     - name: Azure Login
       uses: azure/login@v1
       with:
-        environment: 'dev'
-        creds: ${{ inputs.AZURE_CREDENTIALS  }}
+        creds: ${{ env.AZURE_CREDENTIALS  }}
 
     # Set app configurations of Angular
     - name: 'Replace tokens'
@@ -70,21 +42,21 @@ runs:
       with:
         tokenPrefix: '__'
         tokenSuffix: '__'
-        files: ${{ github.workspace }}/${{ inputs.ANGULAR_PATH }}/src/app/app-config.json
+        files: ${{ github.workspace }}/${{ env.ANGULAR_PATH }}/src/app/app-config.json
       env: 
         weatherForecastAPIUrl: ${{ inputs.API_URL }}
         authKey: ${{ inputs.API_AUTH_KEY }}
     
     # Setup Node.js environment
-    - name: Setup Node.js ${{ inputs.NODE_VERSION }} environment
+    - name: Setup Node.js ${{ env.NODE_VERSION }} environment
       uses: actions/setup-node@v2
       with:
-        node-version: ${{ inputs.NODE_VERSION }}
+        node-version: ${{ env.NODE_VERSION }}
     
     # Build Angular application
     - name: Build Angular application
       run: |
-        pushd ./${{ inputs.ANGULAR_PATH }}
+        pushd ./${{ env.ANGULAR_PATH }}
         npm install
         npm install -g @angular/cli
         ng build -c=production --output-path=./dist
@@ -97,7 +69,7 @@ runs:
         # Azure CLI version to be used to execute the script. If not provided, latest version is used
         azcliversion: 2.21.0
         # Specify the script here
-        inlineScript: az storage blob upload-batch -s ./${{ inputs.ANGULAR_PATH }}/dist -d '$web' --account-name ${{ inputs.AZURE_STORAGE_NAME }}
+        inlineScript: az storage blob upload-batch -s ./${{ env.ANGULAR_PATH }}/dist -d '$web' --account-name ${{ inputs.AZURE_STORAGE_NAME }}
 
     # Purge CDN endpoint
     - name: Purge CDN endpoint on ${{ inputs.CDN_ENDPOINT_NAME }}
@@ -105,4 +77,4 @@ runs:
       with:
         azcliversion: 2.21.0
         inlineScript: |
-           az cdn endpoint purge --content-paths  "/*" --profile-name ${{ inputs.CDN_PROFILE_NAME }} --name ${{ inputs.CDN_ENDPOINT_NAME }} --resource-group ${{ inputs.RESOURCE_GROUP_NAME }
+           az cdn endpoint purge --content-paths  "/*" --profile-name ${{ inputs.CDN_PROFILE_NAME }} --name ${{ inputs.CDN_ENDPOINT_NAME }} --resource-group ${{ env.RESOURCE_GROUP_NAME }

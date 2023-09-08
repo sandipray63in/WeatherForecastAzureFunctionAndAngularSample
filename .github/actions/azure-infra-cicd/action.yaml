@@ -1,37 +1,6 @@
 name: Create Azure Resource
 description: Create Azure Resource
 inputs:
-      AZURE_REGION: 
-        description: 'Azure Region to deploy Azure resources'
-        required: true    
-        default: 'azure-region'  
-      ENVIRONMENT_TYPE: 
-        description: 'Environment: dev, test, or prod'
-        required: true
-        default: 'dev'
-      APP_NAME_PREFIX: 
-        description: 'Prefix to be used in naming Azure resources'
-        required: true
-        default: 'prefix'
-      RESOURCE_GROUP_NAME: 
-        description: 'Resource Group to deploy Azure resources'
-        required: true
-        default: 'resource-group'
-      MSI_NAME: 
-        description: 'User Managed Identity'
-        required: true
-        default: 'user-msi'
-      MSI_RESOURCE_GROUP: 
-        description: 'Resource Group where User Managed Identity is located'
-        required: true
-        default: 'msi-resource-group'
-      AZURE_CREDENTIALS: 
-        description: 'Azure Credentials'
-        required: true
-      BICEP_FILE_PATH:
-       description: 'Bicep file Path'
-       required: true
-       default: 'Deploy'
       BICEP_FILE_NAME:
        description: 'Bicep file Path'
        required: true
@@ -54,31 +23,30 @@ runs:
         - name: Azure Login
           uses: azure/login@v1
           with:
-            environment: 'dev'
-            creds: ${{ inputs.AZURE_CREDENTIALS  }}
+            creds: ${{ env.AZURE_CREDENTIALS  }}
 
         # Build ARM Template from Bicep and create a target Azure resource group  
-        - name: Azure CLI - Validate Bicep file ${{ inputs.BICEP_FILE_PATH }}/${{ inputs.BICEP_FILE_NAME }}.bicep
+        - name: Azure CLI - Validate Bicep file ${{ env.BICEP_FILE_PATH }}/${{ inputs.BICEP_FILE_NAME }}.bicep
           uses: Azure/cli@1.0.4
           with:
             # Azure CLI version to be used to execute the script. If not provided, latest version is used
             azcliversion: 2.27.2
             # Specify the script here
             inlineScript: |
-              az group create -l ${{ inputs.AZURE_REGION }} -n ${{ inputs.RESOURCE_GROUP_NAME }}
-              az deployment group validate -g ${{ inputs.APP_NAME_PREFIX }}-${{ inputs.ENVIRONMENT_TYPE }}-rg --template-file ./${{ inputs.BICEP_FILE_PATH }}/${{ inputs.BICEP_FILE_NAME }}.bicep
+              az group create -l ${{ env.AZURE_REGION }} -n ${{ env.RESOURCE_GROUP_NAME }}
+              az deployment group validate -g ${{ env.APP_NAME_PREFIX }}-${{ env.ENVIRONMENT_TYPE }}-rg --template-file ./${{ env.BICEP_FILE_PATH }}/${{ inputs.BICEP_FILE_NAME }}.bicep
               az bicep upgrade 
-              az bicep build --file ./${{ inputs.BICEP_FILE_PATH }}/${{ inputs.BICEP_FILE_NAME }}.bicep
+              az bicep build --file ./${{ env.BICEP_FILE_PATH }}/${{ inputs.BICEP_FILE_NAME }}.bicep
 
         # Deployment Bicep template
-        - name: Deploy ${{ inputs.ENVIRONMENT_TYPE }} environment infrastructure to ${{ inputs.RESOURCE_GROUP_NAME }}
+        - name: Deploy ${{ env.ENVIRONMENT_TYPE }} environment infrastructure to ${{ env.RESOURCE_GROUP_NAME }}
           id: infraDeployment
           uses: azure/arm-deploy@v1
           with:
             deploymentName: ${{ github.run_number }}
-            resourceGroupName: ${{ inputs.RESOURCE_GROUP_NAME }}
-            template: ./${{ inputs.BICEP_FILE_PATH }}/${{ inputs.BICEP_FILE_NAME }}.json  # Set this to the location of your template file
-            parameters: appNameSuffix=${{ inputs.APP_NAME_PREFIX }} environmentType=${{ inputs.ENVIRONMENT_TYPE }} userAssignedIdentityName=${{ inputs.MSI_NAME }} userAssignedIdentityResourceGroup=${{ inputs.MSI_RESOURCE_GROUP }}
+            resourceGroupName: ${{ env.RESOURCE_GROUP_NAME }}
+            template: ./${{ env.BICEP_FILE_PATH }}/${{ inputs.BICEP_FILE_NAME }}.json  # Set this to the location of your template file
+            parameters: appNameSuffix=${{ env.APP_NAME_PREFIX }} environmentType=${{ env.ENVIRONMENT_TYPE }} userAssignedIdentityName=${{ env.MSI_NAME }} userAssignedIdentityResourceGroup=${{ env.MSI_RESOURCE_GROUP }}
 
         - name: Set Outputs
           shell: pwsh

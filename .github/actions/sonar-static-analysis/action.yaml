@@ -1,21 +1,13 @@
 name: Sonar Static Analysis Scan
 
 description: Sonar Static Analysis Scan
-
-inputs:
-        GITHUB_TOKEN:
-           description: 'GitHub Token'
-           required: true
-        SONAR_TOKEN: 
-           description: 'Sonar Token'
-           required: true
   
 runs:
   using: 'composite'
   steps:
    - run: |
-        echo "GITHUB_TOKEN: ${{inputs.GITHUB_TOKEN}}"
-        echo "SONAR_TOKEN: ${{inputs.SONAR_TOKEN}}"
+        echo "GITHUB_TOKEN: ${{env.GITHUB_TOKEN}}"
+        echo "SONAR_TOKEN: ${{env.SONAR_TOKEN}}"
      shell: pwsh
 
    - name: Scan and Publish
@@ -23,8 +15,8 @@ runs:
      with:
         sonar-project-key: 'sandipray63in_WeatherForecastAzureFunctionAndAngularSample'
         sonar-org-key: 'sandipray63in'
-        token: ${{ inputs.GITHUB_TOKEN }}
-        sonar-token: ${{ inputs.SONAR_TOKEN }}
+        token: ${{ env.GITHUB_TOKEN }}
+        sonar-token: ${{ env.SONAR_TOKEN }}
         working-directory: './WeatherForecastAPI'
      
        

@@ -19,3 +19,5 @@ module apimOpenApi 'Modules/apimOpenAPI.bicep' = {
     originUrl: originUrl
   }
 }
+
+output API_DOCUMENT_URL string = openApiUrl

@@ -36,46 +36,25 @@ runs:
 
     steps:
         - uses: ./.github/actions/ci-build/action.yaml
-          with:
-            SOLUTION_NAME: 'WeatherForecast'
-            TEST_PROJECT_PATH: 'WeatherForecastTDD\WeatherForecastTDD.csproj'
-            GITHUB_TOKEN : ${{inputs.GITHUB_TOKEN}}
-            SONAR_TOKEN : ${{inputs.SONAR_TOKEN}}
 
         - uses: ./.github/actions/azure-infra-cicd
           id: azureInfraCICD
-          with:
-            AZURE_REGION: '${{inputs.AZURE_REGION}}'
-            ENVIRONMENT_TYPE: 'dev'
-            APP_NAME_PREFIX: '${{inputs.APP_NAME_PREFIX}}'
-            RESOURCE_GROUP_NAME: '${{inputs.RESOURCE_GROUP_NAME}}'
-            MSI_NAME: '${{inputs.MSI_NAME}}'
-            MSI_RESOURCE_GROUP: '${{inputs.MSI_RESOURCE_GROUP}}'
-            AZURE_CREDENTIALS : ${{inputs.AZURE_CREDENTIALS}}
 
         - uses: ./.github/actions/functions-api-cicd
           with:
-            ENVIRONMENT_TYPE: 'dev'
-            APP_NAME_PREFIX: '${{inputs.APP_NAME_PREFIX}}'
-            RESOURCE_GROUP_NAME: '${{inputs.RESOURCE_GROUP_NAME}}'
             API_NAME: '${{steps.azureInfraCICD.outputs.apiName}}'
             APIM_NAME: '${{steps.azureInfraCICD.outputs.apimName}}'
             FUNCTION_NAME: '${{steps.azureInfraCICD.outputs.functionAppName}}'
             ORIGIN_URL: '${{steps.azureInfraCICD.outputs.staticWebsiteUrl}}' 
-            AZURE_CREDENTIALS : ${{inputs.AZURE_CREDENTIALS}}
             
         - uses: ./.github/actions/spa-cicd
-          with: 
-            ENVIRONMENT_TYPE: 'dev'
-            APP_NAME_PREFIX: '${{inputs.APP_NAME_PREFIX}}'
-            RESOURCE_GROUP_NAME: '${{inputs.RESOURCE_GROUP_NAME}}'
+          with:
             CLIENT_URL: '${{steps.azureInfraCICD.outputs.staticWebsiteUrl}}'
             API_URL: '${{steps.azureInfraCICD.outputs.apiUrl}}'
             API_AUTH_KEY: '${{steps.azureInfraCICD.outputs.authKey}}'
             AZURE_STORAGE_NAME: '${{steps.azureInfraCICD.outputs.staticWebsiteStorageAccountName}}'
             CDN_PROFILE_NAME: '${{steps.azureInfraCICD.outputs.cdnProfileName}}'
             CDN_ENDPOINT_NAME: '${{steps.azureInfraCICD.outputs.cdnEndpointName}}'
-            AZURE_CREDENTIALS : ${{inputs.AZURE_CREDENTIALS}}
             
         # Set app configurations of Angular
         - name: 'Replace tokens'
