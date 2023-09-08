@@ -58,6 +58,9 @@ https://github.com/Azure/actions-workflow-samples
 https://azure.github.io/actions/        
 https://www.shanebart.com/deploy-az-func-with-github-actions/ - create an azure AD App Registration based service principal
 and use that as Github secret & name it as AZURE_CREDENTIALS
+https://wallis.dev/blog/composite-github-actions
+https://dev.to/n3wt0n/github-composite-actions-nest-actions-within-actions-3e5l
+https://stackoverflow.com/questions/74350826/github-composite-actions-cant-find-action-yml
 https://learn.microsoft.com/en-us/graph/migrate-azure-ad-graph-configure-permissions?tabs=http%2Cupdatepermissions-azureadgraph-powershell
 https://docs.github.com/en/actions/using-workflows/reusing-workflows#using-outputs-from-a-reusable-workflow       
 https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/azure-resource-manager/bicep/outputs.md     
@@ -90,7 +93,12 @@ https://stackoverflow.com/questions/1153126/how-to-create-a-zip-archive-with-pow
 https://stackoverflow.com/questions/65703350/azure-devops-not-running-ms-test-unit-tests      
 https://docs.specflow.org/projects/specflow-livingdoc/en/latest/sbsguides/sbsazdo.html      
 https://github.com/marketplace/actions/sonarscan-dotnet      
-In Azure DevOps, Build Pipeline is mainly for CI while Release Pipeline is mainly for CD        
+In Azure DevOps, Build Pipeline is mainly for CI while Release Pipeline is mainly for CD.
+If you are using a self hosted runner then use "runs-on: self-hosted" in your yaml workflows else use the dedicated runners from github like windows-latest or ubuntu-latest etc.
+But self-hosted runners seems pretty slow.
 
 In VS 2022 Community Edition, check the containers pane & check logs pane within that & from there get the weatherforecast 
 swagger url - currently its http://localhost:30486/api/swagger/ui in local env
+
+
+

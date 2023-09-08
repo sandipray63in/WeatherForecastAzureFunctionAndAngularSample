@@ -47,11 +47,11 @@ runs:
                 if: ${{ always() }}
 
             - name: Sonar Static Code Analysis Scan
-              uses: ./.github/actions/sonar-static-analysis/action.yaml
+              uses: ./.github/actions/sonar-static-analysis
               with: 
                 SONAR_PROJECT_KEY: ''
                 SONAR_PROJECT_NAME: ''
                 SONAR_ORGANISATION_NAME: ''
                     
             - name: CodeQL Security Analysis Scan
-              uses: ./.github/actions/codeql-security-analysis/action.yaml
+              uses: ./.github/actions/codeql-security-analysis

@@ -30,12 +30,12 @@ jobs:
             WeatherForecastUI
 
 
-    - uses: ./.github/actions/ci-build/action.yaml
+    - uses: ./.github/actions/ci-build
       with:
          SOLUTION_NAME: 'WeatherForecast'
          TEST_PROJECT_PATH: 'WeatherForecastTDD\WeatherForecastTDD.csproj'
 
-    - uses: ./.github/actions/ci-cd-dev/action.yaml
+    - uses: ./.github/actions/ci-cd-dev
       with:
          AZURE_REGION: '${{env.AZURE_REGION}}'
          RESOURCE_GROUP_NAME: '${{env.RESOURCE_GROUP_NAME}}'

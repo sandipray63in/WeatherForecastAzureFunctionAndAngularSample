@@ -31,7 +31,7 @@ runs:
             SOLUTION_NAME: 'WeatherForecast'
             TEST_PROJECT_PATH: 'WeatherForecastTDD\WeatherForecastTDD.csproj'
 
-        - uses: ./.github/actions/azure-infra-cicd/action.yaml
+        - uses: ./.github/actions/azure-infra-cicd
           id: azureInfraCICD
           with:
             AZURE_REGION: '${{inputs.AZURE_REGION}}'
@@ -41,7 +41,7 @@ runs:
             MSI_NAME: '${{inputs.MSI_NAME}}'
             MSI_RESOURCE_GROUP: '${{inputs.MSI_RESOURCE_GROUP}}'
 
-        - uses: ./.github/actions/functions-api-cicd/action.yaml
+        - uses: ./.github/actions/functions-api-cicd
           with:
             ENVIRONMENT_TYPE: 'dev'
             APP_NAME_PREFIX: '${{inputs.APP_NAME_PREFIX}}'
@@ -51,7 +51,7 @@ runs:
             FUNCTION_NAME: '${{steps.azureInfraCICD.outputs.functionAppName}}'
             ORIGIN_URL: '${{steps.azureInfraCICD.outputs.staticWebsiteUrl}}'    
             
-        - uses: ./.github/actions/spa-cicd/action.yaml
+        - uses: ./.github/actions/spa-cicd
           with: 
             ENVIRONMENT_TYPE: 'dev'
             APP_NAME_PREFIX: '${{inputs.APP_NAME_PREFIX}}'
