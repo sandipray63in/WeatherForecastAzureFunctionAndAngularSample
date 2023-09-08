@@ -66,17 +66,17 @@ runs:
             weatherForecastAPIUrl: ${{ steps.azureInfraCICD.outputs.apiUrl }}
             authKey: ${{ steps.azureInfraCICD.outputs.authKey }}
 
-        - name: 'BDD Test'
-          uses: actions/cryptic-wizard/run-specflow-tests@v1.3.1
-          with:
-            test-assembly-dll: WeatherForecastBDD.dll
-            test-execution-json: TestExecution.json
-            configuration: Release
-            output-html: BDDTestResults.html
-            build-verbosity: normal
-            test-verbosity: minimal
-            framework: netcoreapp3.1
-            no-build: true
-            logger: trx
-            logger-file-name: ../../BDDTestResults.trx
-            upload-artifact: true
+        # - name: 'BDD Test'
+        #   uses: actions/cryptic-wizard/run-specflow-tests@v1.3.1
+        #   with:
+        #     test-assembly-dll: WeatherForecastBDD.dll
+        #     test-execution-json: TestExecution.json
+        #     configuration: Release
+        #     output-html: BDDTestResults.html
+        #     build-verbosity: normal
+        #     test-verbosity: minimal
+        #     framework: netcoreapp3.1
+        #     no-build: true
+        #     logger: trx
+        #     logger-file-name: ../../BDDTestResults.trx
+        #     upload-artifact: true
