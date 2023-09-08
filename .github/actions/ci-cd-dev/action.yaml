@@ -2,6 +2,12 @@ name: CI CD Dev
 description : CI CD Dev
 
 inputs:
+        GITHUB_TOKEN:
+           description: 'GitHub Token'
+           required: true
+        SONAR_TOKEN: 
+           description: 'Sonar Token'
+           required: true
         AZURE_CREDENTIALS: 
             description: 'Azure Credentials'
             required: true
@@ -33,6 +39,8 @@ runs:
           with:
             SOLUTION_NAME: 'WeatherForecast'
             TEST_PROJECT_PATH: 'WeatherForecastTDD\WeatherForecastTDD.csproj'
+            GITHUB_TOKEN : ${{inputs.GITHUB_TOKEN}}
+            SONAR_TOKEN : ${{inputs.SONAR_TOKEN}}
 
         - uses: ./.github/actions/azure-infra-cicd
           id: azureInfraCICD
