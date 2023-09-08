@@ -19,7 +19,6 @@ runs:
         - name: Install Azure cli
           shell: pwsh
           run: |
-            azureSubscription: ${{fromJson(env.AZURE_CREDENTIALS).subscriptionId}}
             inlineScript: |
               az upgrade --yes
 
