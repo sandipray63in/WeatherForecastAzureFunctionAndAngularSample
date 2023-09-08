@@ -13,6 +13,11 @@ inputs:
 runs:
   using: 'composite'
   steps:
+   - run: |
+        echo "GITHUB_TOKEN: ${{inputs.GITHUB_TOKEN}}"
+        echo "SONAR_TOKEN: ${{inputs.SONAR_TOKEN}}"
+     shell: pwsh
+
    - name: Scan and Publish
      uses: chill-viking/dotnet-sonar-scanner@v2
      with:
@@ -21,3 +26,5 @@ runs:
         token: ${{ inputs.GITHUB_TOKEN }}
         sonar-token: ${{ inputs.SONAR_TOKEN }}
         working-directory: './WeatherForecastAPI'
+     
+       
