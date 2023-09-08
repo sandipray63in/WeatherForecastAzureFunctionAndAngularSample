@@ -1,0 +1,14 @@
+name: Sonar Static Analysis Scan
+
+description: Sonar Static Analysis Scan
+  
+runs:
+  using: 'composite'
+  steps:
+   - uses: chill-viking/dotnet-sonar-scanner@v2
+     name: Scan and Publish
+     with:
+        sonar-project-key: 'sandipray63in_WeatherForecastAzureFunctionAndAngularSample'
+        sonar-org-key: 'sandipray63in'
+        token: ${{ secrets.GITHUB_TOKEN }}
+        sonar-token: ${{ secrets.SONAR_TOKEN }}

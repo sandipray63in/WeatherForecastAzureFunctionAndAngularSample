@@ -46,5 +46,8 @@ runs:
                 # test failures
                 if: always()
                     
+            - name: Sonar Static Analysis Scan
+              uses: ./.github/actions/sonar-static-analysis
+
             - name: CodeQL Security Analysis Scan
-              uses: ./.github/actions/codeql-static-and-security-analysis
+              uses: ./.github/actions/codeql-security-analysis

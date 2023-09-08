@@ -1,6 +1,6 @@
-name: CodeQL
+name: CodeQL Security Scan
 
-description: Code QL
+description: Code QL Security Scan
   
 runs:
   using: 'composite'
