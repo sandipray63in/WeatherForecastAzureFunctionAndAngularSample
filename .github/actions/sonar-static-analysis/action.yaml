@@ -20,3 +20,4 @@ runs:
         sonar-org-key: 'sandipray63in'
         token: ${{ inputs.GITHUB_TOKEN }}
         sonar-token: ${{ inputs.SONAR_TOKEN }}
+        working-directory: './WeatherForecastTDD'
