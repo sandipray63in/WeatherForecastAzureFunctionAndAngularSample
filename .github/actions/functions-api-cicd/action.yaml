@@ -32,6 +32,7 @@ runs:
     - name: Azure Login
       uses: azure/login@v1
       with:
+        environment: 'dev'
         creds: ${{ env.AZURE_CREDENTIALS  }}
 
     # Setup .NET Core environment

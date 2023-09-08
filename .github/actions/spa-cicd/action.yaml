@@ -34,6 +34,7 @@ runs:
     - name: Azure Login
       uses: azure/login@v1
       with:
+        environment: 'dev'
         creds: ${{ env.AZURE_CREDENTIALS  }}
 
     # Set app configurations of Angular
