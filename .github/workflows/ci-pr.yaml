@@ -9,6 +9,8 @@ env:
      MSI_NAME: 'WeatherForecastAppMSI'
      MSI_RESOURCE_GROUP: 'WeatherForecastRG'
      APP_NAME_PREFIX: 'WeatherForecast'
+     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
 jobs:
   ci-pr:
@@ -34,8 +36,6 @@ jobs:
       with:
          SOLUTION_NAME: 'WeatherForecast'
          TEST_PROJECT_PATH: 'WeatherForecastTDD\WeatherForecastTDD.csproj'
-         GITHUB_TOKEN : ${{secrets.GITHUB_TOKEN}}
-         SONAR_TOKEN : ${{secrets.SONAR_TOKEN}}
 
     - uses: ./.github/actions/ci-cd-dev
       with:

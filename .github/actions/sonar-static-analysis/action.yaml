@@ -1,23 +1,17 @@
 name: Sonar Static Analysis Scan
 
 description: Sonar Static Analysis Scan
-
-inputs:
-        GITHUB_TOKEN:
-           description: 'GitHub Token'
-           required: true
-        SONAR_TOKEN: 
-           description: 'Sonar Token'
-           required: true
   
 runs:
   using: 'composite'
   steps:
-   - uses: chill-viking/dotnet-sonar-scanner@v2
-     name: Scan and Publish
+   - name: Scan and Publish
+     uses: Secbyte/dotnet-sonarscanner@v2.3
      with:
-        sonar-project-key: 'sandipray63in_WeatherForecastAzureFunctionAndAngularSample'
-        sonar-org-key: 'sandipray63in'
-        token: ${{ inputs.GITHUB_TOKEN }}
-        sonar-token: ${{ inputs.SONAR_TOKEN }}
-        working-directory: './Deploy,./WeatherForecastAPI,./WeatherForecastTDD'
+      buildCommand: dotnet build .
+      testCommand: dotnet test .
+      projectKey: 'sandipray63in_WeatherForecastAzureFunctionAndAngularSample'
+      sonarOrganisation: 'sandipray63in'
+      beginArguments: >
+        /d:sonar.verbose="true"
+        /d.sonar.exclusions=WeatherForecastBDD
