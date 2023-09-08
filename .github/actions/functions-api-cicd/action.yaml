@@ -33,10 +33,9 @@ runs:
       uses: azure/login@v1
       with:
         environment: dev
-        enable-AzPSSession: true
-        tenant_id: ${{ env.AZURE_TENANT_ID }}
-        client_id: ${{ env.AZURE_CLIENT_ID }}
-        subscription_id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+        tenant-id: ${{ env.AZURE_TENANT_ID }}
+        client-id: ${{ env.AZURE_CLIENT_ID }}
+        subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
 
     # Setup .NET Core environment
     - name: Setup DotNet ${{ env.DOTNET_VERSION }} Environment

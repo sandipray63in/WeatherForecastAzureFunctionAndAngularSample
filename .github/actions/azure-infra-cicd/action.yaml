@@ -24,9 +24,9 @@ runs:
           uses: azure/login@v1
           with:
             environment: dev
-            tenant_id: ${{ env.AZURE_TENANT_ID }}
-            client_id: ${{ env.AZURE_CLIENT_ID }}
-            subscription_id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+            tenant-id: ${{ env.AZURE_TENANT_ID }}
+            client-id: ${{ env.AZURE_CLIENT_ID }}
+            subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
 
         # Build ARM Template from Bicep and create a target Azure resource group  
         - name: Azure CLI - Validate Bicep file ${{ env.BICEP_FILE_PATH }}/${{ inputs.BICEP_FILE_NAME }}.bicep
