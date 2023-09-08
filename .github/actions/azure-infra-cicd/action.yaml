@@ -16,7 +16,15 @@ runs:
      # 2. Change below variables for your configuration:
      
      steps:
-        
+        - name: Install Azure cli
+          shell: pwsh
+          run: |
+          with:
+            failOnStandardError: true
+            azureSubscription: env.AZURE_CREDENTIALS.subscriptionId
+            inlineScript: |
+              az upgrade --yes
+
         # Authentication
         # Set up the following secrets in your repository: AZURE_CREDENTIALS
         # For details on usage of secrets, please refer https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets
