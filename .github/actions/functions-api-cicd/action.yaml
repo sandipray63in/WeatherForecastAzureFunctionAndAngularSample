@@ -45,7 +45,9 @@ inputs:
         description: 'Function App Path'
         required: true
         default: 'WeatherForecastAPI'
-  
+      AZURE_CREDENTIALS: 
+        description: 'Azure Credentials'
+        required: true
 
 runs:
     using: 'composite'
@@ -58,7 +60,7 @@ runs:
       uses: azure/login@v1
       with:
         environment: 'dev'
-        creds: ${{ secrets.AZURE_CREDENTIALS  }}
+        creds: ${{ inputs.AZURE_CREDENTIALS  }}
 
     # Setup .NET Core environment
     - name: Setup DotNet ${{ inputs.DOTNET_VERSION }} Environment

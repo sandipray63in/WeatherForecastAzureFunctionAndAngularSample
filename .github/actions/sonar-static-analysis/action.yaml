@@ -1,6 +1,14 @@
 name: Sonar Static Analysis Scan
 
 description: Sonar Static Analysis Scan
+
+inputs:
+        GITHUB_TOKEN:
+           description: 'GitHub Token'
+           required: true
+        SONAR_TOKEN: 
+           description: 'Sonar Token'
+           required: true
   
 runs:
   using: 'composite'
@@ -10,5 +18,5 @@ runs:
      with:
         sonar-project-key: 'sandipray63in_WeatherForecastAzureFunctionAndAngularSample'
         sonar-org-key: 'sandipray63in'
-        token: ${{ secrets.GITHUB_TOKEN }}
-        sonar-token: ${{ secrets.SONAR_TOKEN }}
+        token: ${{ inputs.GITHUB_TOKEN }}
+        sonar-token: ${{ inputs.SONAR_TOKEN }}

@@ -2,6 +2,15 @@ name: CI CD Dev
 description : CI CD Dev
 
 inputs:
+        GITHUB_TOKEN:
+           description: 'GitHub Token'
+           required: true
+        SONAR_TOKEN: 
+           description: 'Sonar Token'
+           required: true
+        AZURE_CREDENTIALS: 
+            description: 'Azure Credentials'
+            required: true
         AZURE_REGION:
            description: 'Azure Region'
            required: true
@@ -30,6 +39,8 @@ runs:
           with:
             SOLUTION_NAME: 'WeatherForecast'
             TEST_PROJECT_PATH: 'WeatherForecastTDD\WeatherForecastTDD.csproj'
+            GITHUB_TOKEN : ${{inputs.GITHUB_TOKEN}}
+            SONAR_TOKEN : ${{inputs.SONAR_TOKEN}}
 
         - uses: ./.github/actions/azure-infra-cicd
           id: azureInfraCICD
@@ -40,6 +51,7 @@ runs:
             RESOURCE_GROUP_NAME: '${{inputs.RESOURCE_GROUP_NAME}}'
             MSI_NAME: '${{inputs.MSI_NAME}}'
             MSI_RESOURCE_GROUP: '${{inputs.MSI_RESOURCE_GROUP}}'
+            AZURE_CREDENTIALS : ${{inputs.AZURE_CREDENTIALS}}
 
         - uses: ./.github/actions/functions-api-cicd
           with:
@@ -49,7 +61,8 @@ runs:
             API_NAME: '${{steps.azureInfraCICD.outputs.apiName}}'
             APIM_NAME: '${{steps.azureInfraCICD.outputs.apimName}}'
             FUNCTION_NAME: '${{steps.azureInfraCICD.outputs.functionAppName}}'
-            ORIGIN_URL: '${{steps.azureInfraCICD.outputs.staticWebsiteUrl}}'    
+            ORIGIN_URL: '${{steps.azureInfraCICD.outputs.staticWebsiteUrl}}' 
+            AZURE_CREDENTIALS : ${{inputs.AZURE_CREDENTIALS}}
             
         - uses: ./.github/actions/spa-cicd
           with: 
@@ -61,7 +74,8 @@ runs:
             API_AUTH_KEY: '${{steps.azureInfraCICD.outputs.authKey}}'
             AZURE_STORAGE_NAME: '${{steps.azureInfraCICD.outputs.staticWebsiteStorageAccountName}}'
             CDN_PROFILE_NAME: '${{steps.azureInfraCICD.outputs.cdnProfileName}}'
-            CDN_ENDPOINT_NAME: '${{steps.azureInfraCICD.outputs.cdnEndpointName}}' 
+            CDN_ENDPOINT_NAME: '${{steps.azureInfraCICD.outputs.cdnEndpointName}}'
+            AZURE_CREDENTIALS : ${{inputs.AZURE_CREDENTIALS}}
             
         # Set app configurations of Angular
         - name: 'Replace tokens'
@@ -77,6 +91,14 @@ runs:
         - name: 'BDD Test'
           uses: actions/cryptic-wizard/run-specflow-tests@v1.3.1
           with:
-            test-assembly-path: WeatherForecastBDD/bin/Release/netcoreapp3.1
             test-assembly-dll: WeatherForecastBDD.dll
-            output-html: WeatherForecastBDD.html
+            test-execution-json: TestExecution.json
+            configuration: Release
+            output-html: BDDTestResults.html
+            build-verbosity: normal
+            test-verbosity: minimal
+            framework: netcoreapp3.1
+            no-build: true
+            logger: trx
+            logger-file-name: ../../BDDTestResults.trx
+            upload-artifact: true

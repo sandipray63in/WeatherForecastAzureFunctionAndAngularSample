@@ -25,6 +25,9 @@ inputs:
         description: 'Resource Group where User Managed Identity is located'
         required: true
         default: 'msi-resource-group'
+      AZURE_CREDENTIALS: 
+        description: 'Azure Credentials'
+        required: true
       BICEP_FILE_PATH:
        description: 'Bicep file Path'
        required: true
@@ -52,7 +55,7 @@ runs:
           uses: azure/login@v1
           with:
             environment: 'dev'
-            creds: ${{ secrets.AZURE_CREDENTIALS  }}
+            creds: ${{ inputs.AZURE_CREDENTIALS  }}
 
         # Build ARM Template from Bicep and create a target Azure resource group  
         - name: Azure CLI - Validate Bicep file ${{ inputs.BICEP_FILE_PATH }}/${{ inputs.BICEP_FILE_NAME }}.bicep
