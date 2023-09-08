@@ -37,7 +37,9 @@ runs:
       with:
         environment: dev
         enable-AzPSSession: true
-        creds: ${{ env.AZURE_CREDENTIALS  }}
+        tenant_id: ${{ env.AZURE_TENANT_ID }}
+        client_id: ${{ env.AZURE_CLIENT_ID }}
+        subscription_id: ${{ env.AZURE_SUBSCRIPTION_ID }}
 
     # Set app configurations of Angular
     - name: 'Replace tokens'
