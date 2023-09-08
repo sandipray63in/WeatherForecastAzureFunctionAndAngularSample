@@ -24,6 +24,8 @@ runs:
           uses: azure/login@v1
           with:
             environment: dev
+            enable-AzPSSession: true
+            allow-no-subscriptions: true
             creds: ${{ env.AZURE_CREDENTIALS  }}
 
         # Build ARM Template from Bicep and create a target Azure resource group  

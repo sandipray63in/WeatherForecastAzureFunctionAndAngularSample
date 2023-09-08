@@ -33,6 +33,8 @@ runs:
       uses: azure/login@v1
       with:
         environment: dev
+        enable-AzPSSession: true
+        allow-no-subscriptions: true
         creds: ${{ env.AZURE_CREDENTIALS  }}
 
     # Setup .NET Core environment

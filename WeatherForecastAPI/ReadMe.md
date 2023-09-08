@@ -59,7 +59,7 @@ https://azure.github.io/actions/
 https://www.shanebart.com/deploy-az-func-with-github-actions/ - create an azure AD App Registration based service principal
 and use that as Github secret & name it as AZURE_CREDENTIALS
 https://github.com/Azure/login/issues/205 - this is a issue which was really tedious to solve.
-https://colinsalmcorner.com/actions-authenticate-to-azure-without-a-secret/ - even this also could not solve the problem.
+https://colinsalmcorner.com/actions-authenticate-to-azure-without-a-secret/ - even this also could not solve the above tedious issue.
 https://wallis.dev/blog/composite-github-actions
 https://dev.to/n3wt0n/github-composite-actions-nest-actions-within-actions-3e5l
 https://stackoverflow.com/questions/74350826/github-composite-actions-cant-find-action-yml
