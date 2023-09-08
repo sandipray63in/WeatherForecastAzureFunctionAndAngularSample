@@ -16,10 +16,6 @@ runs:
      # 2. Change below variables for your configuration:
      
      steps:
-        - name: Upgrade Azure CLI
-          shell: pwsh
-          run: |
-              az upgrade --yes
 
         # Authentication
         # Set up the following secrets in your repository: AZURE_CREDENTIALS
