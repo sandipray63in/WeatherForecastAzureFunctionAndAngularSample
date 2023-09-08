@@ -36,9 +36,7 @@ runs:
       uses: azure/login@v1
       with:
         environment: dev
-        tenant-id: ${{ env.AZURE_TENANT_ID }}
-        client-id: ${{ env.AZURE_CLIENT_ID }}
-        subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+        creds: ${{ env.AZURE_CREDENTIALS  }}
 
     # Set app configurations of Angular
     - name: 'Replace tokens'
