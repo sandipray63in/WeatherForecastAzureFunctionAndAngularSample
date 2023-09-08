@@ -8,7 +8,7 @@ runs:
    - run: |
         echo "GITHUB_TOKEN: ${{env.GITHUB_TOKEN}}"
         echo "SONAR_TOKEN: ${{env.SONAR_TOKEN}}"
-     shell: pwsh
+     shell: bash
 
    - name: Scan and Publish
      uses: chill-viking/dotnet-sonar-scanner@v2

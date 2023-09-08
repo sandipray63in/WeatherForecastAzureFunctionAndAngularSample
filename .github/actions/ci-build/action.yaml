@@ -19,15 +19,15 @@ runs:
                     ${{ runner.os }}-nuget
 
             - name: Install/Restore dependencies
-              shell: pwsh
+              shell: bash
               run: dotnet restore
 
             - name: Build
-              shell: pwsh
+              shell: bash
               run: dotnet build --no-restore ${{env.SOLUTION_NAME}}.sln
 
             - name: Test
-              shell: pwsh
+              shell: bash
               run: dotnet test ${{env.TEST_PROJECT_PATH}} --no-build --verbosity normal --logger trx --results-directory "TestResults-6.0.x" --collect:"XPlat Code Coverage"
 
             - name: Upload dotnet test results

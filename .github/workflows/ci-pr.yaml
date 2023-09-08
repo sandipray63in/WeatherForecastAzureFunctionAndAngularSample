@@ -52,7 +52,7 @@ jobs:
         echo "GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}"
         echo "SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}"
         echo "AZURE_CREDENTIALS: ${{secrets.AZURE_CREDENTIALS}}"
-      shell: pwsh
+      shell: bash
 
     - uses: ./.github/actions/ci-build
 

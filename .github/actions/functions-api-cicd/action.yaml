@@ -82,7 +82,7 @@ runs:
 
     # Azure logout
     - name: logout
-      shell: pwsh
+      shell: bash
       run: |
             az logout
             az cache purge

@@ -57,6 +57,7 @@ runs:
     
     # Build Angular application
     - name: Build Angular application
+      shell: bash
       run: |
         pushd ./${{ env.ANGULAR_PATH }}
         npm install
@@ -83,7 +84,7 @@ runs:
 
     # Azure logout
     - name: logout
-      shell: pwsh
+      shell: bash
       run: |
             az logout
             az cache purge
