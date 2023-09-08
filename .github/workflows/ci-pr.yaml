@@ -34,8 +34,8 @@ jobs:
      
     - run: |
         echo "GITHUB_TOKEN: ${{env.GITHUB_TOKEN}}"
-        echo "SONAR_TOKEN: ${{envc.SONAR_TOKEN}}"
-        echo "AZURE_CREDENTIALS: ${{envc.AZURE_CREDENTIALS}}"
+        echo "SONAR_TOKEN: ${{env.SONAR_TOKEN}}"
+        echo "AZURE_CREDENTIALS: ${{env.AZURE_CREDENTIALS}}"
       shell: pwsh
 
     - uses: ./.github/actions/ci-build
