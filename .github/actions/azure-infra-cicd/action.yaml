@@ -16,7 +16,7 @@ runs:
      # 2. Change below variables for your configuration:
      
      steps:
-        - name: Install Azure cli
+        - name: Upgrade Azure CLI
           shell: pwsh
           run: |
               az upgrade --yes
