@@ -9,15 +9,13 @@ env:
      MSI_NAME: 'WeatherForecastAppMSI'
      MSI_RESOURCE_GROUP: 'WeatherForecastRG'
      APP_NAME_PREFIX: 'WeatherForecast'
-     GITHUB_TOKEN : ${{secrets.GITHUB_TOKEN}}
-     SONAR_TOKEN : ${{secrets.SONAR_TOKEN}}
-     AZURE_CREDENTIALS : ${{secrets.AZURE_CREDENTIALS}}
+     
       
 jobs:
   ci-pr:
 
     runs-on: windows-latest
-
+    environment: dev
     steps:
   
     # Checkout
@@ -33,17 +31,17 @@ jobs:
             WeatherForecastUI
      
     - run: |
-        echo "GITHUB_TOKEN: ${{env.GITHUB_TOKEN}}"
-        echo "SONAR_TOKEN: ${{env.SONAR_TOKEN}}"
-        echo "AZURE_CREDENTIALS: ${{env.AZURE_CREDENTIALS}}"
+        echo "GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}"
+        echo "SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}"
+        echo "AZURE_CREDENTIALS: ${{secrets.AZURE_CREDENTIALS}}"
       shell: pwsh
 
     - uses: ./.github/actions/ci-build
       with:
          SOLUTION_NAME: 'WeatherForecast'
          TEST_PROJECT_PATH: 'WeatherForecastTDD\WeatherForecastTDD.csproj'
-         GITHUB_TOKEN : ${{env.GITHUB_TOKEN}}
-         SONAR_TOKEN : ${{env.SONAR_TOKEN}}
+         GITHUB_TOKEN : ${{secrets.GITHUB_TOKEN}}
+         SONAR_TOKEN : ${{secrets.SONAR_TOKEN}}
 
     - uses: ./.github/actions/ci-cd-dev
       with:
@@ -52,6 +50,6 @@ jobs:
          MSI_NAME: '${{env.MSI_NAME}}'
          MSI_RESOURCE_GROUP: '${{env.MSI_RESOURCE_GROUP}}'
          APP_NAME_PREFIX: '${{env.APP_NAME_PREFIX}}'
-         GITHUB_TOKEN : ${{env.GITHUB_TOKEN}}
-         SONAR_TOKEN : ${{env.SONAR_TOKEN}}
-         AZURE_CREDENTIALS : ${{env.AZURE_CREDENTIALS}}
+         GITHUB_TOKEN : ${{secrets.GITHUB_TOKEN}}
+         SONAR_TOKEN : ${{secrets.SONAR_TOKEN}}
+         AZURE_CREDENTIALS : ${{secrets.AZURE_CREDENTIALS}}
