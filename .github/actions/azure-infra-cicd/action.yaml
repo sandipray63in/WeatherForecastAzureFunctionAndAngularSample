@@ -23,13 +23,13 @@ runs:
         - name: Azure Login
           uses: azure/login@v1
           with:
+            environment: dev
             creds: ${{ env.AZURE_CREDENTIALS  }}
 
         # Build ARM Template from Bicep and create a target Azure resource group  
         - name: Azure CLI - Validate Bicep file ${{ env.BICEP_FILE_PATH }}/${{ inputs.BICEP_FILE_NAME }}.bicep
           uses: Azure/cli@1.0.4
           with:
-            environment: dev
             # Azure CLI version to be used to execute the script. If not provided, latest version is used
             azcliversion: 2.27.2
             # Specify the script here
