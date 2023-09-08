@@ -18,6 +18,9 @@ env:
      AZURE_CREDENTIALS : ${{secrets.AZURE_CREDENTIALS}}
      DOTNET_VERSION: '3.1.410' 
      FUNCTIONAPP_PATH: 'WeatherForecastAPI'
+     ANGULAR_PATH: 'WeatherForecaastUI'
+     NODE_VERSION: '14'
+
 
 jobs:
   ci-pr:
@@ -51,7 +54,7 @@ jobs:
         echo "AZURE_CREDENTIALS: ${{secrets.AZURE_CREDENTIALS}}"
       shell: pwsh
 
-    - uses: ./.github/actions/ci-build
+    #- uses: ./.github/actions/ci-build
 
     - uses: ./.github/actions/ci-cd-dev
          

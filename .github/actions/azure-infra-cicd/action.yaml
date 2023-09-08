@@ -21,9 +21,10 @@ runs:
         # Set up the following secrets in your repository: AZURE_CREDENTIALS
         # For details on usage of secrets, please refer https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets
         - name: Azure Login
-          uses: azure/login@v1
+          uses: azure/actions/login@v1
           with:
             environment: dev
+
             creds: ${{ env.AZURE_CREDENTIALS  }}
 
         # Build ARM Template from Bicep and create a target Azure resource group  
@@ -68,5 +69,7 @@ runs:
           shell: pwsh
           run: |
                 az logout
+                az cache purge
+                az account clear
           if: always()
     

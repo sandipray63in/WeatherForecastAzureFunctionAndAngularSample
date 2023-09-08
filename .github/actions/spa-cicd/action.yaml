@@ -32,7 +32,7 @@ runs:
     # Set up the following secrets in your repository: AZURE_CREDENTIALS
     # For details on usage of secrets, please refer https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets
     - name: Azure Login
-      uses: azure/login@v1
+      uses: azure/actions/login@v1
       with:
         environment: dev
         creds: ${{ env.AZURE_CREDENTIALS  }}
@@ -79,3 +79,12 @@ runs:
         azcliversion: 2.21.0
         inlineScript: |
            az cdn endpoint purge --content-paths  "/*" --profile-name ${{ inputs.CDN_PROFILE_NAME }} --name ${{ inputs.CDN_ENDPOINT_NAME }} --resource-group ${{ env.RESOURCE_GROUP_NAME }
+
+    # Azure logout
+    - name: logout
+      shell: pwsh
+      run: |
+            az logout
+            az cache purge
+            az account clear
+      if: always()
