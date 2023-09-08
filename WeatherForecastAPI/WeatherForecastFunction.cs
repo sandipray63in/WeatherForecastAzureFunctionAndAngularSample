@@ -38,6 +38,8 @@ namespace WeatherForecastAPI
         private static string apiUrl;
         private HttpClient _httpClient;
         private readonly ILogger<WeatherForecastFunction> _logger;
+        private bool _shouldThrowException = false;
+        public bool _isExceptionThrown = false;
 
         public WeatherForecastFunction(ILogger<WeatherForecastFunction> log)
         {
@@ -52,6 +54,11 @@ namespace WeatherForecastAPI
         public  void SetSecretClient(SecretClient secretClient)
         {
             _secretClient = secretClient;
+        }
+
+        public void ThrowExceptionToCheckServiceUnavailability()
+        {
+            _shouldThrowException = true;
         }
 
         [FunctionName("WeatherForecast")]
@@ -125,8 +132,17 @@ namespace WeatherForecastAPI
                serviceUnavailableObjectResult = new ServiceUnavailableObjectResult(openWeatherMapAPIUnavailableMessage);
             });
             await polly.ExecuteAsync(async () => {
-                response = await _httpClient.GetAsync(formattedUrl);
-                jsonData = await response.Content.ReadAsStringAsync();
+                if (_shouldThrowException)
+                {
+                    _isExceptionThrown = true;
+                    _shouldThrowException = false;
+                    throw new Exception("Service Unavailable");
+                }
+                else if(!_isExceptionThrown)
+                {
+                    response = await _httpClient.GetAsync(formattedUrl);
+                    jsonData = await response.Content.ReadAsStringAsync();
+                }
             });
             if(serviceUnavailableObjectResult != null)
             {

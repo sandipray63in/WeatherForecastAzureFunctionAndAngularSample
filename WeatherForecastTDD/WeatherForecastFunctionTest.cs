@@ -90,8 +90,9 @@ namespace WeatherForecastTDD
                 ItExpr.IsAny<HttpRequestMessage>(),
                 ItExpr.IsAny<CancellationToken>()
             )
-            .ThrowsAsync(new Exception())
             .Verifiable();
+
+            weatherForecastFunction?.ThrowExceptionToCheckServiceUnavailability();
 
             //Action
             IActionResult actionaResultTask = await weatherForecastFunction?.GetWeatherForecastData(mockedHttpRequest?.Object);
