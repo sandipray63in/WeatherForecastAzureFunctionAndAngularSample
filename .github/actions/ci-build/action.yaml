@@ -46,12 +46,8 @@ runs:
                 # test failures
                 if: always()
 
-            - name: Sonar Static Code Analysis Scan
-              uses: ./.github/actions/sonar-static-analysis
-              with: 
-                SONAR_PROJECT_KEY: ''
-                SONAR_PROJECT_NAME: ''
-                SONAR_ORGANISATION_NAME: ''
+            - name: Codacy Static Code Analysis Scan
+              uses: ./.github/actions/codacy-static-analysis
                     
             - name: CodeQL Security Analysis Scan
               uses: ./.github/actions/codeql-security-analysis
