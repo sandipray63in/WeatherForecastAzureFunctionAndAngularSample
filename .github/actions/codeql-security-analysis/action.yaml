@@ -14,23 +14,23 @@ runs:
     - name: Create folder
       shell: bash
       run: |
-          if [ -d "${{ github.workspace }}/WorkspaceForCodeQLAnalysis" ]  
+          if [ -d "WorkspaceForCodeQLAnalysis" ]  
           then
-             rmdir ${{ github.workspace }}/WorkspaceForCodeQLAnalysis
+             rmdir WorkspaceForCodeQLAnalysis
           fi
-          mkdir -p ${{ github.workspace }}/WorkspaceForCodeQLAnalysis
+          mkdir -p WorkspaceForCodeQLAnalysis
           for f in ${{ github.workspace }} 
           do
             if [ -d "$f" ] && [ basename $f != "WeatherForecastUI" ] && [ basename $f != "WorkspaceForCodeQLAnalysis" ] 
             then
-                cp -a $f ${{ github.workspace }}/WorkspaceForCodeQLAnalysis
+                cp -a $f WorkspaceForCodeQLAnalysis
             fi
           done
 
     - name: Autobuild
       uses: github/codeql-action/autobuild@v2.21.5
       with:
-       working-directory: ${{ github.workspace }}/WorkspaceForCodeQLAnalysis
+       working-directory: WorkspaceForCodeQLAnalysis
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2.21.5
