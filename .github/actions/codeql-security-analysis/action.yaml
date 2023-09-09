@@ -6,7 +6,7 @@ runs:
   using: 'composite'
   steps:
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@v2.21.5
+      uses: github/codeql-action/init@v2
       with:
         languages: csharp
 
@@ -25,8 +25,9 @@ runs:
           done
 
     - name: Autobuild
-      uses: github/codeql-action/autobuild@v2.21.5
-      working-directory: ${{ github.workspace }}/WorkspaceForCodeQLAnalysis
+      uses: github/codeql-action/autobuild@v2
+      with:
+       working-directory: ${{ github.workspace }}/WorkspaceForCodeQLAnalysis
 
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v2.21.5
+      uses: github/codeql-action/analyze@v2
