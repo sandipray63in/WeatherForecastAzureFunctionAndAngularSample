@@ -24,7 +24,7 @@ runs:
 
             - name: Build
               shell: bash
-              run: dotnet build --no-restore ${{env.SOLUTION_NAME}}.sln
+              run: dotnet build --no-restore ${{env.SOLUTION_NAME}}.sln --configuration Release
 
             - name: Test
               shell: bash
