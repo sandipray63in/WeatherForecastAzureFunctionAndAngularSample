@@ -10,8 +10,24 @@ runs:
       with:
         languages: csharp
 
+    # this is needed to skip the build for the UI project
+    - name: Create folder
+      shell: bash
+      run: |
+          dirNamesToIgnore=( )
+          rmdir ${{ github.workspace }}/WorkspaceForCodeQLAnalysis
+          mkdir -p ${{ github.workspace }}/WorkspaceForCodeQLAnalysis
+          for f in ${{ github.workspace }}; do
+            if [ -d "$f" ]; then
+                if [ basename $f != "WeatherForecastUI" ] && [ basename $f != "WorkspaceForCodeQLAnalysis" ]
+                   cp -a $f ${{ github.workspace }}/WorkspaceForCodeQLAnalysis
+                fi
+            fi
+          done
+
     - name: Autobuild
       uses: github/codeql-action/autobuild@v2
+      working-directory: ${{ github.workspace }}/WorkspaceForCodeQLAnalysis
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
