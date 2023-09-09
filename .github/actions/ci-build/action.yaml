@@ -25,8 +25,9 @@ runs:
             - name: Build
               shell: bash
               run: |
-                   for p in $(find . -name *.csproj)
-                   dotnet build $p --configuration Release --no-restore
+                   for p in $(find . -name *.csproj); do
+                        dotnet build $p --configuration Release --no-restore
+                   done
 
             - name: Test
               shell: bash
