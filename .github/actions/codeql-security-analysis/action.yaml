@@ -19,7 +19,7 @@ runs:
              rmdir WorkspaceForCodeQLAnalysis   
           fi   
           mkdir -p WorkspaceForCodeQLAnalysis    
-          for f in ${{ github.workspace }}     
+          for f in ${{ github.workspace }}/*         
           do   
             if [ -d "$f" ]  
             then    
