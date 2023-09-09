@@ -14,15 +14,16 @@ runs:
     - name: Create folder
       shell: bash
       run: |
-          if [ -d "${{ github.workspace }}/WorkspaceForCodeQLAnalysis" ]; then
+          if [ -d "${{ github.workspace }}/WorkspaceForCodeQLAnalysis" ]  
+          then
              rmdir ${{ github.workspace }}/WorkspaceForCodeQLAnalysis
           fi
           mkdir -p ${{ github.workspace }}/WorkspaceForCodeQLAnalysis
-          for f in ${{ github.workspace }}; do
-            if [ -d "$f" ]; then
-                if [ basename $f != "WeatherForecastUI" ] && [ basename $f != "WorkspaceForCodeQLAnalysis" ]
-                   cp -a $f ${{ github.workspace }}/WorkspaceForCodeQLAnalysis
-                fi
+          for f in ${{ github.workspace }} 
+          do
+            if [ -d "$f" ] && [ basename $f != "WeatherForecastUI" ] && [ basename $f != "WorkspaceForCodeQLAnalysis" ] 
+            then
+                cp -a $f ${{ github.workspace }}/WorkspaceForCodeQLAnalysis
             fi
           done
 
