@@ -14,7 +14,6 @@ runs:
     - name: Create folder
       shell: bash
       run: |
-          dirNamesToIgnore=( )
           rmdir ${{ github.workspace }}/WorkspaceForCodeQLAnalysis
           mkdir -p ${{ github.workspace }}/WorkspaceForCodeQLAnalysis
           for f in ${{ github.workspace }}; do
