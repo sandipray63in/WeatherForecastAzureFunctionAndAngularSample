@@ -21,7 +21,7 @@ runs:
           mkdir -p WorkspaceForCodeQLAnalysis
           for f in ${{ github.workspace }} 
           do
-            baseFolderName = basename $f;
+            baseFolderName = $(basename $f);
             if [ -d "$f" ] && [ $baseFolderName != "WeatherForecastUI" ] && [ $baseFolderName != "WorkspaceForCodeQLAnalysis" ] 
             then
                 cp -a $f WorkspaceForCodeQLAnalysis
