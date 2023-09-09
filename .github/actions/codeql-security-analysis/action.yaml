@@ -23,7 +23,7 @@ runs:
           do   
             if [ -d "$f" ]    
             then    
-                folderName = "basename $f"  
+                var folderName = basename "$f"  
                 if [ $folderName != "WeatherForecastUI" ] && [ $folderName != "WorkspaceForCodeQLAnalysis" ]  
                 then   
                    cp -a $f WorkspaceForCodeQLAnalysis      
