@@ -14,7 +14,9 @@ runs:
     - name: Create folder
       shell: bash
       run: |
-          rmdir ${{ github.workspace }}/WorkspaceForCodeQLAnalysis
+          if [ -d "${{ github.workspace }}/WorkspaceForCodeQLAnalysis" ]; then
+             rmdir ${{ github.workspace }}/WorkspaceForCodeQLAnalysis
+          fi
           mkdir -p ${{ github.workspace }}/WorkspaceForCodeQLAnalysis
           for f in ${{ github.workspace }}; do
             if [ -d "$f" ]; then
