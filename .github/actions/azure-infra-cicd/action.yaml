@@ -16,14 +16,15 @@ runs:
      # 2. Change below variables for your configuration:
      
      steps:
-        
+        - shell: bash 
+          run: |
+             az upgrade
         # Authentication
         # Set up the following secrets in your repository: AZURE_CREDENTIALS
         # For details on usage of secrets, please refer https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets
         - name: Azure Login
           uses: azure/login@v1
           with:
-            allow-no-subscriptions: true
             creds: ${{ env.AZURE_CREDENTIALS  }}
 
         # Build ARM Template from Bicep and create a target Azure resource group  
