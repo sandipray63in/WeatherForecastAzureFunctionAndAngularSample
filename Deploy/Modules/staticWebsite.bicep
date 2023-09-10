@@ -42,12 +42,15 @@ resource deploymentScripts 'Microsoft.Resources/deploymentScripts@2020-10-01' = 
       '${deploymentScriptServicePrincipalId}': {}
     }
   }
+  //Need to set the subscription ID as per - https://stackoverflow.com/questions/62418089/this-client-subscriptionid-cannot-be-null
+
   properties: {
     azPowerShellVersion: '6.1'
     timeout: 'PT30M'
-    arguments: '-storageAccount ${storageAccount.name} -resourceGroup ${resourceGroup().name}'
+    arguments: '-subscriptionID ${subscription().id} -storageAccount ${storageAccount.name} -resourceGroup ${resourceGroup().name}'
     scriptContent: '''
-      param([string] $storageAccount, [string] $resourceGroup)
+      param([string] $subscriptionID, [string] $storageAccount, [string] $resourceGroup)
+      Select-AzSubscription $subscriptionID
       $storage = Get-AzStorageAccount -ResourceGroupName $resourceGroup -Name $storageAccount
       $ctx = $storage.Context
       Enable-AzStorageStaticWebsite -Context $ctx -IndexDocument index.html
