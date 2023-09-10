@@ -16,9 +16,6 @@ runs:
      # 2. Change below variables for your configuration:
      
      steps:
-        - shell: bash 
-          run: |
-             az upgrade --yes
         # Authentication
         # Set up the following secrets in your repository: AZURE_CREDENTIALS
         # For details on usage of secrets, please refer https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets
