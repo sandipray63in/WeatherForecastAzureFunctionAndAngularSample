@@ -54,7 +54,7 @@ jobs:
         echo "AZURE_CREDENTIALS: ${{secrets.AZURE_CREDENTIALS}}"
       shell: bash
 
-    - uses: ./.github/actions/ci-build
+    #- uses: ./.github/actions/ci-build
 
     - uses: ./.github/actions/ci-cd-dev
          
