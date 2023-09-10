@@ -39,7 +39,7 @@ param resourceTags object = {
 }
 
 var location = resourceGroup().location
-var staticWebsiteStorageAccountName = '${appNameSuffix}${environmentType}'
+var staticWebsiteStorageAccountName = 'toLower(${appNameSuffix}${environmentType})'
 var cdnProfileName = 'cdn-${appNameSuffix}-${environmentType}'
 var functionStorageAccountName = 'fn${appNameSuffix}${environmentType}'
 var functionAppName = 'fn-${appNameSuffix}-${environmentType}'
