@@ -16,11 +16,10 @@ runs:
      # 2. Change below variables for your configuration:
      
      steps:
-        - shell: bash
-          run: |
-             az account set -s 53ea2b06-4149-446b-9094-d6deeade43b5
 
         # Authentication
+        # Assign role to Subscription with Members as the App Registration Service Principal - in this case its WeatherForecastAppDeployment 
+        # else No subscriptions found error message will be shown up.
         # Set up the following secrets in your repository: AZURE_CREDENTIALS
         # For details on usage of secrets, please refer https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets
         - name: Azure Login
