@@ -1,6 +1,8 @@
 // For deployments you can watch Azure Monitor Activity Logs as well.Check the JSON tab for any failures.
 // The pipeline doesn't throw error for quite sometime & so better to cancel it and see the JSON tab in
 // Azure Monitory Activity Logs
+// To check all deployments, go to the Reasource Group and click Deployments.
+// Also search for all Deployment Scirpts
 @description('Suffix for naming resources')
 param appNameSuffix string = 'app${uniqueString(resourceGroup().id)}'
 
