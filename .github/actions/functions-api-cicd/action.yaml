@@ -62,8 +62,6 @@ runs:
       uses: Azure/cli@1.0.4
       id: azureCLIRun
       with:
-        # Azure CLI version to be used to execute the script. If not provided, latest version is used
-        azcliversion: 2.27.2
         # Specify the script here
         inlineScript: |
           az deployment group validate -g ${{ env.RESOURCE_GROUP_NAME }} --template-file ./${{ env.BICEP_FILE_PATH }}/main.bicep

@@ -69,8 +69,6 @@ runs:
     - name: Publish static website to Azure storage account ${{ inputs.AZURE_STORAGE_NAME }}
       uses: Azure/cli@1.0.4
       with:
-        # Azure CLI version to be used to execute the script. If not provided, latest version is used
-        azcliversion: 2.21.0
         # Specify the script here
         inlineScript: az storage blob upload-batch -s ./${{ env.ANGULAR_PATH }}/dist -d '$web' --account-name ${{ inputs.AZURE_STORAGE_NAME }}
 
