@@ -105,6 +105,9 @@ module apimApi 'Modules/apimAPI.bicep' = {
 module adAppReg 'Modules/adAppRegistration.bicep' = {
   name: 'adAppReg'
   scope: resourceGroup(apimResourceGroup)
+  params: {
+    userAssignedIdentityName: userAssignedIdentityName
+  }
 }
 
 module keyVault 'Modules/keyVault.bicep' = {

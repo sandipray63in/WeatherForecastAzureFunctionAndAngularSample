@@ -1,6 +1,7 @@
-﻿param name string = 'WeatherForecast'
+﻿param name string = 'WeatherForecastADAppRegistration'
 param location string = resourceGroup().location
 param currentTime string = utcNow()
+param userAssignedIdentityName string
 
 resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
   name: name
@@ -9,7 +10,7 @@ resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
   identity: {
     type: 'UserAssigned'
     userAssignedIdentities: {
-      '${resourceId('app-reg-automation', 'Microsoft.ManagedIdentity/userAssignedIdentities', 'AppRegCreator')}': {}
+      '${resourceId(resourceGroup().name, 'Microsoft.ManagedIdentity/userAssignedIdentities', userAssignedIdentityName)}': {}
     }
   }
   properties: {
