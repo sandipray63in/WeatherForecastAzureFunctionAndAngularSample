@@ -5,9 +5,9 @@ on:
  
 env:
      AZURE_REGION: 'centralindia'
-     RESOURCE_GROUP_NAME: 'WeatherForecastRG'
+     RESOURCE_GROUP_NAME: 'WeatherForecast-dev-rg'
      MSI_NAME: 'WeatherForecastAppMSI'
-     MSI_RESOURCE_GROUP: 'WeatherForecastRG'
+     MSI_RESOURCE_GROUP: 'WeatherForecast-dev-rg'
      APP_NAME_PREFIX: 'WeatherForecast'
      ENVIRONMENT_TYPE: 'dev'
      BICEP_FILE_PATH: 'Deploy' 
