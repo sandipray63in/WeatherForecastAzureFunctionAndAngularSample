@@ -23,11 +23,9 @@ resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
   // https://stackoverflow.com/questions/68185660/set-azcontext-please-provide-a-valid-tenant-or-a-valid-subscription
   properties: {
     azPowerShellVersion: '5.0'
-    arguments: '-subscriptionID ${subscription().subscriptionId} -resourceName "${name}"'
+    arguments: '-resourceName "${name}"'
     scriptContent: '''
-      param([string] $subscriptionID,[string] $resourceName)
-      Get-AzContext -ListAvailable | Where{$_.Name -match $subscriptionID} | Set-AzContext
-      Select-AzSubscription -SubscriptionId '$subscriptionID'
+      param([string] $resourceName)
       $token = (Get-AzAccessToken -ResourceUrl https://graph.microsoft.com).Token
       $headers = @{'Content-Type' = 'application/json'; 'Authorization' = 'Bearer ' + $token}
 
