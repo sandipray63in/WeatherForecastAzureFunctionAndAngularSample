@@ -42,13 +42,13 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
 }
 
 resource deploymentScripts 'Microsoft.Resources/deploymentScripts@2020-10-01' = {
-  name: 'configStaticWeb'
+  name: 'WeatherForecastConfigStaticWeb'
   kind: 'AzurePowerShell'
   location: location
   identity:{
     type: 'UserAssigned'
     userAssignedIdentities: {
-      '${deploymentScriptServicePrincipalId}': {}
+      '/subscriptions/${subscription().subscriptionId}/resourceGroups/${resourceGroup().name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/${deploymentScriptServicePrincipalId}': {}
     }
   }
 

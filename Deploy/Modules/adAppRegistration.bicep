@@ -16,13 +16,13 @@ param azureAplicationId string = ''
 param azureAplicationSecret string = ''
 
 resource script 'Microsoft.Resources/deploymentScripts@2020-10-01' = {
-  name: join([appRegistrationName, 'DeploymentScript'],'')
+  name: '${appRegistrationName}DeploymentScript'
   location: location
   kind: 'AzurePowerShell'
   identity: {
     type: 'UserAssigned'
     userAssignedIdentities: {
-      '${userAssignedIdentityName}': {}
+      '/subscriptions/${subscription().subscriptionId}/resourceGroups/${resourceGroup().name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/${userAssignedIdentityName}': {}
     }
   }
     
