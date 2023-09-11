@@ -26,8 +26,8 @@ resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
     arguments: '-userAssignedIdentityName "${userAssignedIdentityName}" -resourceName "${name}"'
     scriptContent: '''
       param([string]$userAssignedIdentityName, [string] $resourceName)
-      Update-AzConfig -EnableLoginByWam $true
-      Connect-AzAccount
+      Get-AzSubscription
+      Select-AzSubscription -SubscriptionId $subscriptionID
       $token = (Get-AzAccessToken -ResourceUrl https://graph.microsoft.com).Token
       $headers = @{'Content-Type' = 'application/json'; 'Authorization' = 'Bearer ' + $token}
 
