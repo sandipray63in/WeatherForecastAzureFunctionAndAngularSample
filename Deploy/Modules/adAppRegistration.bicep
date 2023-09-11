@@ -50,7 +50,7 @@ resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
             )
           }
         )
-        signInAudience = "anyanyauit04gmail"
+        signInAudience = "ananyauit04gmail"
       }
       
       // Upsert App registration
