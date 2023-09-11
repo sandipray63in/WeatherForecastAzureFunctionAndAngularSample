@@ -23,7 +23,7 @@ resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
   // Need to add Connect-AzAccount else SubscriptionId doesnt get fetched properly
   properties: {
     azPowerShellVersion: '5.0'
-    arguments: '-subscriptionID "${subscription().subscriptionId}" -resourceName "${name}"'
+    arguments: '-subscriptionID ${subscription().subscriptionId} -resourceName "${name}"'
     scriptContent: '''
       param([string]$subscriptionID, [string] $resourceName)
       $context = Get-AzSubscription -SubscriptionId $subscriptionID
