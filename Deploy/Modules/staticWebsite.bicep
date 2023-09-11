@@ -56,16 +56,16 @@ resource deploymentScripts 'Microsoft.Resources/deploymentScripts@2020-10-01' = 
     timeout: 'PT30M'
     arguments: '-subscriptionID ${subscription().subscriptionId} -storageAccount ${storageAccount.name} -resourceGroup ${resourceGroup().name}'
     scriptContent: '''
-      param([string] $subscriptionID, [string] $storageAccount, [string] $resourceGroup)
-      Get-AzContext -ListAvailable | Where{$_.Name -match $subscriptionID} | Set-AzContext
-      Select-AzSubscription -SubscriptionId '$subscriptionID'
-      $storage = Get-AzStorageAccount -ResourceGroupName $resourceGroup -Name $storageAccount
-      $ctx = $storage.Context
-      Enable-AzStorageStaticWebsite -Context $ctx -IndexDocument index.html
-      $output = $storage.PrimaryEndpoints.Web
-      $output = $output.TrimEnd('/')
-      $DeploymentScriptOutputs = @{}
-      $DeploymentScriptOutputs['URL'] = $output
+      param([string] $subscriptionID, [string] $storageAccount, [string] $resourceGroup) 
+      Get-AzContext -ListAvailable | Where{$_.Name -match $subscriptionID} | Set-AzContext 
+      Select-AzSubscription -SubscriptionId "$subscriptionID" 
+      $storage = Get-AzStorageAccount -ResourceGroupName $resourceGroup -Name $storageAccount 
+      $ctx = $storage.Context 
+      Enable-AzStorageStaticWebsite -Context $ctx -IndexDocument index.html 
+      $output = $storage.PrimaryEndpoints.Web 
+      $output = $output.TrimEnd('/') 
+      $DeploymentScriptOutputs = @{} 
+      $DeploymentScriptOutputs['URL'] = $output 
     '''
     cleanupPreference: 'Always'
     retentionInterval: 'P1D'
