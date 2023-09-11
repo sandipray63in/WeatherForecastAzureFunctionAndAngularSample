@@ -64,16 +64,16 @@ runs:
         - name: Set Outputs
           shell: bash
           run: |
-             echo "functionAppName=steps.infraDeployment.outputs.functionAppName" >> ${{env.GITHUB_OUTPUT}}
-             echo "apiUrl=steps.infraDeployment.outputs.apiUrl" >> ${{env.GITHUB_OUTPUT}}
-             echo "staticWebsiteStorageAccountName=steps.infraDeployment.outputs.staticWebsiteStorageAccountName" >> ${{env.GITHUB_OUTPUT}}
-             echo "staticWebsiteUrl=steps.infraDeployment.outputs.staticWebsiteUrl" >> ${{env.GITHUB_OUTPUT}}
-             echo "apimName=steps.infraDeployment.outputs.apimName" >> ${{env.GITHUB_OUTPUT}}
-             echo "cdnEndpointName=steps.infraDeployment.outputs.cdnEndpointName" >> ${{env.GITHUB_OUTPUT}}
-             echo "cdnProfileName=steps.infraDeployment.outputs.cdnProfileName" >> ${{env.GITHUB_OUTPUT}}
-             echo "cdnEndpointURL=steps.infraDeployment.outputs.cdnEndpointURL" >> ${{env.GITHUB_OUTPUT}}
-             echo "authKey=steps.infraDeployment.outputs.authKey" >> ${{env.GITHUB_OUTPUT}}
-             echo "apiName=steps.infraDeployment.outputs.apiName" >> ${{env.GITHUB_OUTPUT}}
+             echo "functionAppName=steps.infraDeployment.outputs.functionAppName" >> $GITHUB_OUTPUT
+             echo "apiUrl=steps.infraDeployment.outputs.apiUrl" >> $GITHUB_OUTPUT
+             echo "staticWebsiteStorageAccountName=steps.infraDeployment.outputs.staticWebsiteStorageAccountName" >> $GITHUB_OUTPUT
+             echo "staticWebsiteUrl=steps.infraDeployment.outputs.staticWebsiteUrl" >> $GITHUB_OUTPUT
+             echo "apimName=steps.infraDeployment.outputs.apimName" >> $GITHUB_OUTPUT
+             echo "cdnEndpointName=steps.infraDeployment.outputs.cdnEndpointName" >> $GITHUB_OUTPUT
+             echo "cdnProfileName=steps.infraDeployment.outputs.cdnProfileName" >> $GITHUB_OUTPUT
+             echo "cdnEndpointURL=steps.infraDeployment.outputs.cdnEndpointURL" >> $GITHUB_OUTPUT
+             echo "authKey=steps.infraDeployment.outputs.authKey" >> $GITHUB_OUTPUT
+             echo "apiName=steps.infraDeployment.outputs.apiName" >> $GITHUB_OUTPUT
 
        # Azure logout
         - name: logout
