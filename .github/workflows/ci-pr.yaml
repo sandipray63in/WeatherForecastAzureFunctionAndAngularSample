@@ -20,7 +20,8 @@ env:
      FUNCTIONAPP_PATH: 'WeatherForecastAPI'
      ANGULAR_PATH: 'WeatherForecaastUI'
      NODE_VERSION: '14'
-
+     AZURE_APP_ID: ${{ fromJson(toJSON(secrets.AZURE_CREDENTIALS)).clientId }}
+     AZURE_APP_SECRET: ${{ fromJson(toJSON(secrets.AZURE_CREDENTIALS)).clientSecret }}
 
 jobs:
   ci-pr:
