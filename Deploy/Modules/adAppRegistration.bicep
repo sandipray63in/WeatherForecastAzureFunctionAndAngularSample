@@ -20,12 +20,13 @@ resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
   }
     
   //Need to set the subscription ID as per - https://stackoverflow.com/questions/62418089/this-client-subscriptionid-cannot-be-null
-  // https://stackoverflow.com/questions/68185660/set-azcontext-please-provide-a-valid-tenant-or-a-valid-subscription
+  // Need to add Connect-AzAccount else SubscriptionId doesnt get fetched properly
   properties: {
     azPowerShellVersion: '5.0'
     arguments: '-resourceName "${name}"'
     scriptContent: '''
       param([string] $resourceName)
+      Connect-AzAccount
       $token = (Get-AzAccessToken -ResourceUrl https://graph.microsoft.com).Token
       $headers = @{'Content-Type' = 'application/json'; 'Authorization' = 'Bearer ' + $token}
 

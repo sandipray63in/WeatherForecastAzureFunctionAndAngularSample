@@ -50,14 +50,15 @@ resource deploymentScripts 'Microsoft.Resources/deploymentScripts@2020-10-01' = 
   }
 
   //Need to set the subscription ID as per - https://stackoverflow.com/questions/62418089/this-client-subscriptionid-cannot-be-null
-  // https://stackoverflow.com/questions/68185660/set-azcontext-please-provide-a-valid-tenant-or-a-valid-subscription
+  // Need to add Connect-AzAccount else SubscriptionId doesnt get fetched properly
   properties: {
     azPowerShellVersion: '6.1'
     timeout: 'PT30M'
     arguments: '-subscriptionID ${subscription().subscriptionId} -storageAccount ${storageAccount.name} -resourceGroup ${resourceGroup().name}'
     scriptContent: '''
       param([string] $subscriptionID, [string] $storageAccount, [string] $resourceGroup) 
-      Select-AzSubscription -SubscriptionId '$subscriptionID' 
+      Connect-AzAccount
+      Select-AzSubscription -SubscriptionId $subscriptionID 
       $storage = Get-AzStorageAccount -ResourceGroupName $resourceGroup -Name $storageAccount 
       $ctx = $storage.Context 
       Enable-AzStorageStaticWebsite -Context $ctx -IndexDocument index.html 
