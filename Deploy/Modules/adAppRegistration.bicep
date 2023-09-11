@@ -1,4 +1,9 @@
-﻿param name string = 'WeatherForecastADAppRegistration'
+﻿// Some Useful links - 
+// https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-script-template-configure-dev
+// https://learn.microsoft.com/en-us/azure/virtual-machines/windows/run-command
+// https://learn.microsoft.com/en-us/cli/azure/vm/run-command?view=azure-cli-latest#code-try-8
+
+param name string = 'WeatherForecastADAppRegistration'
 param location string = resourceGroup().location
 param currentTime string = utcNow()
 param userAssignedIdentityName string
@@ -13,11 +18,15 @@ resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
       '${resourceId(resourceGroup().name, 'Microsoft.ManagedIdentity/userAssignedIdentities', userAssignedIdentityName)}': {}
     }
   }
+    
+  //Need to set the subscription ID as per - https://stackoverflow.com/questions/62418089/this-client-subscriptionid-cannot-be-null
+  // https://stackoverflow.com/questions/68185660/set-azcontext-please-provide-a-valid-tenant-or-a-valid-subscription
   properties: {
     azPowerShellVersion: '5.0'
-    arguments: '-resourceName "${name}"'
+    arguments: '-subscriptionID ${subscription().subscriptionId} -resourceName "${name}"'
     scriptContent: '''
-      param([string] $resourceName)
+      param([string] $subscriptionID,[string] $resourceName)
+      Get-AzContext -ListAvailable | Where{$_.Name -match $subscriptionID} | Set-AzContext
       $token = (Get-AzAccessToken -ResourceUrl https://graph.microsoft.com).Token
       $headers = @{'Content-Type' = 'application/json'; 'Authorization' = 'Bearer ' + $token}
 

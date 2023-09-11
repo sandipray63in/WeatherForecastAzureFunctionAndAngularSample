@@ -1,3 +1,8 @@
+// Some Useful links - 
+// https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-script-template-configure-dev
+// https://learn.microsoft.com/en-us/azure/virtual-machines/windows/run-command
+// https://learn.microsoft.com/en-us/cli/azure/vm/run-command?view=azure-cli-latest#code-try-8
+
 param storageAccountName string
 param resourceTags object
 param deploymentScriptServicePrincipalId string
@@ -45,13 +50,14 @@ resource deploymentScripts 'Microsoft.Resources/deploymentScripts@2020-10-01' = 
   }
 
   //Need to set the subscription ID as per - https://stackoverflow.com/questions/62418089/this-client-subscriptionid-cannot-be-null
+  // https://stackoverflow.com/questions/68185660/set-azcontext-please-provide-a-valid-tenant-or-a-valid-subscription
   properties: {
     azPowerShellVersion: '6.1'
     timeout: 'PT30M'
     arguments: '-subscriptionID ${subscription().subscriptionId} -storageAccount ${storageAccount.name} -resourceGroup ${resourceGroup().name}'
     scriptContent: '''
       param([string] $subscriptionID, [string] $storageAccount, [string] $resourceGroup)
-      Select-AzSubscription -SubscriptionId $subscriptionID
+      Get-AzContext -ListAvailable | Where{$_.Name -match $subscriptionID} | Set-AzContext
       $storage = Get-AzStorageAccount -ResourceGroupName $resourceGroup -Name $storageAccount
       $ctx = $storage.Context
       Enable-AzStorageStaticWebsite -Context $ctx -IndexDocument index.html

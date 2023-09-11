@@ -26,6 +26,10 @@ https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev
 https://github.com/Azure/azure-functions-openapi-extension
 https://learn.microsoft.com/en-us/azure/api-management/authentication-authorization-overview
 https://learn.microsoft.com/en-us/azure/api-management/api-management-policies
+https://learn.microsoft.com/en-us/azure/well-architected/services/networking/api-management/operational-excellence
+https://learn.microsoft.com/en-us/azure/architecture/example-scenario/apps/publish-internal-apis-externally
+https://medium.com/azure-architects/azure-api-management-and-application-gateway-integration-a31fde80f3db
+https://arinco.com.au/blog/internal-external-apim-app-gateway/
 https://learn.microsoft.com/en-us/azure/active-directory/external-identities/b2b-fundamentals
 
 TDD & BDD -     
@@ -106,3 +110,16 @@ swagger url - currently its http://localhost:30486/api/swagger/ui in local env
 
 
 
+az vm run-command invoke  --command-id RunPowerShellScript --name TestVM -g WeatherForecast-dev-rg  \
+    --scripts '''
+    param([string] $subscriptionID, [string] $storageAccount, [string] $resourceGroup)
+      Select-AzSubscription -SubscriptionId $subscriptionID
+      $storage = Get-AzStorageAccount -ResourceGroupName $resourceGroup -Name $storageAccount
+      $ctx = $storage.Context
+      Enable-AzStorageStaticWebsite -Context $ctx -IndexDocument index.html
+      $output = $storage.PrimaryEndpoints.Web
+      $output = $output.TrimEnd('/')
+      $DeploymentScriptOutputs = @{}
+      $DeploymentScriptOutputs['URL'] = $output
+    ''' \
+    --parameters 'subscriptionID=53ea2b06-4149-446b-9094-d6deeade43b5' 'storageAccount=weatherforecastdev' 'resourceGroup=WeatherForecast-dev-rg'
