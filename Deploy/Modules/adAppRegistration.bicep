@@ -7,6 +7,9 @@ param name string = 'WeatherForecastADAppRegistration'
 param location string = resourceGroup().location
 param currentTime string = utcNow()
 param userAssignedIdentityName string
+param azureAplicationId string
+@secure()
+param azureAplicationSecret string
 
 resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
   name: name
@@ -23,11 +26,14 @@ resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
   // Need to add Connect-AzAccount else SubscriptionId doesnt get fetched properly
   properties: {
     azPowerShellVersion: '5.0'
-    arguments: '-tenantID ${subscription().tenantId} -subscriptionID ${subscription().subscriptionId} -resourceName "${name}"'
+    arguments: '-tenantID ${subscription().tenantId} -subscriptionID ${subscription().subscriptionId} -azureAplicationId ${azureAplicationId} -azureAplicationSecret ${azureAplicationSecret} -resourceName "${name}"'
     scriptContent: '''
-      param([string]$tenantID, [string]$subscriptionID, [string] $resourceName)
-      $context = Get-AzSubscription -SubscriptionId $subscriptionID -TenantId $tenantID
-      Set-AzContext $context
+      param([string]$tenantID, [string]$subscriptionID,  [string]$azureAplicationId, [string]$azureAplicationSecret, [string] $resourceName)
+      $azurePassword = ConvertTo-SecureString $azureAplicationSecret -AsPlainText -Force
+      $psCred = New-Object System.Management.Automation.PSCredential($azureAplicationId , $azurePassword)
+      Connect-AzAccount -Credential $psCred -TenantId $tenantID -ServicePrincipal 
+      Set-AzContext -Subscription $subscriptionID
+
       $token = (Get-AzAccessToken -ResourceUrl https://graph.microsoft.com).Token
       $headers = @{'Content-Type' = 'application/json'; 'Authorization' = 'Bearer ' + $token}
 

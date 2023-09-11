@@ -6,6 +6,11 @@
 @description('Suffix for naming resources')
 param appNameSuffix string = 'app${uniqueString(resourceGroup().id)}'
 
+param azureAplicationId string
+
+@secure()
+param azureAplicationSecret string
+
 @allowed([
   'dev'
   'test'
@@ -78,7 +83,8 @@ module staticWebsite 'Modules/staticWebsite.bicep' = {
   params: {
     storageAccountName: staticWebsiteStorageAccountName
     deploymentScriptServicePrincipalId: userAssignedIdentity.id
-    userAssignedIdentityName: userAssignedIdentityName
+    azureAplicationId: azureAplicationId
+    azureAplicationSecret: azureAplicationSecret
     resourceTags: resourceTags
   }
 }
@@ -108,6 +114,8 @@ module adAppReg 'Modules/adAppRegistration.bicep' = {
   scope: resourceGroup(apimResourceGroup)
   params: {
     userAssignedIdentityName: userAssignedIdentityName
+    azureAplicationId: azureAplicationId
+    azureAplicationSecret: azureAplicationSecret
   }
 }
 

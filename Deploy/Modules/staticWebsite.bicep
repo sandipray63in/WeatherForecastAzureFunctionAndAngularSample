@@ -7,7 +7,10 @@ param storageAccountName string
 param resourceTags object
 param deploymentScriptServicePrincipalId string
 param currentTime string = utcNow()
-param userAssignedIdentityName string
+param azureAplicationId string
+@secure()
+param azureAplicationSecret string
+
 var location = resourceGroup().location 
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
@@ -54,11 +57,10 @@ resource deploymentScripts 'Microsoft.Resources/deploymentScripts@2020-10-01' = 
   properties: {
     azPowerShellVersion: '6.1'
     timeout: 'PT30M'
-    arguments: '-tenantID ${subscription().tenantId}  -subscriptionID  ${subscription().subscriptionId} -storageAccount ${storageAccount.name} -resourceGroup ${resourceGroup().name}'
+    arguments: '-tenantID ${subscription().tenantId}  -subscriptionID  ${subscription().subscriptionId} -azureAplicationId ${azureAplicationId} -azureAplicationSecret ${azureAplicationSecret} -storageAccount ${storageAccount.name} -resourceGroup ${resourceGroup().name}'
     scriptContent: '''
-      param([string]$tenantID, [string]$subscriptionID, [string] $storageAccount, [string] $resourceGroup) 
-      $azureAplicationId = '06c1b704-d507-412b-ad01-b8c01d2afabd'
-      $azurePassword = ConvertTo-SecureString 'Qcb8Q~ouXn3x3A4uoqZneLLOph8VQEifEkhZPcUK' -AsPlainText -Force
+      param([string]$tenantID, [string]$subscriptionID, [string]$azureAplicationId, [string]$azureAplicationSecret, [string] $storageAccount, [string] $resourceGroup) 
+      $azurePassword = ConvertTo-SecureString $azureAplicationSecret -AsPlainText -Force
       $psCred = New-Object System.Management.Automation.PSCredential($azureAplicationId , $azurePassword)
       Connect-AzAccount -Credential $psCred -TenantId $tenantID -ServicePrincipal 
       Set-AzContext -Subscription $subscriptionID
