@@ -1,4 +1,8 @@
 ﻿// Some Useful links - 
+// https://practical365.com/microsoft-graph-api-permission/
+// https://learn.microsoft.com/en-us/graph/migrate-azure-ad-graph-configure-permissions?tabs=http%2Cupdatepermissions-azureadgraph-powershell#see-also
+// https://learn.microsoft.com/en-us/powershell/module/microsoft.graph.applications/get-mgserviceprincipal?view=graph-powershell-1.0
+// https://learn.microsoft.com/en-us/graph/permissions-reference - has Subscription.Read.All
 // https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-script-template-configure-dev
 // https://learn.microsoft.com/en-us/azure/virtual-machines/windows/run-command
 // https://learn.microsoft.com/en-us/cli/azure/vm/run-command?view=azure-cli-latest#code-try-8
@@ -45,6 +49,10 @@ resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
             resourceAccess = @(
               @{
                 id = "e1fe6dd8-ba31-4d61-89e7-88639da4683d"
+                type = "Scope"
+              },
+              @{
+                id = "5f88184c-80bb-4d52-9ff2-757288b2e9b7"
                 type = "Scope"
               }
             )
