@@ -22,7 +22,7 @@ resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
   identity: {
     type: 'UserAssigned'
     userAssignedIdentities: {
-      '${resourceId(resourceGroup().name, 'Microsoft.ManagedIdentity/userAssignedIdentities', userAssignedIdentityName)}': {}
+      '${userAssignedIdentityName}': {}
     }
   }
     
@@ -45,7 +45,7 @@ resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
         displayName = $resourceName
         requiredResourceAccess = @(
           @{
-            resourceAppId = "00000003-0000-0000-c000-000000000000"
+            resourceAppId = "00000003-0000-0000-c000-000000000000" 
             resourceAccess = @(
               @{
                 id = "e1fe6dd8-ba31-4d61-89e7-88639da4683d"
@@ -53,7 +53,7 @@ resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
               },
               @{
                 id = "5f88184c-80bb-4d52-9ff2-757288b2e9b7"
-                type = "Scope"
+                type = "Scope" 
               }
             )
           }
