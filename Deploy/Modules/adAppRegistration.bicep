@@ -23,11 +23,12 @@ resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
   // Need to add Connect-AzAccount else SubscriptionId doesnt get fetched properly
   properties: {
     azPowerShellVersion: '5.0'
-    arguments: '-resourceName "${name}"'
+    arguments: '-userAssignedIdentityName "${userAssignedIdentityName}" -resourceName "${name}"'
     scriptContent: '''
-      param([string] $resourceName)
-      $Credential = Get-Credential
-      Connect-AzAccount -Credential $Credential
+      param([string]$userAssignedIdentityName, [string] $resourceName)
+      $identity = Get-AzUserAssignedIdentity -ResourceGroupName $resourceGroup -Name $userAssignedIdentityName
+      Get-AzVM -ResourceGroupName contoso -Name testvm | Update-AzVM -IdentityType UserAssigned -IdentityId $identity.Id
+      Connect-AzAccount -Identity -AccountId $identity.ClientId # Run on the virtual machine
       $token = (Get-AzAccessToken -ResourceUrl https://graph.microsoft.com).Token
       $headers = @{'Content-Type' = 'application/json'; 'Authorization' = 'Bearer ' + $token}
 

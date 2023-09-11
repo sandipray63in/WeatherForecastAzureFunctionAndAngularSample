@@ -7,7 +7,7 @@ param storageAccountName string
 param resourceTags object
 param deploymentScriptServicePrincipalId string
 param currentTime string = utcNow()
-
+param userAssignedIdentityName string
 var location = resourceGroup().location 
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
@@ -54,11 +54,12 @@ resource deploymentScripts 'Microsoft.Resources/deploymentScripts@2020-10-01' = 
   properties: {
     azPowerShellVersion: '6.1'
     timeout: 'PT30M'
-    arguments: '-subscriptionID ${subscription().subscriptionId} -storageAccount ${storageAccount.name} -resourceGroup ${resourceGroup().name}'
+    arguments: '-userAssignedIdentityName "${userAssignedIdentityName}" -storageAccount ${storageAccount.name} -resourceGroup ${resourceGroup().name}'
     scriptContent: '''
-      param([string] $subscriptionID, [string] $storageAccount, [string] $resourceGroup) 
-      $Credential = Get-Credential
-      Connect-AzAccount -Credential $Credential
+      param([string]$userAssignedIdentityName, [string] $storageAccount, [string] $resourceGroup) 
+      $identity = Get-AzUserAssignedIdentity -ResourceGroupName $resourceGroup -Name $userAssignedIdentityName
+      Get-AzVM -ResourceGroupName contoso -Name testvm | Update-AzVM -IdentityType UserAssigned -IdentityId $identity.Id
+      Connect-AzAccount -Identity -AccountId $identity.ClientId # Run on the virtual machine
       Select-AzSubscription -SubscriptionId $subscriptionID 
       $storage = Get-AzStorageAccount -ResourceGroupName $resourceGroup -Name $storageAccount 
       $ctx = $storage.Context 

@@ -78,6 +78,7 @@ module staticWebsite 'Modules/staticWebsite.bicep' = {
   params: {
     storageAccountName: staticWebsiteStorageAccountName
     deploymentScriptServicePrincipalId: userAssignedIdentity.id
+    userAssignedIdentityName: userAssignedIdentityName
     resourceTags: resourceTags
   }
 }
