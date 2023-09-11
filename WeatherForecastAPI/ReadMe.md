@@ -15,7 +15,6 @@ https://learn.microsoft.com/en-us/azure/azure-functions/openapi-apim-integrate-v
 https://stackoverflow.com/questions/46315734/how-to-call-another-function-with-in-an-azure-function     
 https://roykim.ca/2023/02/19/how-to-create-an-azure-function-app-that-calls-an-external-3rd-party-api/    
 https://dev.to/asizikov/fixing-console-logs-for-azure-functions-running-in-a-docker-container-1lod     
-https://github.com/Azure/azure-functions-openapi-extension/blob/main/docs/openapi-auth.md     
 https://stackoverflow.com/questions/70265255/how-to-configure-cors-in-azure-function-app     
 https://learn.microsoft.com/en-us/azure/azure-functions/functions-develop-local     
 https://stackoverflow.com/questions/63130799/azure-functions-host-json-not-applying-to-azure-application-settings     
@@ -23,8 +22,11 @@ https://stackoverflow.com/questions/63130799/azure-functions-host-json-not-apply
 Security -    
 https://learn.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli
 https://learn.microsoft.com/en-us/azure/api-management/howto-protect-backend-frontend-azure-ad-b2c      
-https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev       
-
+https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev  
+https://github.com/Azure/azure-functions-openapi-extension
+https://learn.microsoft.com/en-us/azure/api-management/authentication-authorization-overview
+https://learn.microsoft.com/en-us/azure/api-management/api-management-policies
+https://learn.microsoft.com/en-us/azure/active-directory/external-identities/b2b-fundamentals
 
 TDD & BDD -     
 https://mahmutcanga.com/2019/12/13/unit-testing-httprequest-in-c/      
@@ -56,9 +58,8 @@ GitHub Actions, Azure DevOps Pipeline & Bicep(/ARM) Templates -
 https://learn.microsoft.com/en-us/azure/devops/pipelines/architectures/devops-pipelines-baseline-architecture?view=azure-devops        
 https://github.com/Azure/actions-workflow-samples         
 https://azure.github.io/actions/        
-https://www.shanebart.com/deploy-az-func-with-github-actions/ - create an azure AD App Registration based service principal
-and use that as Github secret & name it as AZURE_CREDENTIALS
-https://github.com/Azure/login/issues/205 - this is a issue which was really tedious to solve.
+https://www.shanebart.com/deploy-az-func-with-github-actions/ 
+https://github.com/Azure/login/issues/205 
 https://colinsalmcorner.com/actions-authenticate-to-azure-without-a-secret/ - even this also could not solve the above tedious issue.
 https://wallis.dev/blog/composite-github-actions
 https://dev.to/n3wt0n/github-composite-actions-nest-actions-within-actions-3e5l

@@ -73,7 +73,7 @@ resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
       $DeploymentScriptOutputs['principalId'] = $principal.id
 
     '''
-    cleanupPreference: 'OnSuccess'
+    cleanupPreference: 'Always'
     retentionInterval: 'P1D'
     forceUpdateTag: currentTime // ensures script will run every time
   }

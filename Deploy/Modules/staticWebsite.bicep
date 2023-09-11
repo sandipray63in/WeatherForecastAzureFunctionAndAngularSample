@@ -1,6 +1,7 @@
 param storageAccountName string
 param resourceTags object
 param deploymentScriptServicePrincipalId string
+param currentTime string = utcNow()
 
 var location = resourceGroup().location 
 
@@ -42,8 +43,8 @@ resource deploymentScripts 'Microsoft.Resources/deploymentScripts@2020-10-01' = 
       '${deploymentScriptServicePrincipalId}': {}
     }
   }
-  //Need to set the subscription ID as per - https://stackoverflow.com/questions/62418089/this-client-subscriptionid-cannot-be-null
 
+  //Need to set the subscription ID as per - https://stackoverflow.com/questions/62418089/this-client-subscriptionid-cannot-be-null
   properties: {
     azPowerShellVersion: '6.1'
     timeout: 'PT30M'
@@ -61,6 +62,7 @@ resource deploymentScripts 'Microsoft.Resources/deploymentScripts@2020-10-01' = 
     '''
     cleanupPreference: 'Always'
     retentionInterval: 'P1D'
+    forceUpdateTag: currentTime // ensures script will run every time
   }
 }
 
