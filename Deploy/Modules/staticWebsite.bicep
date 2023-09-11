@@ -50,14 +50,18 @@ resource deploymentScripts 'Microsoft.Resources/deploymentScripts@2020-10-01' = 
   }
 
   //Need to set the subscription ID as per - https://stackoverflow.com/questions/62418089/this-client-subscriptionid-cannot-be-null
+  // https://stackoverflow.com/questions/60632474/no-subscription-found-in-the-context-error-when-invoking-azure-powershell-cmdl
   properties: {
     azPowerShellVersion: '6.1'
     timeout: 'PT30M'
     arguments: '-tenantID ${subscription().tenantId}  -subscriptionID  ${subscription().subscriptionId} -storageAccount ${storageAccount.name} -resourceGroup ${resourceGroup().name}'
     scriptContent: '''
       param([string]$tenantID, [string]$subscriptionID, [string] $storageAccount, [string] $resourceGroup) 
-      $context = Get-AzSubscription -SubscriptionId $subscriptionID -TenantId $tenantID
-      Set-AzContext $context
+      $azureAplicationId = '06c1b704-d507-412b-ad01-b8c01d2afabd'
+      $azurePassword = ConvertTo-SecureString 'Qcb8Q~ouXn3x3A4uoqZneLLOph8VQEifEkhZPcUK' -AsPlainText -Force
+      $psCred = New-Object System.Management.Automation.PSCredential($azureAplicationId , $azurePassword)
+      Connect-AzAccount -Credential $psCred -TenantId $tenantID -ServicePrincipal 
+      Set-AzContext -Subscription $subscriptionID
       $storage = Get-AzStorageAccount -ResourceGroupName $resourceGroup -Name $storageAccount 
       $ctx = $storage.Context 
       Enable-AzStorageStaticWebsite -Context $ctx -IndexDocument index.html 
