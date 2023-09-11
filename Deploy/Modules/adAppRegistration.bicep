@@ -3,7 +3,6 @@
 // https://learn.microsoft.com/en-us/azure/virtual-machines/windows/run-command
 // https://learn.microsoft.com/en-us/cli/azure/vm/run-command?view=azure-cli-latest#code-try-8
 
-param deploymentScriptName string = 'WeatherForecastADAppRegistration'
 param appRegistrationName string = ''
 param location string = resourceGroup().location
 param currentTime string = utcNow()
@@ -13,7 +12,7 @@ param azureAplicationId string = ''
 param azureAplicationSecret string = ''
 
 resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
-  name: deploymentScriptName
+  name: join([appRegistrationName, 'DeploymentScript'],'')
   location: location
   kind: 'AzurePowerShell'
   identity: {
