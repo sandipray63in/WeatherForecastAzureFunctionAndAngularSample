@@ -53,10 +53,10 @@ resource deploymentScripts 'Microsoft.Resources/deploymentScripts@2020-10-01' = 
   properties: {
     azPowerShellVersion: '6.1'
     timeout: 'PT30M'
-    arguments: '-subscriptionID  ${subscription().subscriptionId} -storageAccount ${storageAccount.name} -resourceGroup ${resourceGroup().name}'
+    arguments: '-tenantID ${subscription().tenantId}  -subscriptionID  ${subscription().subscriptionId} -storageAccount ${storageAccount.name} -resourceGroup ${resourceGroup().name}'
     scriptContent: '''
-      param([string]$subscriptionID , [string] $storageAccount, [string] $resourceGroup) 
-      $context = Get-AzSubscription -SubscriptionId $subscriptionID
+      param([string]$tenantID, [string]$subscriptionID, [string] $storageAccount, [string] $resourceGroup) 
+      $context = Get-AzSubscription -SubscriptionId $subscriptionID -TenantId $tenantID
       Set-AzContext $context
       $storage = Get-AzStorageAccount -ResourceGroupName $resourceGroup -Name $storageAccount 
       $ctx = $storage.Context 
