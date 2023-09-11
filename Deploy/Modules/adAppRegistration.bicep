@@ -3,7 +3,8 @@
 // https://learn.microsoft.com/en-us/azure/virtual-machines/windows/run-command
 // https://learn.microsoft.com/en-us/cli/azure/vm/run-command?view=azure-cli-latest#code-try-8
 
-param name string = 'WeatherForecastADAppRegistration'
+param deploymentScriptName string = 'WeatherForecastADAppRegistration'
+param appRegistrationName string = ''
 param location string = resourceGroup().location
 param currentTime string = utcNow()
 param userAssignedIdentityName string
@@ -12,7 +13,7 @@ param azureAplicationId string = ''
 param azureAplicationSecret string = ''
 
 resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
-  name: name
+  name: deploymentScriptName
   location: location
   kind: 'AzurePowerShell'
   identity: {
@@ -23,10 +24,10 @@ resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
   }
     
   //Need to set the subscription ID as per - https://stackoverflow.com/questions/62418089/this-client-subscriptionid-cannot-be-null
-  // Need to add Connect-AzAccount else SubscriptionId doesnt get fetched properly
+  // One of the best ways to debug the below script is to run it directly in VS pwershell terminal using some test
   properties: {
     azPowerShellVersion: '5.0'
-    arguments: '-tenantID ${subscription().tenantId} -subscriptionID ${subscription().subscriptionId} -azureAplicationId ${azureAplicationId} -azureAplicationSecret ${azureAplicationSecret} -resourceName "${name}"'
+    arguments: '-tenantID ${subscription().tenantId} -subscriptionID ${subscription().subscriptionId} -azureAplicationId ${azureAplicationId} -azureAplicationSecret ${azureAplicationSecret} -resourceName "${appRegistrationName}"'
     scriptContent: '''
       param([string]$tenantID, [string]$subscriptionID,  [string]$azureAplicationId, [string]$azureAplicationSecret, [string] $resourceName)
       $azurePassword = ConvertTo-SecureString $azureAplicationSecret -AsPlainText -Force
@@ -34,7 +35,7 @@ resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
       Connect-AzAccount -Credential $psCred -TenantId $tenantID -ServicePrincipal 
       Set-AzContext -Subscription $subscriptionID
 
-      $token = (Get-AzAccessToken -ResourceUrl https://graph.microsoft.com).Token
+      $token = (Get-AzAccessToken -ResourceUrl https://graph.microsoft.com -TenantId $tenantID).Token
       $headers = @{'Content-Type' = 'application/json'; 'Authorization' = 'Bearer ' + $token}
 
       $template = @{
@@ -50,7 +51,7 @@ resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
             )
           }
         )
-        signInAudience = "ananyauit04gmail"
+        signInAudience = "AzureADMyOrg"
       }
       
       // Upsert App registration

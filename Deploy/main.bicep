@@ -6,6 +6,9 @@
 @description('Suffix for naming resources')
 param appNameSuffix string = 'app${uniqueString(resourceGroup().id)}'
 
+param staticWebAppRegistrationName string = ''
+param functionAppRegistrationName string = ''
+
 param azureAplicationId string = ''
 
 @secure()
@@ -78,12 +81,23 @@ resource appInsights 'Microsoft.Insights/components@2018-05-01-preview' = {
   }
 }
 
+module staticWebADAppReg 'Modules/adAppRegistration.bicep' = {
+  name: 'staticWebADAppReg'
+  scope: resourceGroup(apimResourceGroup)
+  params: {
+    userAssignedIdentityName: userAssignedIdentityName
+    azureAplicationId: azureAplicationId
+    azureAplicationSecret: azureAplicationSecret
+    appRegistrationName:staticWebAppRegistrationName
+  }
+}
+
 module staticWebsite 'Modules/staticWebsite.bicep' = {
   name: 'staticWebsite'
   params: {
     storageAccountName: staticWebsiteStorageAccountName
     deploymentScriptServicePrincipalId: userAssignedIdentity.id
-    azureAplicationId: azureAplicationId
+    azureAplicationId: staticWebADAppReg.outputs.objectId
     azureAplicationSecret: azureAplicationSecret
     resourceTags: resourceTags
   }
@@ -109,13 +123,14 @@ module apimApi 'Modules/apimAPI.bicep' = {
   }
 }
 
-module adAppReg 'Modules/adAppRegistration.bicep' = {
-  name: 'adAppReg'
+module functionADAppReg 'Modules/adAppRegistration.bicep' = {
+  name: 'functionADAppReg'
   scope: resourceGroup(apimResourceGroup)
   params: {
     userAssignedIdentityName: userAssignedIdentityName
     azureAplicationId: azureAplicationId
     azureAplicationSecret: azureAplicationSecret
+    appRegistrationName:functionAppRegistrationName
   }
 }
 
@@ -143,8 +158,8 @@ module functionApp 'Modules/function.bicep' = {
     resourceTags: resourceTags
     keyVaultUrl: keyVault.outputs.keyVaultUrl
     azureTenantId: tenantId
-    azureClientId: adAppReg.outputs.clientId
-    azureClientSecret: adAppReg.outputs.clientSecret
+    azureClientId: functionADAppReg.outputs.clientId
+    azureClientSecret: functionADAppReg.outputs.clientSecret
   }
 }
 

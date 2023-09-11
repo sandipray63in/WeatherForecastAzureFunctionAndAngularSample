@@ -59,7 +59,7 @@ runs:
             deploymentName: ${{ github.run_number }}
             resourceGroupName: ${{ env.RESOURCE_GROUP_NAME }}
             template: ./${{ env.BICEP_FILE_PATH }}/${{ inputs.BICEP_FILE_NAME }}.json  # Set this to the location of your template file
-            parameters: appNameSuffix=${{ env.APP_NAME_PREFIX }} azureAplicationId=${{ steps.getAzureAppIDAndSecret.outputs.AZURE_APP_ID }} azureAplicationSecret=${{ steps.getAzureAppIDAndSecret.outputs.AZURE_APP_SECRET }} environmentType=${{ env.ENVIRONMENT_TYPE }} userAssignedIdentityName=${{ env.MSI_NAME }} userAssignedIdentityResourceGroup=${{ env.MSI_RESOURCE_GROUP }}
+            parameters: appNameSuffix=${{ env.APP_NAME_PREFIX }} staticWebAppRegistrationName=${{ env.STATIC_WEB_APP_REGISTRATION_NAME }} functionAppRegistrationName=${{ env.FUNCTION_APP_REGISTRATION_NAME }} azureAplicationId=${{ steps.getAzureAppIDAndSecret.outputs.AZURE_APP_ID }} azureAplicationSecret=${{ steps.getAzureAppIDAndSecret.outputs.AZURE_APP_SECRET }} environmentType=${{ env.ENVIRONMENT_TYPE }} userAssignedIdentityName=${{ env.MSI_NAME }} userAssignedIdentityResourceGroup=${{ env.MSI_RESOURCE_GROUP }}
 
         - name: Set Outputs
           shell: bash

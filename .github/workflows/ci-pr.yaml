@@ -20,6 +20,8 @@ env:
      FUNCTIONAPP_PATH: 'WeatherForecastAPI'
      ANGULAR_PATH: 'WeatherForecaastUI'
      NODE_VERSION: '14'
+     STATIC_WEB_APP_REGISTRATION_NAME: 'WeatherForecastStaticWebAppRegistration'
+     FUNCTION_APP_REGISTRATION_NAME: 'WeatherForecastFunctionAppRegistration'
 
 jobs:
   ci-pr:
