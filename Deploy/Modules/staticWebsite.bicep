@@ -58,6 +58,7 @@ resource deploymentScripts 'Microsoft.Resources/deploymentScripts@2020-10-01' = 
     scriptContent: '''
       param([string] $subscriptionID, [string] $storageAccount, [string] $resourceGroup)
       Get-AzContext -ListAvailable | Where{$_.Name -match $subscriptionID} | Set-AzContext
+      Select-AzSubscription -SubscriptionId (Get-AzContext).Subscription.id
       $storage = Get-AzStorageAccount -ResourceGroupName $resourceGroup -Name $storageAccount
       $ctx = $storage.Context
       Enable-AzStorageStaticWebsite -Context $ctx -IndexDocument index.html
