@@ -26,10 +26,8 @@ resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
     arguments: '-userAssignedIdentityName "${userAssignedIdentityName}" -resourceName "${name}"'
     scriptContent: '''
       param([string]$userAssignedIdentityName, [string] $resourceName)
-      Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
-      Install-Module -Name Az.ManagedServiceIdentity -RequiredVersion 0.7.3
-      $identity = Get-AzUserAssignedIdentity -ResourceGroupName $resourceGroup -Name $userAssignedIdentityName
-      Connect-AzAccount -Identity -AccountId $identity.ClientId # Run on the virtual machine
+      Update-AzConfig -EnableLoginByWam $true
+      Connect-AzAccount
       $token = (Get-AzAccessToken -ResourceUrl https://graph.microsoft.com).Token
       $headers = @{'Content-Type' = 'application/json'; 'Authorization' = 'Bearer ' + $token}
 

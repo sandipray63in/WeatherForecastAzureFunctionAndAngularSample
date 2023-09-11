@@ -57,10 +57,8 @@ resource deploymentScripts 'Microsoft.Resources/deploymentScripts@2020-10-01' = 
     arguments: '-userAssignedIdentityName "${userAssignedIdentityName}" -storageAccount ${storageAccount.name} -resourceGroup ${resourceGroup().name}'
     scriptContent: '''
       param([string]$userAssignedIdentityName, [string] $storageAccount, [string] $resourceGroup) 
-      Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
-      Install-Module -Name Az.ManagedServiceIdentity -RequiredVersion 0.7.3
-      $identity = Get-AzUserAssignedIdentity -ResourceGroupName $resourceGroup -Name $userAssignedIdentityName
-      Connect-AzAccount -Identity -AccountId $identity.ClientId # Run on the virtual machine
+      Update-AzConfig -EnableLoginByWam $true
+      Connect-AzAccount
       Select-AzSubscription -SubscriptionId $subscriptionID 
       $storage = Get-AzStorageAccount -ResourceGroupName $resourceGroup -Name $storageAccount 
       $ctx = $storage.Context 
