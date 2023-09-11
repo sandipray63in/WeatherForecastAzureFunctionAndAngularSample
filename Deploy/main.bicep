@@ -139,7 +139,7 @@ module keyVault 'Modules/keyVault.bicep' = {
   scope: resourceGroup(apimResourceGroup)
   params: {
     keyVaultName: keyVaultName
-    objectId: adAppReg.outputs.objectId
+    objectId: functionADAppReg.outputs.objectId
   }
 }
 
