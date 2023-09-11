@@ -7,9 +7,9 @@ param name string = 'WeatherForecastADAppRegistration'
 param location string = resourceGroup().location
 param currentTime string = utcNow()
 param userAssignedIdentityName string
-param azureAplicationId string
+param azureAplicationId string = ''
 @secure()
-param azureAplicationSecret string
+param azureAplicationSecret string = ''
 
 resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
   name: name

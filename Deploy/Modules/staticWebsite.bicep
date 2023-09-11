@@ -7,9 +7,9 @@ param storageAccountName string
 param resourceTags object
 param deploymentScriptServicePrincipalId string
 param currentTime string = utcNow()
-param azureAplicationId string
+param azureAplicationId string = ''
 @secure()
-param azureAplicationSecret string
+param azureAplicationSecret string = ''
 
 var location = resourceGroup().location 
 
