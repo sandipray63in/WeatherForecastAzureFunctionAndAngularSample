@@ -6,10 +6,10 @@
 @description('Suffix for naming resources')
 param appNameSuffix string = 'app${uniqueString(resourceGroup().id)}'
 
-param azureAplicationId string
+param azureAplicationId string = ''
 
 @secure()
-param azureAplicationSecret string
+param azureAplicationSecret string = ''
 
 @allowed([
   'dev'
