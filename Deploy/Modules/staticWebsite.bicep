@@ -57,8 +57,8 @@ resource deploymentScripts 'Microsoft.Resources/deploymentScripts@2020-10-01' = 
     arguments: '-userAssignedIdentityName "${userAssignedIdentityName}" -storageAccount ${storageAccount.name} -resourceGroup ${resourceGroup().name}'
     scriptContent: '''
       param([string]$userAssignedIdentityName, [string] $storageAccount, [string] $resourceGroup) 
-      Update-Module -Name Az -Force
-      Install-Module -Name Az.ManagedServiceIdentity -RequiredVersion 0.7.3
+      Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
+      Install-Module -Name Az.ManagedServiceIdentity -RequiredVersion 0.7.3 --yes
       $identity = Get-AzUserAssignedIdentity -ResourceGroupName $resourceGroup -Name $userAssignedIdentityName
       Get-AzVM -ResourceGroupName contoso -Name testvm | Update-AzVM -IdentityType UserAssigned -IdentityId $identity.Id
       Connect-AzAccount -Identity -AccountId $identity.ClientId # Run on the virtual machine
