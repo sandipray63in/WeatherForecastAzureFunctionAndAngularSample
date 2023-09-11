@@ -26,7 +26,8 @@ resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
     arguments: '-resourceName "${name}"'
     scriptContent: '''
       param([string] $resourceName)
-      Connect-AzAccount -UseDeviceAuthentication
+      $Credential = Get-Credential
+      Connect-AzAccount -Credential $Credential
       $token = (Get-AzAccessToken -ResourceUrl https://graph.microsoft.com).Token
       $headers = @{'Content-Type' = 'application/json'; 'Authorization' = 'Bearer ' + $token}
 

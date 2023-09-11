@@ -57,7 +57,8 @@ resource deploymentScripts 'Microsoft.Resources/deploymentScripts@2020-10-01' = 
     arguments: '-subscriptionID ${subscription().subscriptionId} -storageAccount ${storageAccount.name} -resourceGroup ${resourceGroup().name}'
     scriptContent: '''
       param([string] $subscriptionID, [string] $storageAccount, [string] $resourceGroup) 
-      Connect-AzAccount -UseDeviceAuthentication
+      $Credential = Get-Credential
+      Connect-AzAccount -Credential $Credential
       Select-AzSubscription -SubscriptionId $subscriptionID 
       $storage = Get-AzStorageAccount -ResourceGroupName $resourceGroup -Name $storageAccount 
       $ctx = $storage.Context 
