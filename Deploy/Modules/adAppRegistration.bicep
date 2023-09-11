@@ -15,7 +15,7 @@ param azureAplicationId string = ''
 @secure()
 param azureAplicationSecret string = ''
 
-resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
+resource script 'Microsoft.Resources/deploymentScripts@2020-10-01' = {
   name: join([appRegistrationName, 'DeploymentScript'],'')
   location: location
   kind: 'AzurePowerShell'
