@@ -47,8 +47,8 @@ runs:
           id: getAzureAppIDAndSecret
           shell: bash
           run: |
-             echo "AZURE_APP_ID=${{ fromJSON(env.AZURE_CREDENTIALS).clientId }}" >> ${{env.GITHUB_OUTPUT}}
-             echo "AZURE_APP_SECRET=${{ fromJSON(env.AZURE_CREDENTIALS).clientSecret }}" >> ${{env.GITHUB_OUTPUT}}
+             echo "AZURE_APP_ID=${{ fromJSON(env.AZURE_CREDENTIALS).clientId }}\n" >> ${{env.GITHUB_OUTPUT}}
+             echo "AZURE_APP_SECRET=${{ fromJSON(env.AZURE_CREDENTIALS).clientSecret }}\n" >> ${{env.GITHUB_OUTPUT}}
 
         # Deployment Bicep template
         - name: Deploy ${{ env.ENVIRONMENT_TYPE }} environment infrastructure to ${{ env.RESOURCE_GROUP_NAME }}
