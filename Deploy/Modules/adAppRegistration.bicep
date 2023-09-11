@@ -27,7 +27,7 @@ resource script 'Microsoft.Resources/deploymentScripts@2019-10-01-preview' = {
     scriptContent: '''
       param([string] $subscriptionID,[string] $resourceName)
       Get-AzContext -ListAvailable | Where{$_.Name -match $subscriptionID} | Set-AzContext
-      Select-AzSubscription -SubscriptionId (Get-AzContext).Subscription.id
+      Select-AzSubscription -SubscriptionId '$subscriptionID'
       $token = (Get-AzAccessToken -ResourceUrl https://graph.microsoft.com).Token
       $headers = @{'Content-Type' = 'application/json'; 'Authorization' = 'Bearer ' + $token}
 
