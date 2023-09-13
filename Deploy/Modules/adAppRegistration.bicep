@@ -1,6 +1,7 @@
 ﻿// Some Useful links - 
 // https://practical365.com/microsoft-graph-api-permission/
 // https://learn.microsoft.com/en-us/graph/migrate-azure-ad-graph-configure-permissions?tabs=http%2Cupdatepermissions-azureadgraph-powershell#see-also
+// Add Applications.ReadWrite.All Application(not Delegated) Level Permission in API Permission within the deployment App Registration
 // https://learn.microsoft.com/en-us/powershell/module/microsoft.graph.applications/get-mgserviceprincipal?view=graph-powershell-1.0
 // https://learn.microsoft.com/en-us/graph/permissions-reference - has Subscription.Read.All
 // https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-script-template-configure-dev
