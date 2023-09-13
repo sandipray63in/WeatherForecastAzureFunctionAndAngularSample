@@ -20,6 +20,7 @@ https://learn.microsoft.com/en-us/azure/azure-functions/functions-develop-local
 https://stackoverflow.com/questions/63130799/azure-functions-host-json-not-applying-to-azure-application-settings     
 
 Security -    
+https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-implicit-grant-flow
 https://learn.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli
 https://learn.microsoft.com/en-us/azure/api-management/howto-protect-backend-frontend-azure-ad-b2c      
 https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev  
@@ -31,6 +32,7 @@ https://learn.microsoft.com/en-us/azure/architecture/example-scenario/apps/publi
 https://medium.com/azure-architects/azure-api-management-and-application-gateway-integration-a31fde80f3db
 https://arinco.com.au/blog/internal-external-apim-app-gateway/
 https://learn.microsoft.com/en-us/azure/active-directory/external-identities/b2b-fundamentals
+
 
 TDD & BDD -     
 https://mahmutcanga.com/2019/12/13/unit-testing-httprequest-in-c/      

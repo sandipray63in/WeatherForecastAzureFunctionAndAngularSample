@@ -63,12 +63,14 @@ var appInsightsName = 'ai-${appNameSuffix}-${environmentType}'
 // SKUs
 // Get-AzComputeResourceSku | Where-Object { $_.ResourceTypes -contains "function"}
 // https://github.com/hashicorp/terraform-provider-azurerm/issues/4658 - VVI
+// https://stackoverflow.com/questions/76110029/azure-ad-app-registration-for-oauth-code-grant-flow - VVI
+// https://stackoverflow.com/questions/43223072/get-list-of-skus-and-sku-capacities-for-azure-subscription-using-azure-rest-api - VVI
 // https://learn.microsoft.com/en-us/answers/questions/175088/which-region-do-i-need-to-pick-to-play-with-azure
 // https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale
 // https://techcommunity.microsoft.com/t5/fasttrack-for-azure/azure-functions-part-1-hosting-and-networking-options/ba-p/3746795
 // https://stackoverflow.com/questions/47522539/server-farm-service-plan-skus
 // https://learn.microsoft.com/en-us/rest/api/compute/resource-skus/list?tabs=HTTP
-var functionSku = environmentType == 'prod' ? 'EP1' : 'Y1'
+var functionSku = environmentType == 'prod' ? 'EP1' : 'F1'
 var apimSku = environmentType == 'prod' ? 'Standard' : 'Developer'
 
 // Use existing User Assigned MSI. See https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-script-template#configure-the-minimum-permissions

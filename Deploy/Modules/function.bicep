@@ -14,8 +14,8 @@ param azureClientId string
 @secure()
 param azureClientSecret string
 
-var functionTier = functionSku == 'Y1' ? 'Dynamic' : 'ElasticPremium'
-var functionKind = functionSku == 'Y1' ? 'functionapp' : 'elastic'
+var functionTier = functionSku == 'F1' ? 'Free' : 'ElasticPremium'
+var functionKind = functionSku == 'F1' ? 'functionapp' : 'elastic'
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
   name: storageAccountName
