@@ -97,8 +97,8 @@ module staticWebsite 'Modules/staticWebsite.bicep' = {
   params: {
     storageAccountName: staticWebsiteStorageAccountName
     deploymentScriptServicePrincipalId: userAssignedIdentity.id
-    azureAplicationId: staticWebADAppReg.outputs.clientId
-    azureAplicationSecret: staticWebADAppReg.outputs.clientSecret
+    azureAplicationId: azureAplicationId
+    azureAplicationSecret: azureAplicationSecret
     resourceTags: resourceTags
   }
 }
