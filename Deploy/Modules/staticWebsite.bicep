@@ -5,7 +5,7 @@
 
 param storageAccountName string
 param resourceTags object
-param deploymentScriptServicePrincipalId string
+param userAssignedIdentityName string
 param currentTime string = utcNow()
 param azureAplicationId string = ''
 @secure()
@@ -48,7 +48,7 @@ resource deploymentScripts 'Microsoft.Resources/deploymentScripts@2020-10-01' = 
   identity:{
     type: 'UserAssigned'
     userAssignedIdentities: {
-      '/subscriptions/${subscription().subscriptionId}/resourceGroups/${resourceGroup().name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/${deploymentScriptServicePrincipalId}': {}
+      '/subscriptions/${subscription().subscriptionId}/resourceGroups/${resourceGroup().name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/${userAssignedIdentityName}': {}
     }
   }
 
