@@ -45,6 +45,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
   }
 }
 
+// https://github.com/hashicorp/terraform-provider-azurerm/issues/4658
 resource plan 'Microsoft.Web/serverFarms@2020-06-01' = {
   name: appServicePlanName
   location: location
@@ -54,7 +55,9 @@ resource plan 'Microsoft.Web/serverFarms@2020-06-01' = {
     name: functionSku
     tier: functionTier
   }
-  properties: {}
+  properties: {
+    reserved: true
+  }
 }
 
 resource functionApp 'Microsoft.Web/sites@2020-06-01' = {

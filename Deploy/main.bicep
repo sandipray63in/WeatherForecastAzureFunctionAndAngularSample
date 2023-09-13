@@ -61,6 +61,13 @@ var appServicePlanName = 'asp-${appNameSuffix}-${environmentType}'
 var appInsightsName = 'ai-${appNameSuffix}-${environmentType}'
 
 // SKUs
+// Get-AzComputeResourceSku | Where-Object { $_.ResourceTypes -contains "function"}
+// https://github.com/hashicorp/terraform-provider-azurerm/issues/4658 - VVI
+// https://learn.microsoft.com/en-us/answers/questions/175088/which-region-do-i-need-to-pick-to-play-with-azure
+// https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale
+// https://techcommunity.microsoft.com/t5/fasttrack-for-azure/azure-functions-part-1-hosting-and-networking-options/ba-p/3746795
+// https://stackoverflow.com/questions/47522539/server-farm-service-plan-skus
+// https://learn.microsoft.com/en-us/rest/api/compute/resource-skus/list?tabs=HTTP
 var functionSku = environmentType == 'prod' ? 'EP1' : 'Y1'
 var apimSku = environmentType == 'prod' ? 'Standard' : 'Developer'
 
