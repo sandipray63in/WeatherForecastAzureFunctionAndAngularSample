@@ -43,7 +43,7 @@ runs:
               az bicep upgrade 
               az bicep build --file ./${{ env.BICEP_FILE_PATH }}/${{ inputs.BICEP_FILE_NAME }}.bicep
 
-        #https://stackoverflow.com/questions/59191913/how-do-i-get-the-output-of-a-specific-step-in-github-actions
+        # https://stackoverflow.com/questions/59191913/how-do-i-get-the-output-of-a-specific-step-in-github-actions
         - name: Get AZURE_APP_ID & AZURE_APP_SECRET
           id: getAzureAppIDAndSecret
           shell: bash

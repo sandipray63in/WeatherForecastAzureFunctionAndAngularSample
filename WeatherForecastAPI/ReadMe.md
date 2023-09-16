@@ -1,8 +1,7 @@
-
-Some Useful Links - 
+Some Useful Links -      
 Some Good Azure Samples -      
-https://github.com/Azure-Samples/contoso-real-estate    
-https://github.com/Azure-Samples/serverless-web-application    
+https://github.com/Azure-Samples/contoso-real-estate     
+https://github.com/Azure-Samples/serverless-web-application      
 
 Docker -     
 https://stackoverflow.com/questions/53521104/asp-net-core-the-project-doesnt-know-how-to-run-the-profile-docker-on-visua     
@@ -18,20 +17,20 @@ https://dev.to/asizikov/fixing-console-logs-for-azure-functions-running-in-a-doc
 https://stackoverflow.com/questions/70265255/how-to-configure-cors-in-azure-function-app     
 https://learn.microsoft.com/en-us/azure/azure-functions/functions-develop-local     
 https://stackoverflow.com/questions/63130799/azure-functions-host-json-not-applying-to-azure-application-settings     
-
+         
 Security -    
-https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-implicit-grant-flow
-https://learn.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli
-https://learn.microsoft.com/en-us/azure/api-management/howto-protect-backend-frontend-azure-ad-b2c      
-https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev  
-https://github.com/Azure/azure-functions-openapi-extension
-https://learn.microsoft.com/en-us/azure/api-management/authentication-authorization-overview
-https://learn.microsoft.com/en-us/azure/api-management/api-management-policies
-https://learn.microsoft.com/en-us/azure/well-architected/services/networking/api-management/operational-excellence
-https://learn.microsoft.com/en-us/azure/architecture/example-scenario/apps/publish-internal-apis-externally
-https://medium.com/azure-architects/azure-api-management-and-application-gateway-integration-a31fde80f3db
-https://arinco.com.au/blog/internal-external-apim-app-gateway/
-https://learn.microsoft.com/en-us/azure/active-directory/external-identities/b2b-fundamentals
+https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-implicit-grant-flow       
+https://learn.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli        
+https://learn.microsoft.com/en-us/azure/api-management/howto-protect-backend-frontend-azure-ad-b2c            
+https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev       
+https://github.com/Azure/azure-functions-openapi-extension       
+https://learn.microsoft.com/en-us/azure/api-management/authentication-authorization-overview      
+https://learn.microsoft.com/en-us/azure/api-management/api-management-policies        
+https://learn.microsoft.com/en-us/azure/well-architected/services/networking/api-management/operational-excellence      
+https://learn.microsoft.com/en-us/azure/architecture/example-scenario/apps/publish-internal-apis-externally      
+https://medium.com/azure-architects/azure-api-management-and-application-gateway-integration-a31fde80f3db      
+https://arinco.com.au/blog/internal-external-apim-app-gateway/        
+https://learn.microsoft.com/en-us/azure/active-directory/external-identities/b2b-fundamentals        
 
 
 TDD & BDD -     
@@ -60,7 +59,8 @@ Best option for DefaultAzureCredential to work with Visual Studio Local, Docker 
 by setting AZURE_TENANT_ID, AZURE_CLIENT_ID and AZURE_CLIENT_SECRET in local.settings.json or Azure Function Env variables.By the way,
 Docker works only with EnvironmentCredential       
 
-GitHub Actions, Azure DevOps Pipeline & Bicep(/ARM) Templates -          
+GitHub Actions, Azure DevOps Pipeline & Bicep(/ARM) Templates -   
+https://learn.microsoft.com/en-us/azure/templates/
 https://learn.microsoft.com/en-us/azure/devops/pipelines/architectures/devops-pipelines-baseline-architecture?view=azure-devops        
 https://github.com/Azure/actions-workflow-samples         
 https://azure.github.io/actions/        
@@ -103,25 +103,8 @@ https://stackoverflow.com/questions/1153126/how-to-create-a-zip-archive-with-pow
 https://stackoverflow.com/questions/65703350/azure-devops-not-running-ms-test-unit-tests      
 https://docs.specflow.org/projects/specflow-livingdoc/en/latest/sbsguides/sbsazdo.html      
 https://github.com/marketplace/actions/sonarscan-dotnet      
-In Azure DevOps, Build Pipeline is mainly for CI while Release Pipeline is mainly for CD.
 If you are using a self hosted runner then use "runs-on: self-hosted" in your yaml workflows else use the dedicated runners from github like windows-latest or ubuntu-latest etc.
 But self-hosted runners seems pretty slow.
 
 In VS 2022 Community Edition, check the containers pane & check logs pane within that & from there get the weatherforecast 
 swagger url - currently its http://localhost:30486/api/swagger/ui in local env
-
-
-
-az vm run-command invoke  --command-id RunPowerShellScript --name TestVM -g WeatherForecast-dev-rg  \
-    --scripts '''
-    param([string] $subscriptionID, [string] $storageAccount, [string] $resourceGroup)
-      Select-AzSubscription -SubscriptionId $subscriptionID
-      $storage = Get-AzStorageAccount -ResourceGroupName $resourceGroup -Name $storageAccount
-      $ctx = $storage.Context
-      Enable-AzStorageStaticWebsite -Context $ctx -IndexDocument index.html
-      $output = $storage.PrimaryEndpoints.Web
-      $output = $output.TrimEnd('/')
-      $DeploymentScriptOutputs = @{}
-      $DeploymentScriptOutputs['URL'] = $output
-    ''' \
-    --parameters 'subscriptionID=53ea2b06-4149-446b-9094-d6deeade43b5' 'storageAccount=weatherforecastdev' 'resourceGroup=WeatherForecast-dev-rg'

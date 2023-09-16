@@ -1,6 +1,4 @@
-#can test with PS D:\WeatherSolution\Deploy .\test.ps1 53ea2b06-4149-446b-9094-d6deeade43b5 weatherforecastdev WeatherForecast-dev-rg
-
-[Parameter(Mandatory=$true)]
+ [Parameter(Mandatory=$true)]
  [string]$tenantID = $args[0]
 
  [Parameter(Mandatory=$true)]
