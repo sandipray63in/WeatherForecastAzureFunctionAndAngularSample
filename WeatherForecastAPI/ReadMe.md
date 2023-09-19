@@ -1,8 +1,8 @@
 Some Useful Links -    
 
-Software Architecture in General - 
-https://awesome-architecture.com/
-
+Software Architecture in General -      
+https://awesome-architecture.com/      
+    
 Some Good Azure Samples -      
 https://github.com/Azure-Samples/contoso-real-estate     
 https://github.com/Azure-Samples/serverless-web-application      
@@ -110,10 +110,10 @@ https://github.com/marketplace/actions/sonarscan-dotnet
 If you are using a self hosted runner then use "runs-on: self-hosted" in your yaml workflows else use the dedicated runners from github like windows-latest or ubuntu-latest etc.
 But self-hosted runners seems pretty slow.
 
-Some good DevOps Courses in general from Udemy - 
-https://www.udemy.com/course/kubernetes-devsecops/ 
-https://www.udemy.com/course/istio-hands-on-for-kubernetes/
-https://www.udemy.com/course/helm-kubernetes-packaging-manager-for-developers-and-devops/ 
+Some good DevOps Courses in general from Udemy -       
+https://www.udemy.com/course/kubernetes-devsecops/      
+https://www.udemy.com/course/istio-hands-on-for-kubernetes/      
+https://www.udemy.com/course/helm-kubernetes-packaging-manager-for-developers-and-devops/      
 
 In VS 2022 Community Edition, check the containers pane & check logs pane within that & from there get the weatherforecast 
 swagger url - currently its http://localhost:30486/api/swagger/ui in local env

@@ -26,9 +26,9 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
-Some useful links -  
-https://www.udemy.com/user/stevenhancock/
-https://academind.com/courses
+Some useful links -       
+https://www.udemy.com/user/stevenhancock/          
+https://academind.com/courses          
 https://www.w3schools.com/bootstrap/bootstrap_forms_inputs.asp     
 https://stackoverflow.com/questions/23141854/adding-asterisk-to-required-fields-in-bootstrap-3      
 https://www.freecodecamp.org/news/how-to-add-bootstrap-css-framework-to-an-angular-application/     
