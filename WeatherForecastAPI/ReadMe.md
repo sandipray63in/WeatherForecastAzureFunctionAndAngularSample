@@ -2,7 +2,9 @@ Some Useful Links -
 
 Software Architecture in General -      
 https://awesome-architecture.com/   
-https://www.linkedin.com/posts/sandip-ray-1b5531b4_some-good-katas-resources-awesome-coding-activity-7109446174981443586-ds-_?utm_source=share&utm_medium=member_
+https://www.linkedin.com/posts/sandip-ray-1b5531b4_some-good-katas-resources-awesome-coding-activity-7109446174981443586-ds-_?utm_source=share&utm_medium=member_      
+https://awesomedataengineering.com
+
             
       
 Some Good Azure Samples -      
