@@ -1,7 +1,19 @@
-Some Useful Links -    
+Some Useful Resource Links -    
 
 Software Architecture in General -      
 https://awesome-architecture.com/   
+https://www.oreilly.com/library/view/fundamentals-of-software/9781492043447/      
+https://www.oreilly.com/library/view/software-architecture-the/9781492086888/     
+https://pragprog.com/titles/mkdsa/design-it/        
+https://pragprog.com/titles/mnee2/release-it-second-edition/       
+https://www.udemy.com/course/developer-to-architect/       
+https://www.packtpub.com/product/practical-model-driven-enterprise-architecture/9781801076166       
+https://www.packtpub.com/product/solutions-architects-handbook-second-edition/9781801816618       
+https://www.packtpub.com/product/the-machine-learning-solutions-architect-handbook/9781801072168        
+https://www.packtpub.com/product/iot-and-edge-computing-for-architects-second-edition/9781839214806         
+https://www.packtpub.com/product/enterprise-devops-for-architects/9781801812153   
+https://www.packtpub.com/product/becoming-a-rockstar-sre/9781803239224       
+https://www.packtpub.com/product/policy-design-in-the-age-of-digital-adoption/9781801811743         
 https://www.linkedin.com/posts/sandip-ray-1b5531b4_some-good-katas-resources-awesome-coding-activity-7109446174981443586-ds-_?utm_source=share&utm_medium=member     
 https://awesomedataengineering.com
 
