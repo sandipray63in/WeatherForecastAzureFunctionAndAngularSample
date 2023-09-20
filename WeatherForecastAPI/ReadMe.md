@@ -2,8 +2,9 @@ Some Useful Links -
 
 Software Architecture in General -      
 https://awesome-architecture.com/   
-
-    
+https://www.linkedin.com/posts/sandip-ray-1b5531b4_some-good-katas-resources-awesome-coding-activity-7109446174981443586-ds-_?utm_source=share&utm_medium=member_
+            
+      
 Some Good Azure Samples -      
 https://github.com/Azure-Samples/contoso-real-estate     
 https://github.com/Azure-Samples/serverless-web-application      
@@ -35,8 +36,9 @@ https://learn.microsoft.com/en-us/azure/well-architected/services/networking/api
 https://learn.microsoft.com/en-us/azure/architecture/example-scenario/apps/publish-internal-apis-externally      
 https://medium.com/azure-architects/azure-api-management-and-application-gateway-integration-a31fde80f3db      
 https://arinco.com.au/blog/internal-external-apim-app-gateway/        
-https://learn.microsoft.com/en-us/azure/active-directory/external-identities/b2b-fundamentals        
-
+https://learn.microsoft.com/en-us/azure/active-directory/external-identities/b2b-fundamentals      
+https://www.gosquared.com/blog/building-two-factor-authentication        
+        
 
 TDD & BDD -     
 https://mahmutcanga.com/2019/12/13/unit-testing-httprequest-in-c/      
