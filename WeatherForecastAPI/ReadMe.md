@@ -1,4 +1,4 @@
-Some Useful Resource Links -    
+Some Useful Resources Links -    
 
 Software Architecture in General -      
 https://awesome-architecture.com/   
