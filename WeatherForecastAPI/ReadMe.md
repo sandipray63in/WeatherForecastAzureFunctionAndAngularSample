@@ -16,6 +16,7 @@ https://www.packtpub.com/product/becoming-a-rockstar-sre/9781803239224
 https://www.packtpub.com/product/policy-design-in-the-age-of-digital-adoption/9781801811743         
 https://www.linkedin.com/posts/sandip-ray-1b5531b4_some-good-katas-resources-awesome-coding-activity-7109446174981443586-ds-_?utm_source=share&utm_medium=member     
 https://awesomedataengineering.com       
+https://cloudblogs.microsoft.com/opensource/2018/03/26/new-oreilly-e-book-on-designing-distributed-systems-available-for-free-download/       
 https://www.educative.io/blog/complete-guide-system-design-interview?aff=xmg1   
 https://understandingdistributed.systems 
 https://aosabook.org/en/index.html     
