@@ -1,6 +1,8 @@
 Some Useful Resources Links -    
 
 Software Architecture in General -      
+https://www.linkedin.com/posts/sandip-ray-1b5531b4_tag-cheat-sheet-activity-6917200100951764993-iLbg?utm_source=share&utm_medium=member_ios   
+https://www.linkedin.com/posts/sandip-ray-1b5531b4_patterns-literature-1-gofgang-of-four-activity-6910568656636702720-Y1aw?utm_source=share&utm_medium=member_ios   
 https://awesome-architecture.com/   
 https://www.oreilly.com/library/view/fundamentals-of-software/9781492043447/      
 https://www.oreilly.com/library/view/software-architecture-the/9781492086888/     
@@ -25,7 +27,7 @@ https://www.amazon.com/Distributed-Systems-Concepts-Design-5th/dp/0132143011
 https://www.educative.io/courses/machine-learning-system-design     
 https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/     
 https://www.databass.dev     
-https://github.com/madd86/awesome-system-design        
+https://github.com/madd86/awesome-system-design      
 
 Some Good Azure Samples -      
 https://github.com/Azure-Samples/contoso-real-estate     
