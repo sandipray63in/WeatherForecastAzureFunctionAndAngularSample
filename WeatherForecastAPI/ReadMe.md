@@ -15,10 +15,17 @@ https://www.packtpub.com/product/enterprise-devops-for-architects/9781801812153
 https://www.packtpub.com/product/becoming-a-rockstar-sre/9781803239224       
 https://www.packtpub.com/product/policy-design-in-the-age-of-digital-adoption/9781801811743         
 https://www.linkedin.com/posts/sandip-ray-1b5531b4_some-good-katas-resources-awesome-coding-activity-7109446174981443586-ds-_?utm_source=share&utm_medium=member     
-https://awesomedataengineering.com
+https://awesomedataengineering.com       
+https://www.educative.io/blog/complete-guide-system-design-interview?aff=xmg1   
+https://understandingdistributed.systems 
+https://aosabook.org/en/index.html     
+https://www.amazon.com/stores/Alex-Xu/author/B08BNMFT7P?ref=ap_rdr&store_ref=ap_rdr&isDramIntegrated=true&shoppingPortalEnabled=true     
+https://www.amazon.com/Distributed-Systems-Concepts-Design-5th/dp/0132143011      
+https://www.educative.io/courses/machine-learning-system-design     
+https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/     
+https://www.databass.dev     
+https://github.com/madd86/awesome-system-design        
 
-            
-      
 Some Good Azure Samples -      
 https://github.com/Azure-Samples/contoso-real-estate     
 https://github.com/Azure-Samples/serverless-web-application      
