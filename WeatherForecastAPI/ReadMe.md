@@ -1,7 +1,8 @@
 Some Useful Links -    
 
 Software Architecture in General -      
-https://awesome-architecture.com/      
+https://awesome-architecture.com/   
+
     
 Some Good Azure Samples -      
 https://github.com/Azure-Samples/contoso-real-estate     
@@ -111,7 +112,9 @@ If you are using a self hosted runner then use "runs-on: self-hosted" in your ya
 But self-hosted runners seems pretty slow.
 
 Some good DevOps Courses in general from Udemy -       
-https://www.udemy.com/course/kubernetes-devsecops/      
+https://www.udemy.com/course/kubernetes-devsecops/    
+Optional - Maybe alongwith whatever mentioned in the above course, check how      
+to integrate Jira & create issues in Jira for each issue created in various reports of      SCA, SAST, DAST etc.        
 https://www.udemy.com/course/istio-hands-on-for-kubernetes/      
 https://www.udemy.com/course/helm-kubernetes-packaging-manager-for-developers-and-devops/      
 
