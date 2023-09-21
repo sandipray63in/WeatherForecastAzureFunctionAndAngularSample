@@ -21,7 +21,7 @@ https://awesomedataengineering.com
 https://www.zachwilson.tech       
 https://cloudblogs.microsoft.com/opensource/2018/03/26/new-oreilly-e-book-on-designing-distributed-systems-available-for-free-download/       
 https://www.educative.io/blog/complete-guide-system-design-interview?aff=xmg1   
-https://understandingdistributed.systems 
+https://understandingdistributed.systems     
 https://aosabook.org/en/index.html     
 https://www.amazon.com/stores/Alex-Xu/author/B08BNMFT7P?ref=ap_rdr&store_ref=ap_rdr&isDramIntegrated=true&shoppingPortalEnabled=true     
 https://www.amazon.com/Distributed-Systems-Concepts-Design-5th/dp/0132143011      
