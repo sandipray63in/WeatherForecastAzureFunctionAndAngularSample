@@ -25,7 +25,6 @@ https://understandingdistributed.systems
 https://aosabook.org/en/index.html     
 https://www.amazon.com/stores/Alex-Xu/author/B08BNMFT7P?ref=ap_rdr&store_ref=ap_rdr&isDramIntegrated=true&shoppingPortalEnabled=true     
 https://www.amazon.com/Distributed-Systems-Concepts-Design-5th/dp/0132143011      
-https://www.educative.io/courses/machine-learning-system-design     
 https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/     
 https://www.databass.dev     
 https://github.com/madd86/awesome-system-design      
