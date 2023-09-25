@@ -29,7 +29,7 @@ https://www.oreilly.com/library/view/designing-data-intensive-applications/97814
 https://www.databass.dev     
 https://github.com/madd86/awesome-system-design      
 https://blog.stefanomapelli.com/       
-https://www.oreilly.com/search/?q=Beautiful&type=*&rows=10&publishers=O%27Reilly%20Media%2C%20Inc.                        
+https://www.oreilly.com/search/?q=beautiful&type=*&rows=10&publishers=O%27Reilly%20Media%2C%20Inc.                             
 
 Some Good Azure Samples -      
 https://github.com/Azure-Samples/contoso-real-estate     
