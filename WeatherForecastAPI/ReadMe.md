@@ -28,7 +28,8 @@ https://www.amazon.com/Distributed-Systems-Concepts-Design-5th/dp/0132143011
 https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/     
 https://www.databass.dev     
 https://github.com/madd86/awesome-system-design      
-https://blog.stefanomapelli.com/            
+https://blog.stefanomapelli.com/       
+https://www.oreilly.com/search/?q=Beautiful&type=*&rows=10&publishers=O%27Reilly%20Media%2C%20Inc.                        
 
 Some Good Azure Samples -      
 https://github.com/Azure-Samples/contoso-real-estate     
