@@ -1,6 +1,7 @@
 Some Useful Resources Links -    
 
-Software Architecture in General -      
+Software Architecture in General -     
+https://www.linkedin.com/posts/sandip-ray-1b5531b4_some-free-good-resources-for-developers-activity-7043874395898986496-bYFe?utm_source=share&utm_medium=member_ios   
 https://www.linkedin.com/posts/sandip-ray-1b5531b4_tag-cheat-sheet-activity-6917200100951764993-iLbg?utm_source=share&utm_medium=member_ios   
 https://www.linkedin.com/posts/sandip-ray-1b5531b4_patterns-literature-1-gofgang-of-four-activity-6910568656636702720-Y1aw?utm_source=share&utm_medium=member_ios   
 https://awesome-architecture.com/   
@@ -20,16 +21,20 @@ https://www.linkedin.com/posts/sandip-ray-1b5531b4_some-good-katas-resources-awe
 https://awesomedataengineering.com    
 https://www.zachwilson.tech       
 https://cloudblogs.microsoft.com/opensource/2018/03/26/new-oreilly-e-book-on-designing-distributed-systems-available-for-free-download/       
-https://www.educative.io/blog/complete-guide-system-design-interview?aff=xmg1   
+https://www.educative.io/blog/complete-guide-system-design-interview?aff=xmg1  
+https://www.amazon.in/gp/aw/d/B0BBY5G9QS/ref=ox_sc_act_image_3?smid=A1S46CEHK621UY&psc=1     
 https://understandingdistributed.systems     
 https://aosabook.org/en/index.html     
 https://www.amazon.com/stores/Alex-Xu/author/B08BNMFT7P?ref=ap_rdr&store_ref=ap_rdr&isDramIntegrated=true&shoppingPortalEnabled=true     
 https://www.amazon.com/Distributed-Systems-Concepts-Design-5th/dp/0132143011      
+https://www.amazon.in/gp/aw/d/9381269238/ref=ox_sc_act_image_2?smid=A1GUOQ2UF3ML93&psc=1      
+https://www.amazon.in/gp/aw/d/8131708071/ref=ox_sc_act_image_1?smid=AJEL1QPE94YMX&psc=1       
 https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/     
 https://www.databass.dev     
 https://github.com/madd86/awesome-system-design      
 https://blog.stefanomapelli.com/       
-https://www.oreilly.com/search/?q=beautiful&type=*&rows=10&publishers=O%27Reilly%20Media%2C%20Inc.                             
+https://www.oreilly.com/search/?q=beautiful&type=*&rows=10&publishers=O%27Reilly%20Media%2C%20Inc.    
+https://comparecloud.in      
 
 Some Good Azure Samples -      
 https://github.com/Azure-Samples/contoso-real-estate     
