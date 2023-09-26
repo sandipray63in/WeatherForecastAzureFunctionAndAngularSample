@@ -63,7 +63,11 @@ https://learn.microsoft.com/en-us/azure/architecture/example-scenario/apps/publi
 https://medium.com/azure-architects/azure-api-management-and-application-gateway-integration-a31fde80f3db      
 https://arinco.com.au/blog/internal-external-apim-app-gateway/        
 https://learn.microsoft.com/en-us/azure/active-directory/external-identities/b2b-fundamentals      
-https://www.gosquared.com/blog/building-two-factor-authentication        
+https://www.gosquared.com/blog/building-two-factor-authentication   
+https://azure.microsoft.com/en-us/blog/driving-identity-security-in-banking-using-biometric-identification/     
+https://learn.microsoft.com/en-us/answers/questions/1159033/how-to-enable-azure-b2c-biometrics-login-with-touc       
+https://learn.microsoft.com/en-us/azure/active-directory-b2c/partner-grit-authentication       
+https://stackoverflow.com/questions/62126382/azure-active-directory-with-biometrics-and-certificates-for-mobile-app     
         
 
 TDD & BDD -     
