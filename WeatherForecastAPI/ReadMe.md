@@ -73,6 +73,8 @@ https://azure.microsoft.com/en-us/blog/driving-identity-security-in-banking-usin
 https://learn.microsoft.com/en-us/answers/questions/1159033/how-to-enable-azure-b2c-biometrics-login-with-touc       
 https://learn.microsoft.com/en-us/azure/active-directory-b2c/partner-grit-authentication       
 https://stackoverflow.com/questions/62126382/azure-active-directory-with-biometrics-and-certificates-for-mobile-app     
+https://www.amazon.in/gp/product/B082WRYJJM/ref=dbs_a_def_awm_bibl_vppi_i1      
+https://www.amazon.in/gp/product/B09781JQR3/ref=dbs_a_def_awm_bibl_vppi_i0      
         
 
 TDD & BDD -     
