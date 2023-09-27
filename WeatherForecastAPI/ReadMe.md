@@ -2,7 +2,7 @@ Some Useful Resources Links -
 
 Software Architecture in General -     
 https://www.linkedin.com/posts/sandip-ray-1b5531b4_some-free-good-resources-for-developers-activity-7043874395898986496-bYFe?utm_source=share&utm_medium=member_ios   
-https://www.linkedin.com/posts/sandip-ray-1b5531b4_tag-cheat-sheet-activity-6917200100951764993-iLbg?utm_source=share&utm_medium=member_ios   
+https://www.planetgeek.ch/tag/cheat-sheet/         
 https://www.linkedin.com/posts/sandip-ray-1b5531b4_patterns-literature-1-gofgang-of-four-activity-6910568656636702720-Y1aw?utm_source=share&utm_medium=member_ios   
 https://www.amazon.in/Software-Engineering-SPPU-19-Course/dp/9390450411/ref=mp_s_a_1_4?crid=14XXENK15LVM0&keywords=software+engineering+sppu&qid=1695777546&sprefix=software+engineering+sppu%2Caps%2C211&sr=8-4  
 https://awesome-architecture.com/   
