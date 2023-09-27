@@ -4,6 +4,7 @@ Software Architecture in General -
 https://www.linkedin.com/posts/sandip-ray-1b5531b4_some-free-good-resources-for-developers-activity-7043874395898986496-bYFe?utm_source=share&utm_medium=member_ios   
 https://www.linkedin.com/posts/sandip-ray-1b5531b4_tag-cheat-sheet-activity-6917200100951764993-iLbg?utm_source=share&utm_medium=member_ios   
 https://www.linkedin.com/posts/sandip-ray-1b5531b4_patterns-literature-1-gofgang-of-four-activity-6910568656636702720-Y1aw?utm_source=share&utm_medium=member_ios   
+https://www.amazon.in/Software-Engineering-SPPU-19-Course/dp/9390450411/ref=mp_s_a_1_4?crid=14XXENK15LVM0&keywords=software+engineering+sppu&qid=1695777546&sprefix=software+engineering+sppu%2Caps%2C211&sr=8-4  
 https://awesome-architecture.com/   
 https://www.oreilly.com/library/view/fundamentals-of-software/9781492043447/      
 https://www.oreilly.com/library/view/software-architecture-the/9781492086888/     
@@ -73,8 +74,8 @@ https://azure.microsoft.com/en-us/blog/driving-identity-security-in-banking-usin
 https://learn.microsoft.com/en-us/answers/questions/1159033/how-to-enable-azure-b2c-biometrics-login-with-touc       
 https://learn.microsoft.com/en-us/azure/active-directory-b2c/partner-grit-authentication       
 https://stackoverflow.com/questions/62126382/azure-active-directory-with-biometrics-and-certificates-for-mobile-app     
-https://www.amazon.in/gp/product/B082WRYJJM/ref=dbs_a_def_awm_bibl_vppi_i1      
-https://www.amazon.in/gp/product/B09781JQR3/ref=dbs_a_def_awm_bibl_vppi_i0      
+https://www.amazon.in/gp/product/B09781JQR3/eref=dbs_a_def_awm_bibl_vppi_i0    
+https://www.amazon.in/gp/product/B082WRYJJM/ref=dbs_a_def_awm_bibl_vppi_i1        
         
 
 TDD & BDD -     
