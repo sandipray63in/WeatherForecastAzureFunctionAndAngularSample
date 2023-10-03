@@ -28,6 +28,7 @@ https://aosabook.org/en/index.html
 https://www.amazon.com/stores/Alex-Xu/author/B08BNMFT7P?ref=ap_rdr&store_ref=ap_rdr&isDramIntegrated=true&shoppingPortalEnabled=true     
 https://www.amazon.com/Distributed-Systems-Concepts-Design-5th/dp/0132143011      
 https://www.amazon.in/gp/aw/d/9381269238/ref=ox_sc_act_image_2?smid=A1GUOQ2UF3ML93&psc=1      
+https://muratbuffalo.blogspot.com/2023/10/hints-for-distributed-systems-design.html?m=1#:~:text=2.-,Reduce%20coordination,presence%20in%20the%20data%20path     
 https://www.amazon.in/gp/aw/d/8131708071/ref=ox_sc_act_image_1?smid=AJEL1QPE94YMX&psc=1       
 https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/     
 https://www.databass.dev     
