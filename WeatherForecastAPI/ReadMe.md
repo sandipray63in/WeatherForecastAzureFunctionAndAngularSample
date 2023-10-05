@@ -57,6 +57,8 @@ https://learn.microsoft.com/en-us/azure/azure-functions/functions-develop-local
 https://stackoverflow.com/questions/63130799/azure-functions-host-json-not-applying-to-azure-application-settings     
          
 Security -    
+https://www.oauth.com/        
+https://oauth.net/2/       
 https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-implicit-grant-flow       
 https://learn.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli        
 https://learn.microsoft.com/en-us/azure/api-management/howto-protect-backend-frontend-azure-ad-b2c            
