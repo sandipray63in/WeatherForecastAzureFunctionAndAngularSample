@@ -1,31 +1,36 @@
-Some Useful Resources Links -    
+Some Useful Resources Links(if you are a poor guy just like me, you need not buy all the paid[$$$] resources & maybe for some paid resources, can go through the ToC{Table of Contents} & do some googling of the topics mentioned in the ToC) -    
 
 Software Architecture in General -     
 https://www.linkedin.com/posts/sandip-ray-1b5531b4_some-free-good-resources-for-developers-activity-7043874395898986496-bYFe?utm_source=share&utm_medium=member_ios   
 https://www.planetgeek.ch/tag/cheat-sheet/         
 https://www.linkedin.com/posts/sandip-ray-1b5531b4_patterns-literature-1-gofgang-of-four-activity-6910568656636702720-Y1aw?utm_source=share&utm_medium=member_ios   
 https://www.amazon.in/Software-Engineering-SPPU-19-Course/dp/9390450411/ref=mp_s_a_1_4?crid=14XXENK15LVM0&keywords=software+engineering+sppu&qid=1695777546&sprefix=software+engineering+sppu%2Caps%2C211&sr=8-4  
-https://awesome-architecture.com/   
-https://mailchi.mp/deararchitects/154-dear-architects     
+https://awesome-architecture.com/      
+https://mailchi.mp/deararchitects/154-dear-architects         
 https://pragprog.com/titles/mkdsa/design-it/        
-https://pragprog.com/titles/mnee2/release-it-second-edition/       
+https://pragprog.com/titles/mnee2/release-it-second-edition/          
 https://www.udemy.com/course/developer-to-architect/       
-https://www.packtpub.com/product/practical-model-driven-enterprise-architecture/9781801076166       
+https://www.packtpub.com/product/practical-model-driven-enterprise-architecture/9781801076166         
+https://www.linkedin.com/posts/sandip-ray-1b5531b4_text-to-uml-and-other-diagrams-as-code-activity-7020239747646189568-m5dg?utm_source=share&utm_medium=member_ios       
 https://www.packtpub.com/product/solutions-architects-handbook-second-edition/9781801816618       
 https://www.packtpub.com/product/the-machine-learning-solutions-architect-handbook/9781801072168        
 https://www.packtpub.com/product/iot-and-edge-computing-for-architects-second-edition/9781839214806         
-https://www.packtpub.com/product/enterprise-devops-for-architects/9781801812153   
+https://www.packtpub.com/product/enterprise-devops-for-architects/9781801812153      
 https://www.packtpub.com/product/becoming-a-rockstar-sre/9781803239224       
 https://www.packtpub.com/product/policy-design-in-the-age-of-digital-adoption/9781801811743         
-https://www.linkedin.com/posts/sandip-ray-1b5531b4_some-good-katas-resources-awesome-coding-activity-7109446174981443586-ds-_?utm_source=share&utm_medium=member     
+https://www.linkedin.com/posts/sandip-ray-1b5531b4_some-good-katas-resources-awesome-coding-activity-7109446174981443586-ds-_?utm_source=share&utm_medium=member         
 https://awesomedataengineering.com    
-https://www.zachwilson.tech       
+https://www.zachwilson.tech           
+https://www.linkedin.com/posts/rocky-bhatia-a4801010_%3F%3F%3F%3F%3F%3F%3F%3F%3F%3F%3F-%3F-%3F%3F%3F%3F%3F%3F%3F-activity-7117111531539984384-nUM4?trk=public_profile_like_view       
+https://www.oreilly.com/library/view/architecting-data-intensive-applications/9781786465092/               
+https://www.oreilly.com/library/view/streaming-data-mesh/9781098130718/          
 https://cloudblogs.microsoft.com/opensource/2018/03/26/new-oreilly-e-book-on-designing-distributed-systems-available-for-free-download/       
-https://www.educative.io/blog/complete-guide-system-design-interview?aff=xmg1  
-https://www.amazon.in/gp/aw/d/B0BBY5G9QS/ref=ox_sc_act_image_3?smid=A1S46CEHK621UY&psc=1     
-https://understandingdistributed.systems     
-https://aosabook.org/en/index.html     
-https://www.amazon.com/stores/Alex-Xu/author/B08BNMFT7P?ref=ap_rdr&store_ref=ap_rdr&isDramIntegrated=true&shoppingPortalEnabled=true     
+https://www.educative.io/blog/complete-guide-system-design-interview?aff=xmg1       
+https://www.amazon.in/gp/aw/d/B0BBY5G9QS/ref=ox_sc_act_image_3?smid=A1S46CEHK621UY&psc=1        
+https://understandingdistributed.systems       
+https://aosabook.org/en/index.html        
+https://www.amazon.com/stores/Alex-Xu/author/B08BNMFT7P? 
+ref=ap_rdr&store_ref=ap_rdr&isDramIntegrated=true&shoppingPortalEnabled=true     
 https://www.amazon.com/Distributed-Systems-Concepts-Design-5th/dp/0132143011      
 https://www.amazon.in/gp/aw/d/B086V7Q2KW/ref=ox_sc_unknown_image_?smid=A3SI5I1JWQ14PC&psc=1       
 https://www.amazon.in/gp/aw/d/9381269238/ref=ox_sc_act_image_2?smid=A1GUOQ2UF3ML93&psc=1      
