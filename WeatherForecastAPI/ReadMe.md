@@ -29,8 +29,7 @@ https://www.educative.io/blog/complete-guide-system-design-interview?aff=xmg1
 https://www.amazon.in/gp/aw/d/B0BBY5G9QS/ref=ox_sc_act_image_3?smid=A1S46CEHK621UY&psc=1        
 https://understandingdistributed.systems       
 https://aosabook.org/en/index.html        
-https://www.amazon.com/stores/Alex-Xu/author/B08BNMFT7P? 
-ref=ap_rdr&store_ref=ap_rdr&isDramIntegrated=true&shoppingPortalEnabled=true     
+https://www.amazon.com/stores/Alex-Xu/author/B08BNMFT7P?ref=ap_rdr&store_ref=ap_rdr&isDramIntegrated=true&shoppingPortalEnabled=true         
 https://www.amazon.com/Distributed-Systems-Concepts-Design-5th/dp/0132143011      
 https://www.amazon.in/gp/aw/d/B086V7Q2KW/ref=ox_sc_unknown_image_?smid=A3SI5I1JWQ14PC&psc=1       
 https://www.amazon.in/gp/aw/d/9381269238/ref=ox_sc_act_image_2?smid=A1GUOQ2UF3ML93&psc=1      
