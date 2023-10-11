@@ -18,12 +18,10 @@ https://www.packtpub.com/product/iot-and-edge-computing-for-architects-second-ed
 https://www.packtpub.com/product/enterprise-devops-for-architects/9781801812153      
 https://www.packtpub.com/product/becoming-a-rockstar-sre/9781803239224       
 https://www.packtpub.com/product/policy-design-in-the-age-of-digital-adoption/9781801811743         
-https://www.linkedin.com/posts/sandip-ray-1b5531b4_some-good-katas-resources-awesome-coding-activity-7109446174981443586-ds-_?utm_source=share&utm_medium=member         
-https://awesomedataengineering.com    
-https://www.zachwilson.tech           
+https://www.linkedin.com/posts/sandip-ray-1b5531b4_some-good-katas-resources-awesome-coding-activity-7109446174981443586-ds-_?utm_source=share&utm_medium=member       https://awesomedataengineering.com    
 https://www.linkedin.com/posts/rocky-bhatia-a4801010_%3F%3F%3F%3F%3F%3F%3F%3F%3F%3F%3F-%3F-%3F%3F%3F%3F%3F%3F%3F-activity-7117111531539984384-nUM4?trk=public_profile_like_view       
-https://www.oreilly.com/library/view/architecting-data-intensive-applications/9781786465092/               
-https://www.oreilly.com/library/view/streaming-data-mesh/9781098130718/          
+https://www.oreilly.com/library/view/architecting-data-intensive-applications/9781786465092/              https://www.oreilly.com/library/view/streaming-data-mesh/9781098130718/       
+https://www.zachwilson.tech              
 https://cloudblogs.microsoft.com/opensource/2018/03/26/new-oreilly-e-book-on-designing-distributed-systems-available-for-free-download/       
 https://www.educative.io/blog/complete-guide-system-design-interview?aff=xmg1       
 https://www.amazon.in/gp/aw/d/B0BBY5G9QS/ref=ox_sc_act_image_3?smid=A1S46CEHK621UY&psc=1        
