@@ -80,7 +80,8 @@ https://learn.microsoft.com/en-us/answers/questions/1159033/how-to-enable-azure-
 https://learn.microsoft.com/en-us/azure/active-directory-b2c/partner-grit-authentication       
 https://stackoverflow.com/questions/62126382/azure-active-directory-with-biometrics-and-certificates-for-mobile-app     
 https://www.amazon.in/gp/product/B09781JQR3/eref=dbs_a_def_awm_bibl_vppi_i0    
-https://www.amazon.in/gp/product/B082WRYJJM/ref=dbs_a_def_awm_bibl_vppi_i1        
+https://www.amazon.in/gp/product/B082WRYJJM/ref=dbs_a_def_awm_bibl_vppi_i1     
+https://www.linkedin.com/pulse/zero-trust-security-cautious-move-balaji-ramarajan?trk=article-ssr-frontend-pulse_more-articles_related-content-card        
         
 
 TDD & BDD -     
