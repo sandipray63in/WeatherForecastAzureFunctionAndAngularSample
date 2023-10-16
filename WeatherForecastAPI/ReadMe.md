@@ -1,4 +1,4 @@
-Some Useful Resources Links(if you are a poor guy just like me, you need not buy all the paid[$$$] resources & maybe for some paid resources, can go through the ToC{Table of Contents} & do some googling of the topics mentioned in the ToC) -    
+Some Useful Resources Links(if you are a poor guy just like me, you need not buy all the paid[$$$] resources & maybe for some paid resources, can go through the ToC{Table of Contents} & do some googling of the topics mentioned in the ToC or can go through the guthub page{if available} corresponding to the paid resource or both) -    
 
 Software Architecture in General -     
 https://www.linkedin.com/posts/sandip-ray-1b5531b4_some-free-good-resources-for-developers-activity-7043874395898986496-bYFe?utm_source=share&utm_medium=member_ios   
@@ -14,7 +14,9 @@ https://www.packtpub.com/product/practical-model-driven-enterprise-architecture/
 https://www.linkedin.com/posts/sandip-ray-1b5531b4_text-to-uml-and-other-diagrams-as-code-activity-7020239747646189568-m5dg?utm_source=share&utm_medium=member_ios       
 https://www.packtpub.com/product/solutions-architects-handbook-second-edition/9781801816618       
 https://www.packtpub.com/product/the-machine-learning-solutions-architect-handbook/9781801072168        
-https://www.packtpub.com/product/iot-and-edge-computing-for-architects-second-edition/9781839214806         
+https://www.packtpub.com/product/iot-and-edge-computing-for-architects-second-edition/9781839214806       
+https://www.packtpub.com/product/edge-computing-systems-with-kubernetes/9781800568594           
+https://www.packtpub.com/product/iot-edge-computing-with-microk8s/9781803230634         
 https://www.packtpub.com/product/enterprise-devops-for-architects/9781801812153      
 https://www.packtpub.com/product/becoming-a-rockstar-sre/9781803239224       
 https://www.packtpub.com/product/policy-design-in-the-age-of-digital-adoption/9781801811743         
