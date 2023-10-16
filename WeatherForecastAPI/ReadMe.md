@@ -1,4 +1,4 @@
-Some Useful Resources Links(if you are a poor guy just like me, you need not buy all the paid[$$$] resources & maybe for some paid resources, can go through the ToC{Table of Contents} & do some googling of the topics mentioned in the ToC or can go through the guthub page{if available} corresponding to the paid resource or both) -    
+Some Useful Resources Links(if you are a poor guy just like me, you need not buy all the paid[$$$] resources & maybe for some paid resources, can go through the ToC{Table of Contents} & do some googling of the topics mentioned in the ToC or can go through the github page{if available} corresponding to the paid resource or both) -    
 
 Software Architecture in General -     
 https://www.linkedin.com/posts/sandip-ray-1b5531b4_some-free-good-resources-for-developers-activity-7043874395898986496-bYFe?utm_source=share&utm_medium=member_ios   
