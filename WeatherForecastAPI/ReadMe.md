@@ -23,7 +23,9 @@ https://www.packtpub.com/product/policy-design-in-the-age-of-digital-adoption/97
 https://www.linkedin.com/posts/sandip-ray-1b5531b4_some-good-katas-resources-awesome-coding-activity-7109446174981443586-ds-_?utm_source=share&utm_medium=member       https://awesomedataengineering.com     
 https://www.oreilly.com/library/view/fundamentals-of-data/9781098108298/       
 https://www.linkedin.com/posts/rocky-bhatia-a4801010_%3F%3F%3F%3F%3F%3F%3F%3F%3F%3F%3F-%3F-%3F%3F%3F%3F%3F%3F%3F-activity-7117111531539984384-nUM4?trk=public_profile_like_view       
-https://www.oreilly.com/library/view/architecting-data-intensive-applications/9781786465092/              https://www.oreilly.com/library/view/streaming-data-mesh/9781098130718/       
+https://www.oreilly.com/library/view/architecting-data-intensive-applications/9781786465092/              https://www.oreilly.com/library/view/streaming-data-mesh/9781098130718/      
+https://www.packtpub.com/product/azure-data-and-ai-architect-handbook/9781803234861          
+https://www.amazon.in/gp/aw/d/B08PJMV9BZ/ref=tmm_kin_swatch_0?ie=UTF8&qid=&sr=    
 https://www.zachwilson.tech              
 https://cloudblogs.microsoft.com/opensource/2018/03/26/new-oreilly-e-book-on-designing-distributed-systems-available-for-free-download/       
 https://www.educative.io/blog/complete-guide-system-design-interview?aff=xmg1       
