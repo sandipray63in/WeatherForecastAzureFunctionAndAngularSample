@@ -43,6 +43,9 @@ https://www.databass.dev
 https://github.com/madd86/awesome-system-design      
 https://blog.stefanomapelli.com/       
 https://www.oreilly.com/search/?q=beautiful&type=*&rows=10&publishers=O%27Reilly%20Media%2C%20Inc.    
+https://prashanthpanduranga.wordpress.com/2015/03/25/inevitability-of-multi-tenancy-saas-in-product-engineering/     
+https://kubernetes.io/docs/concepts/security/multi-tenancy/        
+https://www.cncf.io/blog/2022/11/09/multi-tenancy-in-kubernetes-implementation-and-optimization/       
 https://comparecloud.in      
 
 Some Good Azure Samples -      
