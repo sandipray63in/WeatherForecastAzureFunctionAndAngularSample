@@ -27,7 +27,10 @@ https://www.linkedin.com/posts/sandip-ray-1b5531b4_some-good-katas-resources-awe
 https://www.kdnuggets.com/2023/02/learn-data-engineering-github-repositories.html        
 https://www.oreilly.com/library/view/fundamentals-of-data/9781098108298/       
 https://www.linkedin.com/posts/rocky-bhatia-a4801010_%3F%3F%3F%3F%3F%3F%3F%3F%3F%3F%3F-%3F-%3F%3F%3F%3F%3F%3F%3F-activity-7117111531539984384-nUM4?trk=public_profile_like_view       
-https://www.oreilly.com/library/view/architecting-data-intensive-applications/9781786465092/              https://www.oreilly.com/library/view/streaming-data-mesh/9781098130718/      
+https://www.oreilly.com/library/view/architecting-data-intensive-applications/9781786465092/              https://www.oreilly.com/library/view/streaming-data-mesh/9781098130718/    
+https://www.amazon.in/gp/aw/d/B00E99YIDI/ref=tmm_kin_swatch_0?ie=UTF8&qid=&sr=    
+https://link.springer.com/book/10.1007/978-0-387-71003-7       
+https://www.manning.com/books/grokking-streaming-systems      
 https://www.packtpub.com/product/azure-data-and-ai-architect-handbook/9781803234861          
 https://www.amazon.in/gp/aw/d/B08PJMV9BZ/ref=tmm_kin_swatch_0?ie=UTF8&qid=&sr=    
 https://www.zachwilson.tech              
