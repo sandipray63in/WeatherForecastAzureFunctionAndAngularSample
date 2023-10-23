@@ -18,6 +18,7 @@ https://pragprog.com/titles/mnee2/release-it-second-edition/
 https://www.udemy.com/course/developer-to-architect/       
 https://www.linkedin.com/posts/deo-shankar_i-am-getting-a-lot-of-requests-for-help-in-activity-7122111010169094144-6XP8?utm_source=share&utm_medium=member_ios   
 https://www.synopsys.com/blogs/software-security/software-bill-of-materials-bom.html     
+https://en.m.wikipedia.org/wiki/Software_supply_chain       
 https://www.packtpub.com/product/practical-model-driven-enterprise-architecture/9781801076166         
 https://www.linkedin.com/posts/sandip-ray-1b5531b4_text-to-uml-and-other-diagrams-as-code-activity-7020239747646189568-m5dg?utm_source=share&utm_medium=member_ios       
 https://www.packtpub.com/product/solutions-architects-handbook-second-edition/9781801816618       
